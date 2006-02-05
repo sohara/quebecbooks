@@ -1,0 +1,87 @@
+	<%= error_messages_for 'book' %>
+	<div class="editform">
+	<h2>Display Book: <%= @book.title %></h2>
+	<!--[form:book]-->
+	<div id="form_cols">
+	    <div id="form_col_right">
+			<label for="book_authors">Author</label>
+			<div class="reviewfield">
+			<% for author in @book.authors %>
+	        <%=author.last_name + ", " + author.first_name %>
+	        <% end %>
+			</div>
+			<br />
+
+			<% if @book.images != nil %>
+			<h3>Images</h3>
+			<% for @image in @book.images %>
+			<div class="picture"><%= image_tag url_for_file_column "image", "name", "thumb96" %><br  class="noclear"/>
+			<%= @image.caption %></div><br />
+	        <% end %><% end %>
+	    </div><!-- end of div form_col_right -->
+
+	<label for="book_title">Title</label>
+	<div class="reviewfield"><%= @book.title %></div><br />
+
+	<label for="book_subtitle">Subtitle</label>
+	<div class="reviewfield"><%= @book.subtitle %></div><br />
+
+	<label for="book_language">Language</label>
+	<div class="reviewfield"><%= @book.language %></div><br />
+
+	<label for="book_category">Category</label>
+	<div class="reviewfield"><%= @book.category %></div><br />
+
+	<label for="book_topic">Topic</label>
+	<div class="reviewfield"><%= @book.topic %></div><br />
+
+	<label for="book_copyright_year">Copyright year</label>
+	<div class="reviewfield"><%= @book.copyright_year %></div><br />
+
+
+	<label for="book_isbn_number">Isbn number</label>
+	<div class="reviewfield"><%= @book.isbn_number %></div><br />
+
+	<label for="book_publisher">Publisher</label>
+	<div class="reviewfield">
+	<% for publisher in @book.publishers %>
+    <%=publisher.publisher_name %>
+    <% end %>
+	</div><br />
+
+	<label for="book_place_of_publication">Place of publication</label>
+	<div class="reviewfield"><%= @book.place_of_publication %></div><br />
+
+	<label for="book_date_published">Date published</label>
+	<div class="reviewfield"><%= @book.date_published %></div><br />
+
+	<label for="book_page_count">Page count</label>
+	<div class="reviewfield"><%= @book.page_count %></div><br />
+
+	<label for="book_edition_number">Edition number</label>
+	<div class="reviewfield"><%= @book.edition_number %></div><br />
+
+	<label for="book_cover_type">Cover type</label>
+	<div class="reviewfield"><%= @book.cover_type  %></div><br />
+
+	<label for="book_date_acquired">Date acquired</label>
+	<div class="reviewfield"><%= @book.acquired_on %></div><br />
+
+	<label for="book_shelf_number">Shelf number</label>
+	<div class="reviewfield"><%= @book.shelf_number %></div><br />
+
+	<label for="book_abstract">Abstract</label>
+	<div class="reviewfield"><%= RedCloth.new(@book.abstract).to_html %></div><br />
+
+	<label for="book_note">Note</label>
+	<div class="reviewfield"><%= RedCloth.new(@book.note).to_html %></div><br />
+
+	<label for="book_created_on">Created on</label>
+	<div class="reviewfield"><%= @book.created_on %></div><br />
+
+	<label for="book_updated_on">Updated on</label>
+	<div class="reviewfield"><%= @book.updated_on %></div><br />
+
+	</div><!-- end of div form_cols -->
+	<!--[eoform:book]-->
+	</div><!-- end of div.editform -->

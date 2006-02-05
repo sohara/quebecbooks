@@ -1,0 +1,13 @@
+<div id="browse_nav">
+    <% if controller.action_name == "index" || controller.action_name == "list" %>
+    <%= link_to ('+', {:action => 'new'}, :title => "New Book", :class => "navlinks") %>
+    <%= link_to ('<<', { :page => @book_pages.first}, :title => "First Page", :class => "navlinks") if @book_pages.first != @book_pages.current %>
+    <%= link_to ('<', { :page => @book_pages.current.previous }, :title => "Previous 20 Records",:class => "navlinks") if @book_pages.current.previous %>
+    <%= link_to ('>', { :page => @book_pages.current.next}, :title => "Next 20 Records", :class => "navlinks") if @book_pages.current.next %> 
+    <%= link_to ('>>', { :page => @book_pages.last }, :title => "Last Page", :class => "navlinks") if @book_pages.last != @book_pages.current %>
+    <% end %>
+</div>    
+<%= start_form_tag ({:controller => 'books', :action => 'edit' }) %>  
+<label for="book_title">Search Books: </label><%= text_field_with_auto_complete :book, :title %> 
+<%= submit_tag 'Go' %>
+<%= end_form_tag %><br class="brclear" />

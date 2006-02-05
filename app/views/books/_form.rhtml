@@ -1,0 +1,110 @@
+<%= error_messages_for 'book' %>
+
+<!--[form:book]-->
+<div id="form_cols">
+    <div id="form_col_right">
+        Author(s): <br />
+        <div class="contain_selects">
+        <div class="selectbox" id="left_select">
+        <select multiple name="author_ids[]" id="chosen" class="multi_select">
+        <% for author in @book.authors %>
+            <option value="<%=author.id%>" selected><%=author.last_name + ", " + author.first_name %></option>
+        <% end %>
+        </select>
+        </div><!-- end of div #left_select -->
+        <div class="selectbox" id="right_select">
+        <select multiple name="possible" id="possible" class="multi_select">
+        <% for author in @authors %>
+            <option value="<%=author.id%>"<% if @book.authors.include? author %> selected<% end %>><%=author.last_name + ", " + author.first_name %></option>
+        <% end %>    
+        </select>
+	    </div><!-- end of div #right_select -->
+		<br class="noclear" />
+	    <a href="javascript:copyToList('chosen','possible')" class="copylinks">-&gt;</A> <br class="noclear" /><br class="noclear" />
+        <a href="javascript:copyToList('possible','chosen')" class="copylinks">&lt;-</A>	
+		<br class="clear" />
+        </div> <!-- end of div #contain_selects -->
+        <br />
+		
+		<h3>Images</h3>
+		<% for @image in @book.images %>
+		<div class="picture">
+		<%= link_to (image_tag url_for_file_column("image", "name", "thumb96")), url_for_file_column('image', 'name', 'medium250'), { :popup => ['new_window', 'height=375,width=250']} %>
+			<br  class="noclear"/>
+		<%= @image.caption %></div><br />
+        <% end %>
+        <label for="image_name">Image:</label>
+		<%= file_column_field ('image', 'name', {'size' => '', 'class' => 'myfile'}) %><br />
+		<label for="image_caption">Caption</label>
+		<%= text_field 'image', 'caption'  %><br />
+    </div><!-- end of div form_col_right -->
+
+<label for="book_title">Title</label>
+<%= text_field 'book', 'title'  %><br />
+
+<label for="book_subtitle">Subtitle</label>
+<%= text_field 'book', 'subtitle'  %><br />
+
+<label for="book_language">Language</label>
+<%= text_field 'book', 'language'  %><br />
+
+<label for="book_category">Category</label>
+<%= select "book","category",['Fiction','Non-Fiction','Poetry','Children']  %><br />
+
+<label for="book_topic">Topic</label>
+<%= text_field 'book', 'topic'  %><br />
+
+<label for="book_copyright_year">Copyright year</label>
+<%= text_field 'book', 'copyright_year'  %><br />
+
+
+<label for="book_isbn_number">Isbn number</label>
+<%= text_field 'book', 'isbn_number'  %><br />
+
+<label for="book_publisher">Publisher</label>
+
+<select name="publisher_ids[]">
+<% # The former helper below isn't working because rails isn't recognizing
+   # @book.publishers as an array to compare agains @publishers to output
+   # the selected='selected' html
+   #%>
+<%= options_for_select (@publishers.map {|p| [truncate(p.publisher_name, length = 30, truncate_string = "..."), p.id]}, @book.publishers.map{|p|p.id} ) %>
+
+
+</select><br />
+
+<label for="book_place_of_publication">Place of publication</label>
+<%= text_field 'book', 'place_of_publication'  %><br />
+
+<label for="book_date_published">Date published</label>
+<%= text_field 'book', 'date_published'  %><br />
+
+<label for="book_page_count">Page count</label>
+<%= text_field 'book', 'page_count'  %><br />
+
+<label for="book_edition_number">Edition number</label>
+<%= text_field 'book', 'edition_number'  %><br />
+
+<label for="book_cover_type">Cover type</label>
+<%= select "book","cover_type",['hardcover','softcover']  %><br />
+
+<label for="book_date_acquired">Date acquired</label>
+<%= date_select("book", "acquired_on", :start_year => 2008, :end_year => 1990, :use_month_numbers => false,
+                                    :include_blank => true) %><br />
+
+<label for="book_shelf_number">Shelf number</label>
+<%= text_field 'book', 'shelf_number'  %><br />
+
+<label for="book_abstract">Abstract</label>
+<%= text_area 'book', 'abstract'  %><br />
+
+<label for="book_note">Note</label>
+<%= text_area 'book', 'note'  %><br />
+
+<label for="book_created_on">Created on</label>
+<%= @book.created_on %><br />
+
+<label for="book_updated_on">Updated on</label>
+<%= @book.updated_on %><br />
+
+<!--[eoform:book]-->

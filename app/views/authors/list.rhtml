@@ -1,0 +1,17 @@
+<table>
+  <tr>
+    <th>Name</th>
+	<th>Books</th>
+    <th>Delete</th>
+  </tr>
+  
+<% for author in @authors %>
+  <tr class="<%= cycle("even", "odd") %>">
+	<td><%= link_to author.name, :action => 'edit', :id => author %></td>
+	<td><% for book in author.books %>
+    <%= link_to book.title, :controller => 'books', :action => 'edit', :id => book %><br />
+    <% end %></td>
+    <td><%= link_to 'Destroy', {:action => 'destroy', :id => author}, :confirm => 'Are you sure?' %></td>
+  </tr>
+<% end %>
+</table>

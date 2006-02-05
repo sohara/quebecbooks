@@ -1,0 +1,101 @@
+<%= error_messages_for 'author' %><br />
+
+<!--[form:author]-->
+<div id="form_cols">
+    <div id="form_col_right">
+		<% if controller.action_name == "edit" %>
+		<h3>Books by <%= @author.first_name + " " + @author.last_name %></h3><p>
+		<% for book in @author.books %>
+	    <%= link_to book.title, :controller => 'books', :action => 'edit', :id => book %><br />
+		<%end%></p>
+		<%end%>
+		
+		<h3>Images</h3>
+		<% for @image in @author.images %>
+		<div class="picture">
+					<%= link_to (image_tag url_for_file_column("image", "name", "thumb96")), url_for_file_column('image', 'name', 'medium250'), { :popup => ['new_window', 'height=375,width=250']} %><br  class="noclear"/>
+		<%= @image.caption %></div><br />
+        <% end %>
+        <label for="image_name">Image:</label>
+		<%= file_column_field ('image', 'name', {'size' => '', 'class' => 'myfile'}) %><br />
+		<label for="image_caption">Caption</label>
+		<%= text_field 'image', 'caption'  %><br />
+
+</div><!-- end of div form_col_right -->
+
+<label for="author_first_name">First name</label>
+<%= text_field 'author', 'first_name'  %><br />
+
+<label for="author_last_name">Last name</label>
+<%= text_field 'author', 'last_name'  %><br />
+
+<label for="author_other_name">Other name</label>
+<%= text_field 'author', 'other_name'  %><br />
+
+
+<label for="author_language">Language</label>
+<%= text_field 'author', 'language'  %><br />
+
+<label for="author_nationality">Nationality</label>
+<%= text_field 'author', 'nationality'  %><br />
+
+<label for="author_birthdate">Birthdate</label>
+<%= date_select("author", "born_on", :start_year => 2000, :end_year => 1900, :use_month_numbers => false,
+                                    :include_blank => true) %><br />
+
+<label for="author_birthplace">Birthplace</label>
+<%= text_field 'author', 'birthplace'  %><br />
+
+<label for="author_date_of_death">Date of death</label>
+<%= date_select("author", "died_on", :start_year => 2008, :end_year => 1900, :use_month_numbers => false,
+                                    :include_blank => true) %><br />
+
+
+<label for="author_sex">Sex</label>
+<%= select "author","sex",["Male","Female"]  %><br />
+
+
+<label for="author_biography">Biography</label>
+<%= text_area 'author', 'biography'  %><br />
+
+<label for="author_note">Note</label>
+<%= text_area 'author', 'note'  %><br />
+
+<label for="author_address_line_1">Address line 1</label>
+<%= text_field 'author', 'address_line_1'  %><br />
+
+<label for="author_address_line_2">Address line 2</label>
+<%= text_field 'author', 'address_line_2'  %><br />
+
+<label for="author_city">City</label>
+<%= text_field 'author', 'city'  %><br />
+
+<label for="author_region">Region</label>
+<%= text_field 'author', 'region'  %><br />
+
+<label for="author_postal_code">Postal code</label>
+<%= text_field 'author', 'postal_code'  %><br />
+
+<label for="author_country">Country</label>
+<%= text_field 'author', 'country'  %><br />
+
+<label for="author_phone">Phone</label>
+<%= text_field 'author', 'phone'  %><br />
+
+<label for="author_fax">Fax</label>
+<%= text_field 'author', 'fax'  %><br />
+
+<label for="author_email">Email</label>
+<%= text_field 'author', 'email'  %><br />
+
+<label for="author_web_site">Web site</label>
+<%= text_field 'author', 'web_site'  %><br />
+
+<label for="book_created_on">Created on</label>
+<%= @author.created_on %><br />
+
+<label for="book_updated_on">Updated on</label>
+<%= @author.updated_on %><br />
+
+<!--[eoform:author]-->
+

@@ -1,0 +1,59 @@
+class AuthorsController < ApplicationController
+  before_filter :authorize
+  
+  auto_complete_for :author, :last_name
+    
+  def index
+    list
+    render :action => 'list'
+  end
+
+  def list
+    @author_pages, @authors = paginate :author, :per_page => 20, :order_by => 'last_name'
+  end
+
+  def show
+    @author = Author.find(params[:id])
+  end
+
+  def new
+    @author = Author.new
+  end
+
+  def create
+    @author = Author.new(params[:author])
+    @author.images << Image.new(:name => @params[:image][:name],
+                              :caption => @params[:image][:caption]) if @params[:image][:name].size > 1000
+    if @author.save
+      flash[:notice] = 'Author was successfully created.'
+      redirect_to :action => 'show', :id => @author
+    else
+      render :action => 'new'
+    end
+  end
+
+  def edit
+    if params[:id]
+      @author = Author.find(params[:id])
+    else
+      @author = Author.find( :first, :conditions => ["last_name = ?", @params[:author][:last_name]])
+    end  
+  end
+
+  def update
+    @author = Author.find(params[:id])
+    @author.images << Image.new(:name => @params[:image][:name],
+                              :caption => @params[:image][:caption]) if @params[:image][:name].size > 1000
+    if @author.update_attributes(params[:author])
+      flash[:notice] = 'Author was successfully updated.'
+      redirect_to :action => 'show', :id => @author
+    else
+      render :action => 'edit'
+    end
+  end
+
+  def destroy
+    Author.find(params[:id]).destroy
+    redirect_to :action => 'list'
+  end
+end

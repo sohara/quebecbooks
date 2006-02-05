@@ -1,0 +1,9 @@
+<%= start_form_tag ({:action => 'update', :id => @book}, {:multipart => true, 'onSubmit' => 'allSelect()', 'class' => 'editform'}) %>
+<h2>Edit Book: <%= @book.title %></h2>
+  <%= render_partial 'form' %>
+ 
+<label for="Edit">Submit</label>
+<%= submit_tag 'Edit' %><br />
+
+</div><!-- end of div form_cols -->
+<%= end_form_tag %>
