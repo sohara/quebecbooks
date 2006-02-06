@@ -3,7 +3,7 @@
 <!--[form:book]-->
 <div id="form_cols">
     <div id="form_col_right">
-        Author(s): <br />
+        <h3>Author(s): </h3>
         <div class="contain_selects">
         <div class="selectbox" id="left_select">
         <select multiple name="author_ids[]" id="chosen" class="multi_select">
@@ -25,7 +25,11 @@
 		<br class="clear" />
         </div> <!-- end of div #contain_selects -->
         <br />
-		
+		Currently selected (click to edit/view):<br />
+		<% for author in @book.authors %>
+		  <%= link_to author.name, :controller => 'authors', :action => 'edit', :id => author %>
+        <% end %>
+		<br /><br />
 		<h3>Images</h3>
 		<% for @image in @book.images %>
 		<div class="picture">
