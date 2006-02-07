@@ -11,11 +11,14 @@
 		<%end%>
 		
 		<h3>Images</h3>
+		
 		<% for @image in @author.images %>
 		<div class="picture">
-					<%= link_to (image_tag url_for_file_column("image", "name", "thumb96")), url_for_file_column('image', 'name', 'medium250'), { :popup => ['new_window', 'height=375,width=250']} %><br  class="noclear"/>
-		<%= @image.caption %></div><br />
+		<%= link_to (image_tag url_for_file_column("image", "name", "thumb96")), url_for_file_column('image', 'name', 'medium250'), { :popup => ['new_window', 'height=375,width=250']} %><div class="checkbox"><%= check_box("delete_image", @image.id ) %>(Check to delete)</div>
+		<br  class="noclear"/>
+		<%= @image.caption %><br  class="noclear"/></div><br />
         <% end %>
+
         <label for="image_name">Image:</label>
 		<%= file_column_field ('image', 'name', {'size' => '', 'class' => 'myfile'}) %><br />
 		<label for="image_caption">Caption</label>

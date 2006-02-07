@@ -205,6 +205,11 @@ form, div.editform {
 	border-bottom: 2px solid #ccc;
 }
 
+.notice p {
+	margin: 10px 10px;
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+}
+
 .editform label, .editform input, .editform textarea, .editform select, div.form_cols label, .editform div.reviewfield {
 	display: block;
 	float: left;
@@ -259,9 +264,18 @@ div.reviewfield {
 .editform div.contain_selects br.noclear {
 	clear: none;
 }
+
 .editform div.selectbox {
 }
 
+.checkbox {
+
+}
+
+.checkbox input {
+	display: inline;
+	width: auto;
+}
 #right_select {
 	/* background-color: #0f0; */
 	float: right;
@@ -309,6 +323,7 @@ div.picture {
 div.picture img {
 	border: 1px solid black;
 	margin: 0 0 5px 0;
+	float: left;
 }
 
 .fieldWithErrors {

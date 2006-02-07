@@ -28,8 +28,9 @@
       <%=h @flash["notice"] %> 
     </span>
     <% end %> 
-<p style="color: green"><%= flash[:notice] %></p>
-
+    <% if flash[:notice] %> 
+<div class="notice"><p style="color: green"><%= flash[:notice] %></p></div>
+    <% end %> 
 <%= @content_for_layout %>
 </div><!-- End Div "wrapper"-->
 </body>

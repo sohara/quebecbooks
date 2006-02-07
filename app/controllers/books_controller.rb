@@ -51,10 +51,16 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @book.authors = Author.find(@params[:author_ids]) if @params[:author_ids]
     @book.publishers = Publisher.find(@params[:publisher_ids]) if @params[:publisher_ids]
+    
+    #Append new image to author if it was actually uploaded (checked via size)
     @book.images << Image.new(:name => @params[:image][:name],
                               :caption => @params[:image][:caption]) if @params[:image][:name].size > 1000
+                              
+    # iterate over checkboxed images to delete them if checked
+    params[:delete_image].each { |image| Image.find(image[0]).destroy if image[1] == '1'} if params[:delete_image]
+                               
     if @book.update_attributes(params[:book])
-      flash[:notice] = 'The book #{book.title} was successfully updated.'
+      flash[:notice] = "The book \"#{@book.title}\" was successfully updated."
       redirect_to :action => 'show', :id => @book
     else
       render :action => 'edit'
