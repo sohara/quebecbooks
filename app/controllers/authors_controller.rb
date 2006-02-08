@@ -1,7 +1,14 @@
 class AuthorsController < ApplicationController
   before_filter :authorize
-  
-  auto_complete_for :author, :last_name
+
+  def auto_complete_for_author_name
+    @authors = Author.find(:all, 
+      :conditions => [ "CAST(CONCAT(first_name,' ',other_name,' ',last_name) AS CHAR) LIKE ?",
+      '%' + params[:author][:name].downcase + '%' ], 
+      :order => 'last_name ASC',
+      :limit => 8)
+    render :partial => 'names'
+  end
     
   def index
     list
@@ -36,7 +43,7 @@ class AuthorsController < ApplicationController
     if params[:id]
       @author = Author.find(params[:id])
     else
-      @author = Author.find( :first, :conditions => ["last_name = ?", @params[:author][:last_name]])
+      @author = Author.find( :first, :conditions => ["CAST(CONCAT(first_name,' ',other_name,' ',last_name) AS CHAR) = ?", @params[:author][:name]])
     end  
   end
 
