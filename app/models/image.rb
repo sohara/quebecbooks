@@ -8,8 +8,18 @@ class Image < ActiveRecord::Base
   belongs_to :authors
   file_column :name
   
-  file_column :name, :magick => { 
-            :quality => '10',
-            :versions => { "thumb96" => "96x150>", "medium250" => "250x400>", "large480" => "480X640>" }
-          }
+  file_column :name, :magick => { :versions => { 
+                :thumb96 => {:size => "96x150>"}, 
+                :medium250 => {:size => "250x400>"},
+                :large480 => {:size => "480X640>"},
+              }
+            }  
+            
+            
+            #    file_column :image, :magick => {:versions => {
+            #         :square => {:crop => "1:1", :size => "50x50", :name => "thumb"},
+            #         :screen => {:crop => "4:3", :size => "640x480>"},
+            #         :widescreen => {:crop => "16:9", :size => "640x360!"},
+            #       }
+            #    }         
 end

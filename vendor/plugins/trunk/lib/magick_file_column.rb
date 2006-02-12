@@ -82,7 +82,7 @@ module FileColumn # :nodoc:
           end
         end
       ensure
-        img.write dest_path
+        img.write(dest_path) { self.quality = 95 }
         File.chmod options[:permissions], dest_path
       end
     end

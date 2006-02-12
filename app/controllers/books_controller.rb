@@ -46,7 +46,7 @@ class BooksController < ApplicationController
     @authors = Author.find( :all, :order => 'last_name')
     @publishers = Publisher.find( :all, :order => 'publisher_name')
   end
-
+  
   def update
     @book = Book.find(params[:id])
     @book.authors = Author.find(@params[:author_ids]) if @params[:author_ids]
