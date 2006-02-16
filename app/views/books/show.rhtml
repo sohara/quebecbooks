@@ -64,17 +64,14 @@
 	<label for="book_cover_type">Cover type</label>
 	<div class="reviewfield"><%= @book.cover_type  %></div><br />
 
-	<label for="book_date_acquired">Date acquired</label>
-	<div class="reviewfield"><%= @book.acquired_on %></div><br />
-
 	<label for="book_shelf_number">Shelf number</label>
 	<div class="reviewfield"><%= @book.shelf_number %></div><br />
 
-	<label for="book_abstract">Abstract</label>
+	<label for="book_abstract">Description</label>
 	<div class="reviewfield"><%= RedCloth.new(@book.abstract).to_html %></div><br />
 
-	<label for="book_note">Note</label>
-	<div class="reviewfield"><%= RedCloth.new(@book.note).to_html %></div><br />
+	<label for="book_extract">Extract</label>
+	<div class="reviewfield"><%= RedCloth.new(@book.extract).to_html %></div><br />
 
 	<label for="book_created_on">Created on</label>
 	<div class="reviewfield"><%= @book.created_on %></div><br />

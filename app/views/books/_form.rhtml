@@ -94,18 +94,14 @@
 <label for="book_cover_type">Cover type</label>
 <%= select "book","cover_type",['hardcover','softcover']  %><br />
 
-<label for="book_date_acquired">Date acquired</label>
-<%= date_select("book", "acquired_on", :start_year => 2008, :end_year => 1990, :use_month_numbers => false,
-                                    :include_blank => true) %><br />
-
 <label for="book_shelf_number">Shelf number</label>
 <%= text_field 'book', 'shelf_number'  %><br />
 
-<label for="book_abstract">Abstract</label>
+<label for="book_abstract">Description</label>
 <%= text_area 'book', 'abstract'  %><br />
 
-<label for="book_note">Note</label>
-<%= text_area 'book', 'note'  %><br />
+<label for="book_extract">Extract</label>
+<%= text_area 'book', 'extract'  %><br />
 
 <label for="book_created_on">Created on</label>
 <%= @book.created_on %><br />
