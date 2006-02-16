@@ -53,7 +53,6 @@
 <%= date_select("author", "died_on", :start_year => 2008, :end_year => 1900, :use_month_numbers => false,
                                     :include_blank => true) %><br />
 
-
 <label for="author_sex">Sex</label>
 <%= select "author","sex",["Male","Female"]  %><br />
 
@@ -63,33 +62,6 @@
 
 <label for="author_note">Note</label>
 <%= text_area 'author', 'note'  %><br />
-
-<label for="author_address_line_1">Address line 1</label>
-<%= text_field 'author', 'address_line_1'  %><br />
-
-<label for="author_address_line_2">Address line 2</label>
-<%= text_field 'author', 'address_line_2'  %><br />
-
-<label for="author_city">City</label>
-<%= text_field 'author', 'city'  %><br />
-
-<label for="author_region">Region</label>
-<%= text_field 'author', 'region'  %><br />
-
-<label for="author_postal_code">Postal code</label>
-<%= text_field 'author', 'postal_code'  %><br />
-
-<label for="author_country">Country</label>
-<%= text_field 'author', 'country'  %><br />
-
-<label for="author_phone">Phone</label>
-<%= text_field 'author', 'phone'  %><br />
-
-<label for="author_fax">Fax</label>
-<%= text_field 'author', 'fax'  %><br />
-
-<label for="author_email">Email</label>
-<%= text_field 'author', 'email'  %><br />
 
 <label for="author_web_site">Web site</label>
 <%= text_field 'author', 'web_site'  %><br />
