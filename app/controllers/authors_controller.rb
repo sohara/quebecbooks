@@ -39,6 +39,20 @@ class AuthorsController < ApplicationController
     end
   end
 
+
+  def search
+    @authors = Author.find( :all, :conditions => ["CAST(CONCAT(first_name,' ',other_name,' ',last_name) AS CHAR) LIKE ?", '%' + @params[:author][:name].downcase + '%'])
+    if @authors.nitems == 1
+      redirect_to :action => 'edit', :id => @authors[0] 
+    elsif @authors.nitems > 1
+      flash[:notice] = 'Your seach results'
+      render_action 'list'
+    else
+      flash[:notice] = 'Your search returned nothing'
+      redirect_to :action => 'index'
+    end  
+  end
+
   def edit
     if params[:id]
       @author = Author.find(params[:id])

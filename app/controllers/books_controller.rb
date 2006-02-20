@@ -23,6 +23,7 @@ class BooksController < ApplicationController
   end
 
   def create
+    @authors = Author.find( :all, :order => 'last_name')
     @book = Book.new(params[:book])
     @book.authors = Author.find(@params[:author_ids]) if @params[:author_ids]
     @book.publishers = Publisher.find(@params[:publisher_ids]) if @params[:publisher_ids]
@@ -36,6 +37,18 @@ class BooksController < ApplicationController
     end
   end
   
+  def search
+    @books = Book.find( :all, :conditions => ["LOWER(title) LIKE ?", '%' + @params[:book][:title].downcase + '%' ])
+    if @books.nitems == 1
+      redirect_to :action => 'edit', :id => @books[0]
+    elsif @books.nitems > 1
+      flash[:notice] = 'Your seach results'
+      render_action 'list'
+    else
+      flash[:notice] = 'Your search returned nothing'
+      redirect_to :action => 'index'
+    end  
+  end
 
   def edit
     if params[:id]
@@ -49,15 +62,28 @@ class BooksController < ApplicationController
   
   def update
     @book = Book.find(params[:id])
+    @authors = Author.find( :all, :order => 'last_name')
+    @publishers = Publisher.find( :all, :order => 'publisher_name')
     @book.authors = Author.find(@params[:author_ids]) if @params[:author_ids]
     @book.publishers = Publisher.find(@params[:publisher_ids]) if @params[:publisher_ids]
     
-    #Append new image to author if it was actually uploaded (checked via size)
+    #Append new image to book if it was actually uploaded (checked via size)
     @book.images << Image.new(:name => @params[:image][:name],
                               :caption => @params[:image][:caption]) if @params[:image][:name].size > 1000
                               
     # iterate over checkboxed images to delete them if checked
-    params[:delete_image].each { |image| Image.find(image[0]).destroy if image[1] == '1'} if params[:delete_image]
+    params[:delete_image].each { |image| 
+      Image.find(image[0]).destroy if image[1] == '1'} if params[:delete_image]
+    
+    # Update any changes to existing awards
+    @book.awards.collect{ |award| 
+      award.update_attributes( @params[:award][ award.id.to_s ] )
+      }
+      
+    #Append new award to book if one was entered
+    @book.awards << Award.new(:category => @params[:award][:category],
+                              :year => @params[:award][:year],
+                              :status => @params[:award][:status]) if @params[:award][:category].length > 0
                                
     if @book.update_attributes(params[:book])
       flash[:notice] = "The book \"#{@book.title}\" was successfully updated."
@@ -71,4 +97,6 @@ class BooksController < ApplicationController
     Book.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
+  
+  
 end

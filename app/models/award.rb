@@ -1,2 +1,42 @@
 class Award < ActiveRecord::Base
+  belongs_to :book
+  validates_presence_of :category, :year, :status
+  validates_inclusion_of :category,
+                         :in => %w{ Fiction Non-Fiction Poetry First-Book Translation },
+                         :message => "should be either 'Fiction', 'Non-Fiction' 'Poetry', 'First-Book', or  'Translation'"
+  validates_inclusion_of :status,
+                         :in => %w{ Finalist Winner },
+                         :message => "should be either 'Finalist' or 'Winner'"        
+
+# This method maps award names to awards base on their category and year
+   def name
+     if self[:category] == 'Fiction'
+       if self[:year] > 1990
+         'The Hugh MacLennan Prize for Fiction'
+       else
+         'The QSPELL Prize for Fiction'
+       end
+     elsif self[:category] == 'Non-Fiction'
+       if self[:year] > 1997
+         'The Mavis Gallant Prize for Non-Fiction'
+       else
+         'The QSPELL Prize for Non-Fiction'
+       end
+     elsif self[:category] == 'Poetry'
+       if self[:year] > 1991
+         'The A.M. Klein Prize for Poetry'
+       else 
+         'The QSPELL Prize for Poetry'
+       end
+      elsif self[:category] == 'First-Book'
+        if self[:year] > 2001
+          'McAuslan First Book Prize'
+        else
+          'First Book Prize'
+        end
+      else
+        'QWF Translation Prize'
+      end
+   end
+                                           
 end

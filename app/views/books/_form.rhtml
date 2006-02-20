@@ -1,5 +1,4 @@
 <%= error_messages_for 'book' %>
-
 <!--[form:book]-->
 <div id="form_cols">
     <div id="form_col_right">
@@ -7,7 +6,7 @@
         <div class="contain_selects">
         <div class="selectbox" id="left_select">
         <select multiple name="author_ids[]" id="chosen" class="multi_select">
-        <% for author in @book.authors %>
+		<% for author in @book.authors %>
             <option value="<%=author.id%>" selected><%=author.last_name + ", " + author.first_name %></option>
         <% end %>
         </select>
@@ -31,6 +30,7 @@
         <% end %>
 		<br /><br />
 		
+		<% unless @book.images.empty? %>
 		<h3>Images</h3>
 		<% for @image in @book.images %>
 		<div class="picture">
@@ -38,11 +38,42 @@
 		<br  class="noclear"/>
 		<%= @image.caption %><br  class="noclear"/></div><br />
         <% end %>
-
+		<% end %>
+        
+		<h3>Add an Image</h3>
         <label for="image_name">Image:</label>
 		<%= file_column_field ('image', 'name', {'size' => '', 'class' => 'myfile'}) %><br />
 		<label for="image_caption">Caption</label>
-		<%= text_field 'image', 'caption'  %><br />
+		<%= text_field 'image', 'caption'  %><br /><br />
+		
+	
+		<% unless @book.awards.empty? %>
+		<h3>Awards</h3>
+		<table class="awards">
+			<tr><th>Category</th><th>Year</th><th>Status</th><th>Delete</th></tr>
+		<% @book.awards.each do |@award| %>
+			<tr>
+			<td><%= select("award[]", "category", [ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation" ], { :include_blank => false })  %></td>
+			
+			<td><%= select("award[]", "year", (1985..2007).to_a.reverse, {:include_blank => true }) %></td>
+			<td><%= select("award[]", "status", [ "Finalist", "Winner" ], { :include_blank => false })  %></td>
+			<td></td>
+			</tr>
+		<% end %>
+		</table>
+		<% end %>
+		
+		
+		<h3>Add New Award</h3>
+		<table class="awards">
+			<tr><th>Category</th><th>Year</th><th>Status</th></tr>
+		<tr>
+			<td><%= select("award", "category", [ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation" ], { :include_blank => true })  %></td>
+		    <td><%= select("award", "year", (1985..2007).to_a.reverse, {:include_blank => true }) %></td>
+			<td><%= select("award", "status", [ "Finalist", "Winner" ], { :include_blank => true })  %></td>
+		</tr>
+		</table>
+		
     </div><!-- end of div form_col_right -->
 
 <label for="book_title">Title</label>

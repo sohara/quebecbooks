@@ -4,20 +4,25 @@
 	<!--[form:book]-->
 	<div id="form_cols">
 	    <div id="form_col_right">
-			<label for="book_authors">Author</label>
+			<h3>Author(s): </h3>
 			<div class="reviewfield">
 			<% for author in @book.authors %>
 	        <%=author.last_name + ", " + author.first_name %>
 	        <% end %>
 			</div>
-			<br />
+			<br /><br />
 
 			<% if @book.images != nil %>
 			<h3>Images</h3>
 			<% for @image in @book.images %>
 			<div class="picture"><%= image_tag url_for_file_column "image", "name", "thumb96" %><br  class="noclear"/>
 			<%= @image.caption %></div><br />
-	        <% end %><% end %>
+	        <% end %><% end %><br /><br />
+	
+			<h3>Awards</h3>
+			<% for award in @book.awards %>
+	        <%=award.name + " Prize, Awarded as " + award.status + " in " + award.year.to_s %><br />
+	        <% end %>
 	    </div><!-- end of div form_col_right -->
 
 	<label for="book_title">Title</label>
