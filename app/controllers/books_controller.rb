@@ -26,11 +26,11 @@ class BooksController < ApplicationController
     @authors = Author.find( :all, :order => 'last_name')
     @book = Book.new(params[:book])
     @book.authors = Author.find(@params[:author_ids]) if @params[:author_ids]
-    @book.publishers = Publisher.find(@params[:publisher_ids]) if @params[:publisher_ids]
     @book.images << Image.new(:name => @params[:image][:name],
                               :caption => @params[:image][:caption]) if @params[:image][:name].size > 1000;
     if @book.save
       flash[:notice] = 'Book was successfully created.'
+      @book.publishers << Publisher.find(@params[:publisher_ids]) if @params[:publisher_ids]
       redirect_to :action => 'show', :id => @book
     else
       render :action => 'new'
@@ -80,6 +80,10 @@ class BooksController < ApplicationController
       award.update_attributes( @params[:award][ award.id.to_s ] )
       }
       
+   # iterate over checkboxed awards to delete them if checked
+      params[:delete_award].each { |award| 
+        Award.find(award[0]).destroy if award[1] == '1'} if params[:delete_award]  
+        
     #Append new award to book if one was entered
     @book.awards << Award.new(:category => @params[:award][:category],
                               :year => @params[:award][:year],

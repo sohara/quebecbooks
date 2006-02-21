@@ -6,4 +6,7 @@
 <%= submit_tag 'Edit' %><br />
 
 </div><!-- end of div form_cols -->
+
+<h2 class="noborder"><%= link_to ('Show', { :action => 'show', :id => @book }, :title => "Preview this book") %> |
+<%= link_to ('Back', { :action => 'list' }, :title => "Back to the list of books") %></h2>
 <%= end_form_tag %>

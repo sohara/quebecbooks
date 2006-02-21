@@ -221,6 +221,9 @@ form, div.editform {
 	border-bottom: 2px solid #ccc;
 }
 
+.editform h2.noborder {
+	border-bottom: 0;
+}
 .notice p {
 	margin: 10px 10px;
 	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;

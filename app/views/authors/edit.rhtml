@@ -5,7 +5,7 @@
 <label for="Edit">Submit</label>
 <%= submit_tag 'Edit' %><br />
 </div><!-- end of div form_cols -->
+<h2 class="noborder"><%= link_to ('Show', { :action => 'show', :id => @author }, :title => "Preview this author") %> |
+<%= link_to ('Back', { :action => 'list' }, :title => "Back to the list of authors") %></h2>
 <%= end_form_tag %>
 
-<%= link_to 'Show', :action => 'show', :id => @author %> |
-<%= link_to 'Back', :action => 'list' %>
