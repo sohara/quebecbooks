@@ -1,0 +1,71 @@
+	<%= error_messages_for 'author' %>
+	<div class="editform">
+	<h2><%= @author.name %></h2>	
+<!--[form:author]-->
+<div id="form_cols">
+    <div id="form_col_right">
+	
+		<h3>Books by <%= @author.first_name + " " + @author.last_name %></h3>
+		<p>
+		<% for book in @author.books %>
+	    <%= link_to book.title, :controller => 'books', :action => 'view', :id => book %><br />
+		<%end%></p>
+		
+		
+		<h3>Images</h3>
+		<% for @image in @author.images %>
+		<div class="picture"><%= link_to (image_tag url_for_file_column("image", "name", "thumb96")), url_for_file_column('image', 'name', 'medium250'), { :popup => ['new_window', 'height=375,width=250']} %><br  class="noclear"/>
+		<%= @image.caption %></div><br />
+        <% end %>
+
+</div><!-- end of div form_col_right -->
+
+<label for="author_first_name">First name</label>
+<div class="reviewfield"><%= @author.first_name  %></div><br />
+
+<label for="author_last_name">Last name</label>
+<div class="reviewfield"><%= @author.last_name  %></div><br />
+
+<label for="author_other_name">Other name</label>
+<div class="reviewfield"><%= @author.other_name  %></div><br />
+
+
+<label for="author_language">Language</label>
+<div class="reviewfield"><%= @author.language  %></div><br />
+
+<label for="author_nationality">Nationality</label>
+<div class="reviewfield"><%= @author.nationality  %></div><br />
+
+<label for="author_birthdate">Birthdate</label>
+<div class="reviewfield"><%= @author.born_on %></div><br />
+
+<label for="author_birthplace">Birthplace</label>
+<div class="reviewfield"><%= @author.birthplace  %></div><br />
+
+<label for="author_date_of_death">Date of death</label>
+<div class="reviewfield"><%= @author.died_on %></div><br />
+
+
+<label for="author_sex">Sex</label>
+<div class="reviewfield"><%= @author.sex %></div><br />
+
+
+<label for="author_biography">Biography</label>
+<div class="reviewfield"><%= RedCloth.new(@author.biography).to_html  %></div><br />
+
+<label for="author_note">Note</label>
+<div class="reviewfield"><%= RedCloth.new(@author.note).to_html %></div><br />
+
+<label for="author_web_site">Web site</label>
+<div class="reviewfield"><%= @author.web_site  %></div><br />
+
+<label for="book_created_on">Created on</label>
+<div class="reviewfield"><%= @author.created_on %></div><br />
+
+<label for="book_updated_on">Updated on</label>
+<div class="reviewfield"><%= @author.updated_on %></div><br />
+
+</div><!-- end of div form_cols -->
+<h2 class="noborder">
+<%= link_to ('Back', { :action => 'list' }, :title => "Back to the list of authors") %></h2>
+	</div><!-- end of div.editform -->

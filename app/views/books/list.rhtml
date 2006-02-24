@@ -1,0 +1,33 @@
+<div id="navbar">
+	<div id="leftnavs">
+    <%= link_to ('<<', { :page => @book_pages.first}, :title => "First Page", :class => "navlinks") if @book_pages.first != @book_pages.current %>
+    <%= link_to ('<', { :page => @book_pages.current.previous }, :title => "Previous 20 Records",:class => "navlinks") if @book_pages.current.previous %>
+	</div>
+	<div id="rightnavs">
+    <%= link_to ('>', { :page => @book_pages.current.next}, :title => "Next 20 Records", :class => "navlinks") if @book_pages.current.next %> 
+    <%= link_to ('>>', { :page => @book_pages.last }, :title => "Last Page", :class => "navlinks") if @book_pages.last != @book_pages.current %>
+	</div>
+	<%= pagination_links(@book_pages, {:window_size => 10, :always_show_anchors => true}) %>
+</div>
+<br class="clear" />
+
+<% for book in @books %>
+  <div id="listrow" class="<%= cycle("even", "odd") %>">
+	<% unless book.images.empty? %>
+	<% @image = book.images.first %>
+	<%= link_to (image_tag url_for_file_column("image", "name", "thumb96")), { :action => 'view', :id => book } %>
+	<% end %>
+    <%= link_to book["title"], :action => 'view', :id => book %> by
+    <% for author in book.authors %>
+	<%= link_to author.name, { :controller => 'authors', :action => 'view', :id => author}, {:class => "redlink"} %>
+    <% end %><br />
+    <span class="detail"><%=h book["category"] %> | <%=h book["date_published"] %></span><br />
+
+	<% unless book.awards.empty? %>
+    <% for award in book.awards %>
+	<%= award.status + " of " + award.name + " in " + award.year.to_s %><br />
+	<% end %>
+	<% end %>
+	<br class="clear" />
+  </div>
+<% end %>
