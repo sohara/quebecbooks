@@ -8,5 +8,16 @@ class ApplicationController < ActionController::Base
       redirect_to(:controller => "login", :action => "login")
     end
   end
+  
+  def auto_complete_for_author_name
+    @authors = Author.find(:all, 
+      :conditions => [ "CAST(CONCAT(first_name,' ',other_name,' ',last_name) AS CHAR) LIKE ?",
+      '%' + params[:author][:name].downcase + '%' ], 
+      :order => 'last_name ASC',
+      :limit => 8)
+    render :partial => 'names'
+  end
+  
+  auto_complete_for :book, :title
 
 end

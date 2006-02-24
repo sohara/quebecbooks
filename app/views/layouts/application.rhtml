@@ -1,38 +1,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>QWF Writers Database Administration: <%= controller.controller_name.capitalize + ": " + controller.action_name.capitalize %></title>
+  <title>QWF Literary Database of Quebec English-Lanuage Authors : <%= controller.controller_name.capitalize + ": " + controller.action_name.capitalize %></title>
   <%= javascript_include_tag :defaults %>
-  <%= javascript_include_tag "options_transfer" %>
   <%= javascript_include_tag "suckerfish" %>
-  <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'public' %>
 </head>
 <body>
 <div id="wrapper">
-    
-<div id="header"> 
-    <div id="header_title"> <h1>QWF Writers Database Administration</h1></div> 
-    <div id="topnav">
-    <ul id="nav">
-    <li<% if controller.controller_name == "books" %> class="selected"<% end %>><%= link_to 'Books', { :controller => 'books', :action => 'index' } %>		
-	</li
-    ><li<% if controller.controller_name == "authors" %> class="selected"<% end %>><%= link_to 'Authors', { :controller => 'authors', :action => 'index' } %></li
-    ><li<% if controller.controller_name == "publishers" %> class="selected"<% end %>><%= link_to 'Publishers', { :controller => 'publishers', :action => 'index' } %></li>
-    </ul>
-    </div> <!-- End Div "topnav"-->  
-</div> <!-- End Div "header"-->
-<div id="searchbar"> 
-<%= render(:partial => "searchbar")%>
-</div> <!-- End Div "searchbar"--> 
+	<div id="header">
+		<a href="/"><img src="/images/welcome.gif" alt="Welcome to the QWF Literary Database of Quebec English-Lanuage Authors" title="Welcome to the QWF Literary Database of Quebec English-Lanuage Authors" id="welcome"></a>
+		<ul class="nav">
+		<li><%= link_to 'Awards', { :controller => 'awards', :action => 'index' } %></li
+		><li><%= link_to 'Authors', { :controller => 'authors', :action => 'index' } %></li  
+	    ><li><%= link_to 'Books', { :controller => 'books', :action => 'index' } %></li
+	    ><li><%= link_to 'Search', { :controller => 'search', :action => 'index' } %></li
+	    ><li><%= link_to 'Contact', { :controller => 'contact', :action => 'index' } %></li>
+	    </ul>	
+			
+		<ul class="nav" id="nav2">
+	    <li><%= link_to 'Fran&ccedil;ais', { :controller => 'books', :action => 'index' } %></li
+	    >
+	    </ul>
+	</div>
+	<div id="portraits">
+	</div>
+	<div id="maincontent">
     <% if @flash["notice"] %> 
     <span class="notice"> 
       <%=h @flash["notice"] %> 
     </span>
     <% end %> 
     <% if flash[:notice] %> 
-<div class="notice"><p style="color: green"><%= flash[:notice] %></p></div>
+	<div class="notice"><p style="color: green"><%= flash[:notice] %></p></div>
     <% end %> 
 <%= @content_for_layout %>
+	</div><!-- End Div "maincontent"-->
 </div><!-- End Div "wrapper"-->
 </body>
 </html>

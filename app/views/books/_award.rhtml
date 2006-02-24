@@ -1,7 +1,0 @@
-<% @award = award %>
-<tr>
-<td><%= select( "award[]", "category", [ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation" ], { :include_blank => true })  %></td>
-<td><%= select("award[]", "year", (1985..2007).to_a.reverse, {:include_blank => true }) %></td>
-<td><%= select("award[]", "status", [ "Finalist", "Winner" ], { :include_blank => true })  %></td>
-<% if @award.id %><td><div class="checkbox"><%= check_box("delete_award", @award.id ) %></div></td><% end %>
-</tr>
