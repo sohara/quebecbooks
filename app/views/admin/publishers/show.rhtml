@@ -1,0 +1,19 @@
+<div class="editform">
+	<h2>Display Publisher: <%= @publisher.publisher_name %></h2>
+<div id="form_cols">
+<!--[form:publisher]-->
+<label for="publisher_publisher_name">Publisher name</label>
+<div class="reviewfield"><%= @publisher.publisher_name  %></div><br />
+
+<label for="publisher_publisher_code">Publisher code</label>
+<div class="reviewfield"><%= @publisher.publisher_code  %></div><br />
+
+<label for="publisher_web_site">Web site</label>
+<div class="reviewfield"><%= @publisher.web_site  %></div><br />
+
+<label for="publisher_note">Note</label>
+<div class="reviewfield"><%= @publisher.note  %></div><br />
+
+<%= link_to 'Edit', :action => 'edit', :id => @publisher %> |
+<%= link_to 'Back', :action => 'list' %>
+</div> <!-- end of div.editform -->

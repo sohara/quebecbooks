@@ -1,0 +1,19 @@
+<h1>Login: add_user</h1>
+
+<%= form_tag %>
+<table>
+    <tr>
+        <td>User name:</td>
+        <td><%= text_field("user","name")%></td>
+    </tr>
+    <tr>
+        <td>Password:</td>
+        <td><%= password_field("user","password")%></td>
+    </tr>  
+    <tr>
+        <td></td>
+        <td><input type="submit" value=" ADD USER " /></td>
+    </tr>  
+</table>
+<%= end_form_tag %>
+        

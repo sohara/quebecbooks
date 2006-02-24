@@ -1,0 +1,8 @@
+<%= start_form_tag ({:action => 'create'}, {'onSubmit' => 'allSelect()', 'class' => 'editform'}) %>
+<h2>New publisher</h2>
+  <%= render_partial 'form' %>
+<label for="Create">Submit</label>
+<%= submit_tag "Create" %><br />
+<%= end_form_tag %>
+
+<%= link_to 'Back', :action => 'list' %>

@@ -1,0 +1,12 @@
+<%= start_form_tag ({:action => 'update', :id => @book}, {:multipart => true, 'onSubmit' => 'allSelect()', 'class' => 'editform'}) %>
+<h2>Edit Book: <%= @book.title %></h2>
+  <%= render_partial 'form' %>
+ 
+<label for="Edit">Submit</label>
+<%= submit_tag 'Edit' %><br />
+
+</div><!-- end of div form_cols -->
+
+<h2 class="noborder"><%= link_to ('Show', { :action => 'show', :id => @book }, :title => "Preview this book") %> |
+<%= link_to ('Back', { :action => 'list' }, :title => "Back to the list of books") %></h2>
+<%= end_form_tag %>
