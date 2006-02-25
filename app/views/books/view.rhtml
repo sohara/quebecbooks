@@ -11,7 +11,7 @@
 <br class="clear" />
 
 <div class="editform">
-<h2><%= @book.title %> by 
+<h2><%=h @book.title %> by 
 	<% for author in @book.authors %>
     <%= author.name %>
     <% end %>
@@ -22,7 +22,7 @@
 		<h3>Author(s): </h3>
 		<div class="reviewfield">
 		<% for author in @book.authors %>
-        <%=author.last_name + ", " + author.first_name %>
+        <%=h author.name %>
         <% end %>
 		</div>
 		<br /><br />

@@ -17,17 +17,18 @@
 	<% @image = book.images.first %>
 	<%= link_to (image_tag url_for_file_column("image", "name", "thumb96")), { :action => 'view', :id => book } %>
 	<% end %>
-    <%= link_to book["title"], :action => 'view', :id => book %> by
+    <h3 class="title"><%= link_to book["title"], :action => 'view', :id => book %></h3> by
     <% for author in book.authors %>
 	<%= link_to author.name, { :controller => 'authors', :action => 'view', :id => author}, {:class => "redlink"} %>
     <% end %><br />
-    <span class="detail"><%=h book["category"] %> | <%=h book["date_published"] %></span><br />
+    <span class="detail"><%=h book["category"] %> | <%=h book["date_published"] %><br />
 
 	<% unless book.awards.empty? %>
     <% for award in book.awards %>
 	<%= award.status + " of " + award.name + " in " + award.year.to_s %><br />
 	<% end %>
 	<% end %>
+	</span>
 	<br class="clear" />
   </div>
 <% end %>
