@@ -1,13 +1,21 @@
+<div id="breadbar">
+	<%= start_form_tag ({:controller => 'books', :action => 'search' }) %>
+	<%= text_field_with_auto_complete :book, :title, { :size => 15, :value => "" }, :skip_style => true  %> 
+	<%= submit_tag 'Search Books' %>
+	<%= end_form_tag %>
+<%= render(:partial => "shared/breadcrumb") %>
+</div>
+<br class="clear">
 <div id="navbar">
 	<div id="leftnavs">
-    <%= link_to ('<<', { :page => @book_pages.first}, :title => "First Page", :class => "navlinks") if @book_pages.first != @book_pages.current %>
-    <%= link_to ('<', { :page => @book_pages.current.previous }, :title => "Previous 20 Records",:class => "navlinks") if @book_pages.current.previous %>
+    <%= link_to ('<<', { :page => @pages.first}, :title => "First Page", :class => "navlinks") if @pages.first != @pages.current %>
+    <%= link_to ('<', { :page => @pages.current.previous }, :title => "Previous 20 Records",:class => "navlinks") if @pages.current.previous %>
 	</div>
 	<div id="rightnavs">
-    <%= link_to ('>', { :page => @book_pages.current.next}, :title => "Next 20 Records", :class => "navlinks") if @book_pages.current.next %> 
-    <%= link_to ('>>', { :page => @book_pages.last }, :title => "Last Page", :class => "navlinks") if @book_pages.last != @book_pages.current %>
+    <%= link_to ('>', { :page => @pages.current.next}, :title => "Next 20 Records", :class => "navlinks") if @pages.current.next %> 
+    <%= link_to ('>>', { :page => @pages.last }, :title => "Last Page", :class => "navlinks") if @pages.last != @pages.current %>
 	</div>
-	<%= pagination_links(@book_pages, {:window_size => 10, :always_show_anchors => true}) %>
+	<%= pagination_links(@pages, {:window_size => 10, :always_show_anchors => true}) %>
 </div>
 <br class="clear" />
 

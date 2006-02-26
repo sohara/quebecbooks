@@ -1,3 +1,12 @@
+<div id="breadbar">
+	<%= start_form_tag ({:controller => 'authors', :action => 'search' }) %> 
+	<%= text_field_with_auto_complete :author, :name, { :size => 15 }, :skip_style => true %> 
+	<%= submit_tag 'Search Authors' %>
+	<%= end_form_tag %>
+<%= render(:partial => "shared/breadcrumb") %>
+</div>
+<br class="clear">
+
 <% if @author_pages %>
 <div id="navbar">
 	<div id="leftnavs">

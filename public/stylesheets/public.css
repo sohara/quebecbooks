@@ -115,7 +115,7 @@ h3 {
 	}
 		
 #nav li ul li a:hover, .nav li ul li a:focus  {
-	background-color: #ccc;
+	background-color: #333;
 	color: #ff3725;
 	text-decoration: none;
 	}		
@@ -189,6 +189,14 @@ h3 {
 	width: 510px;
 }
 
+img.logo {
+	margin: 10px 30px;
+}
+
+div#logos {
+	border-top: 1px solid #333;
+}
+
 #sidebar {
 	float: right;
 	width: 250px;
@@ -231,17 +239,22 @@ h3 {
 	color:#ffef99;
 }
 
+#searchbox h3 {
+	margin: 20px 0 0 0;
+}
+
+
 #searchbox input {
 	width: 180px;
-	margin: 0px 0 5px;
+	margin: 0px 0 5px 0 ;
 }
 
 #searchbox input[type="submit"] {
 	width: auto;
 }
 
-form {
-	margin: 0 0 50px 0;
+#searchbox form {
+	margin: 0 0 30px 0;
 }
 
 /* css for list templates */
@@ -288,13 +301,13 @@ br.clear {
 }
 /* css styles for auto_complete fuction */
 
-#searchbox div.auto_complete {
+#searchbox div.auto_complete, #breadbar div.auto_complete {
   width: 350px;
   background: #fff;
   color: #000;
 }
 
-#searchbox div.auto_complete ul {
+#searchbox div.auto_complete ul, #breadbar div.auto_complete ul {
   border: 1px solid #333;
   margin: 0;
   padding: 0px;
@@ -302,13 +315,13 @@ br.clear {
   list-style-type: none;
   font-weight: normal;
   font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif; 
-  font-size: 1em;
+  font-size: .85em;
   color: #000;
 }
 
-#searchbox div.auto_complete ul li {
+#searchbox div.auto_complete ul li, #breadbar div.auto_complete ul li {
   margin: 0;
-  padding: 10px 5px;
+  padding: 5px 5px;
   font-weight: normal;
   font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif; 
   font-size: 1em;
@@ -317,12 +330,16 @@ br.clear {
   border-top: 1px solid #ccc;
 }
 
-#searchbox div.auto_complete ul li.selected { 
+#searchbox div.auto_complete ul li.selected, #breadbar div.auto_complete ul li.selected { 
   background-color: #ffc; 
 }
 
-#searchbox div.auto_complete ul strong.highlight { 
+#searchbox div.auto_complete ul strong.highlight, #breadbar div.auto_complete ul strong.highlight { 
   color: #800; 
+}
+
+#breadbar form input {
+	background-color: #ccc;
 }
 
 /* css styles for record navigation */
@@ -331,6 +348,7 @@ br.clear {
 	margin: 10px 0;	
 	width: 100%;
 	text-align: center;
+	color: #999;
 }
 
 #leftnavs {
@@ -357,6 +375,10 @@ a.navlinks:hover, a.navlinks:focus {
 
 
 /* css styles for item display (book/author) */
+
+#breadbar form {
+	float: right;
+}
 
 div.editform {
     margin: 0;
@@ -404,11 +426,12 @@ div.editform {
 		
 
 .editform input, .editform div.reviewfield {
-    width: 225px;
+    width: 210px;
 }
 
 div.reviewfield {
 	padding: 4px 0px 4px 0px;
+	margin: 0;
 }
 
 .editform label {
@@ -464,10 +487,19 @@ a.copylinks {
 }
 
 #form_col_right {
-    float: right;
-    width: 420px;
+    float: left;
+    width: 430px;
 	background-color: #111;
 	padding: 10px;
+}
+
+img.author_book {
+	float: left;
+	margin: 0 10px 5px 0;
+	border: 0;
+}
+#form_col_left {
+    float: right;
 }
 
 #form_col_right p {

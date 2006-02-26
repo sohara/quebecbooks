@@ -1,4 +1,12 @@
-	<%= error_messages_for 'author' %>
+<div id="breadbar">
+	<%= start_form_tag ({:controller => 'authors', :action => 'search' }) %> 
+	<%= text_field_with_auto_complete :author, :name, { :size => 15, :value => "" }, :skip_style => true %> 
+	<%= submit_tag 'Search Authors' %>
+	<%= end_form_tag %>
+<%= render(:partial => "shared/breadcrumb") %>
+</div>
+<br class="clear">
+
 	<div id="navbar">
 		<div id="leftnavs">
 	    <%= link_to ('<', { :action => "view", :id => @author_previous }, :title => "Previous Author",:class => "navlinks") %>
@@ -6,7 +14,7 @@
 		<div id="rightnavs">
 	    <%= link_to ('>', { :action => "view", :id => @author_next  }, :title => "Next Author", :class => "navlinks") %> 
 		</div>
-		<%= @author_current.to_s + " of " + @authors.length.to_s %>
+		<%= @author_number.to_s + " of " + @authors.length.to_s %>
 	</div>
 	<br class="clear" />
 	<div class="editform">
@@ -25,15 +33,19 @@
 		<h3>Books by <%= @author.first_name + " " + @author.last_name %></h3>
 		<p>
 		<% for book in @author.books %>
-	    <%= link_to book.title, :controller => 'books', :action => 'view', :id => book %><br />
+		<% unless book.images.empty? %>
+		<% @image = book.images.first %>
+		<%= link_to (image_tag (url_for_file_column("image", "name", "thumb96"), :class => 'author_book')), { :controller => 'books', :action => 'view', :id => book} %>
+		<% end %>
+	    <%= link_to book.title, :controller => 'books', :action => 'view', :id => book %><br class="clear"/><br />
 		<%end%></p>
 
 </div><!-- end of div form_col_right -->
-
+<div id ="form_col_left">
 <% unless @author.language.empty? %><label for="author_language">Language</label>
 <div class="reviewfield"><%= @author.language  %></div><br /><% end %>
 
-<% unless @author.nationality.empty? %><label for="author_nationality">Nationality</label>
+<% unless @author.nationality.to_s.empty? %><label for="author_nationality">Nationality</label>
 <div class="reviewfield"><%= @author.nationality  %></div><br /><% end %>
 
 <% unless @author.born_on.to_s.empty? %><label for="author_birthdate">Birthdate</label>
@@ -50,6 +62,6 @@
 
 <% unless @author.web_site.empty? %><label for="author_web_site">Web site</label>
 <div class="reviewfield"><%= @author.web_site  %></div><br /><% end %>
-
+</div><!-- end of div form_cols_left -->
 </div><!-- end of div form_cols -->
 	</div><!-- end of div.editform -->

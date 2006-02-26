@@ -8,8 +8,8 @@
 		<%= link_to 'Search', { :controller => 'index', :action => 'search' } %>
 		
 		<%= start_form_tag ({:controller => 'authors', :action => 'search' }) %> 
+		
 		<h3>Authors</h3>
-
 		<%= text_field_with_auto_complete :author, :name, { :size => 15 }, :skip_style => true %> 
 		<%= submit_tag 'Go' %>
 		<%= end_form_tag %>
@@ -33,10 +33,10 @@
 <p>This database represents the QWF Collection, a physical collection of almost 700 books assembled mostly during the last ten years. The books are housed by one of our partners in this venture, the Atwater Library and Computer Centre of Montreal, Quebec.</p>
 
 <h2><%= link_to 'Background on the database', { :controller => 'index', :action => 'sponsors' } %></h2>
-
+</div>
 <br /><br />
-<hr />
-<br /><br />
+<div id ="logos">
+<br />
 <img src="/images/qwflogo.gif" alt="logo" class="logo">
 <img src="/images/atwaterlibrary.gif" alt="logo" class="logo">
 <img src="/images/worldbook.gif" alt="logo" class="logo">

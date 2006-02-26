@@ -4,4 +4,7 @@ class IndexController < ApplicationController
   
   def sponsors
   end
+  
+  def francais
+  end
 end
