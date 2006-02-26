@@ -11,18 +11,18 @@
 <div id="wrapper">
 	<div id="header">
 		<a href="/"><img src="/images/welcome.gif" alt="Welcome to the QWF Literary Database of Quebec English-Lanuage Authors" title="Welcome to the QWF Literary Database of Quebec English-Lanuage Authors" id="welcome"></a>
-		<ul class="nav">
+		<ul id="nav">
+		<li><%= link_to 'Home', { :controller => 'index', :action => 'index' } %></li  
+	    >
 		<li><%= link_to 'Awards', { :controller => 'awards', :action => 'index' } %><ul>
-			<% (1985..2006).to_a.reverse.each do |year| %>
-			<li><%=  link_to "#{year}", { :controller => 'awards', :action => 'index', :year => year } %></li>
-			<% end %></ul> </li>
+			<% (1985..2006).to_a.reverse.each do |year| %><li><%=  link_to "#{year}", { :controller => 'awards', :action => 'index', :year => year } %></li><% end %></ul> </li>
 		<li><%= link_to 'Authors', { :controller => 'authors', :action => 'index' } %></li  
 	    ><li><%= link_to 'Books', { :controller => 'books', :action => 'index' } %></li
 	    ><li><%= link_to 'Search', { :controller => 'search', :action => 'index' } %></li
 	    ><li><%= link_to 'Contact', { :controller => 'contact', :action => 'index' } %></li>
 	    </ul>	
 			
-		<ul class="nav" id="nav2">
+		<ul class="mynav" id="nav2">
 	    <li><%= link_to 'Fran&ccedil;ais', { :controller => 'books', :action => 'index' } %></li
 	    >
 	    </ul>

@@ -12,8 +12,8 @@ class AuthorsController < ApplicationController
     @author = Author.find(params[:id])
     @authors= Author.find(:all, :order => "last_name")
     @author_current = @authors.index(@authors.find{|h| h.id == @author.id })
-    @author_next = @author[@author_current+1]
-    @author_previous = @author[@author_current-1]
+    @author_next = @authors[@author_current+1]
+    @author_previous = @authors[@author_current-1]
   end
 
   def search

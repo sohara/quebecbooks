@@ -11,95 +11,83 @@
 <br class="clear" />
 
 <div class="editform">
-<h2><%=h @book.title %> by 
+<h2><span class="title"><%=h @book.title %></span> by 
 	<% for author in @book.authors %>
-    <%= author.name %>
+    <%= link_to author.name, { :controller => 'authors', :action => 'view', :id => author}, {:class => "redlink"} %>
     <% end %>
 	</h2>
+	<% unless @book.awards.empty? %>
+	<% for award in @book.awards %>
+    <h3><%= award.status + " of " + award.name + " in " + award.year.to_s %></h3>
+    <% end %>
+	<% end %>
 <!--[form:book]-->
 <div id="form_cols">
     <div id="form_col_right">
-		<h3>Author(s): </h3>
-		<div class="reviewfield">
-		<% for author in @book.authors %>
-        <%=h author.name %>
+		
+		<% unless @book.images.empty? %>
+		<div class="picture">
+		<% for @image in @book.images %>
+		<%= image_tag url_for_file_column "image", "name", "medium250" %><br />
+		<%= @image.caption %><br />
         <% end %>
 		</div>
-		<br /><br />
+		<% end %>
+		<%= RedCloth.new(@book.abstract).to_html %>
 
-
-		<% for @image in @book.images %>
-		<div class="picture"><%= image_tag url_for_file_column "image", "name", "thumb96" %><br  class="noclear"/>
-		<%= @image.caption %></div><br />
-        <% end %><br /><br />
-
-		<h3>Awards</h3>
-		<% for award in @book.awards %>
-        <%=award.name + " Prize, Awarded as " + award.status + " in " + award.year.to_s %><br />
-        <% end %>
+		<% unless @book.extract.empty? %>
+		<h3>Extract</h3>
+		<%= RedCloth.new(@book.extract).to_html %><br />
+		<% end %>
+		
+		<% unless @book.isbn_number.to_s.empty? %>
+		Click <a href="http://catalogue.atwaterlibrary.ca/m3/apps/m3opac/alcc?command=getSession&session=&style=ui&isbn=<%= @book.isbn_number %>" target="_blank">here</a> to search for this book at the Atwater Library.<br />
+		<% end %>
     </div><!-- end of div form_col_right -->
 
-<label for="book_title">Title</label>
-<div class="reviewfield"><%= @book.title %></div><br />
+<% unless @book.subtitle.empty? %><label for="book_subtitle">Subtitle</label>
+<div class="reviewfield"><%= @book.subtitle %></div><br /><% end %>
 
-<label for="book_subtitle">Subtitle</label>
-<div class="reviewfield"><%= @book.subtitle %></div><br />
+<% unless @book.language.to_s.empty? %><label for="book_language">Language</label>
+<div class="reviewfield"><%= @book.language %></div><br /><% end %>
 
-<label for="book_language">Language</label>
-<div class="reviewfield"><%= @book.language %></div><br />
+<% unless @book.category.empty? %><label for="book_category">Category</label>
+<div class="reviewfield"><%= @book.category %></div><br /><% end %>
 
-<label for="book_category">Category</label>
-<div class="reviewfield"><%= @book.category %></div><br />
+<% unless @book.topic.empty? %><label for="book_topic">Topic</label>
+<div class="reviewfield"><%= @book.topic %></div><br /><% end %>
 
-<label for="book_topic">Topic</label>
-<div class="reviewfield"><%= @book.topic %></div><br />
+<% unless @book.copyright_year.to_s.empty? %><label for="book_copyright_year">Copyright year</label>
+<div class="reviewfield"><%= @book.copyright_year %></div><br /><% end %>
 
-<label for="book_copyright_year">Copyright year</label>
-<div class="reviewfield"><%= @book.copyright_year %></div><br />
+<% unless @book.isbn_number.to_s.empty? %><label for="book_isbn_number">ISBN number</label>
+<div class="reviewfield"><%= @book.isbn_number %></div><br /><% end %>
 
-
-<label for="book_isbn_number">Isbn number</label>
-<div class="reviewfield"><%= @book.isbn_number %></div><br />
-
-<label for="book_publisher">Publisher</label>
+<% unless @book.publishers.empty? %><label for="book_publisher">Publisher</label>
 <div class="reviewfield">
 <% for publisher in @book.publishers %>
 <%=publisher.publisher_name %>
 <% end %>
-</div><br />
+</div><br /><% end %>
 
-<label for="book_place_of_publication">Place of publication</label>
-<div class="reviewfield"><%= @book.place_of_publication %></div><br />
+<% unless @book.place_of_publication.empty? %><label for="book_place_of_publication">Place of publication</label>
+<div class="reviewfield"><%= @book.place_of_publication %></div><br /><% end %>
 
-<label for="book_date_published">Date published</label>
-<div class="reviewfield"><%= @book.date_published %></div><br />
+<% unless @book.date_published.to_s.empty? %><label for="book_date_published">Date published</label>
+<div class="reviewfield"><%= @book.date_published %></div><br /><% end %>
 
-<label for="book_page_count">Page count</label>
-<div class="reviewfield"><%= @book.page_count %></div><br />
+<% unless @book.page_count.to_s.empty? %><label for="book_page_count">Page count</label>
+<div class="reviewfield"><%= @book.page_count %></div><br /><% end %>
 
-<label for="book_edition_number">Edition number</label>
-<div class="reviewfield"><%= @book.edition_number %></div><br />
+<% unless @book.edition_number.to_s.empty? %><label for="book_edition_number">Edition number</label>
+<div class="reviewfield"><%= @book.edition_number %></div><br /><% end %>
 
-<label for="book_cover_type">Cover type</label>
-<div class="reviewfield"><%= @book.cover_type  %></div><br />
+<% unless @book.cover_type.empty? %><label for="book_cover_type">Cover type</label>
+<div class="reviewfield"><%= @book.cover_type  %></div><br /><% end %>
 
-<label for="book_shelf_number">Shelf number</label>
-<div class="reviewfield"><%= @book.shelf_number %></div><br />
-
-<label for="book_abstract">Description</label>
-<div class="reviewfield"><%= RedCloth.new(@book.abstract).to_html %></div><br />
-
-<label for="book_extract">Extract</label>
-<div class="reviewfield"><%= RedCloth.new(@book.extract).to_html %></div><br />
-
-<label for="book_created_on">Created on</label>
-<div class="reviewfield"><%= @book.created_on %></div><br />
-
-<label for="book_updated_on">Updated on</label>
-<div class="reviewfield"><%= @book.updated_on %></div><br />
+<% unless @book.shelf_number.to_s.empty? %><label for="book_shelf_number">Shelf number</label>
+<div class="reviewfield"><%= @book.shelf_number %></div><br /><% end %>
 
 </div><!-- end of div form_cols -->
 <!--[eoform:book]-->
-<h2 class="noborder">
-<%= link_to ('Back', { :action => 'list' }, :title => "Back to the list of books") %></h2>
 </div><!-- end of div.editform -->
