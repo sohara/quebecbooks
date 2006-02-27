@@ -22,11 +22,10 @@ class BooksController < ApplicationController
     if @books.nitems == 1
       redirect_to :action => 'view', :id => @books[0]
     elsif @books.nitems > 1
-        @pages, @books = paginate :book, {
+        @pages, @books = paginate (:book,
           :per_page => 20,
           :conditions => ["LOWER(title) LIKE ?", '%' + @params[:book][:title].downcase + '%' ],
-          :order_by => 'title'
-        }
+          :order_by => 'title')
       flash[:notice] = 'Your seach results'
       render_action 'list'
     else

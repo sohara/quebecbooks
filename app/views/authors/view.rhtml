@@ -24,7 +24,7 @@
     <div id="form_col_right">
 		<% unless @author.images.empty? %>
 		<% for @image in @author.images %>
-		<div class="picture"><%= link_to (image_tag url_for_file_column("image", "name", "medium250")), url_for_file_column('image', 'name', 'medium250'), { :popup => ['new_window', 'height=375,width=250']} %><br  class="noclear"/>
+		<div class="picture"><%= link_to (image_tag url_for_file_column("image", "name", "medium250")), url_for_file_column('image', 'name', 'large480'), { :popup => ['new_window', 'height=375,width=250']} %><br  class="noclear"/>
 		<%= @image.caption %></div><br />
         <% end %>
 		<% end %>

@@ -27,7 +27,7 @@
 	<% @image = author.images.first %>
 	<%= link_to (image_tag url_for_file_column("image", "name", "thumb96")), { :action => 'view', :id => author} %>
 	<% end %>
-	<%= link_to author.name, { :action => 'view', :id => author} %><br />
+	<h3 class="title"><%= link_to author.name, { :action => 'view', :id => author} %></h3>
  	<span class="detail">Author of: </span><br />
     <% for book in author.books %>
 	<%= link_to book.title, { :controller => 'books', :action => 'view', :id => book}, {:class => "redlink"} %><br />
