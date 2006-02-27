@@ -22,7 +22,7 @@ class BooksController < ApplicationController
     if @books.nitems == 1
       redirect_to :action => 'view', :id => @books[0]
     elsif @books.nitems > 1
-        @book_pages, @books = paginate :book, {
+        @pages, @books = paginate :book, {
           :per_page => 20,
           :conditions => ["LOWER(title) LIKE ?", '%' + @params[:book][:title].downcase + '%' ],
           :order_by => 'title'
@@ -36,8 +36,7 @@ class BooksController < ApplicationController
   end
   
   def genre
-    @pages, @books = paginate_collection Book.find(:all, :conditions => ["category =?", @params[:genre]], :order => 'title') , :page => @params[:page]
-
+    @pages, @books = paginate_collection Book.find(:all, :conditions => ["category =?", @params[:genre]], :order => 'title') , {:per_page => 20, :page => @params[:page]}
     flash[:notice] = 'Your seach results'
     render_action 'list'
   end
