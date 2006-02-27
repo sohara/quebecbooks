@@ -1,0 +1,17 @@
+<h1>Awards for <%= @params[:year] %></h1>
+<% if @awards.empty? %>
+<p>There are no awards for <%= @params[:year] %></p>
+<% end %>
+<% for award in @awards %>
+  <div id="listrow" class="<%= cycle("even", "odd") %>">
+    <h3 class="title"><%= link_to award.book["title"], :controller => 'books', :action => 'view', :id => award.book.id %></h3> by
+    <% for author in award.book.authors %>
+	<%= link_to author.name, { :controller => 'authors', :action => 'view', :id => author}, {:class => "redlink"} %>
+    <% end %><br />
+    <span class="detail"><%=h award.book["category"] %> | <%=h award.book["date_published"] %><br />
+
+	<%= award.status + " of " + award.name + " in " + award.year.to_s %><br />
+	</span>
+	<br class="clear" />
+  </div>
+<% end %>

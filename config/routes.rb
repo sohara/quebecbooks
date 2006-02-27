@@ -11,6 +11,18 @@ ActionController::Routing::Routes.draw do |map|
    map.connect 'admin', :controller => "admin/books"
    map.connect '', :controller => "index"
 
+  # Map genres to genre controller
+  map.connect "books/genre/:genre",
+              :controller => "books",
+              :action => "genre",
+              :genre => /\D+/
+              
+  # Map award years to year action of awards controller
+  map.connect "awards/:year",
+              :controller => "awards",
+              :action => "year",
+              :year => /\d+/
+              
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
   map.connect ':controller/service.wsdl', :action => 'wsdl'

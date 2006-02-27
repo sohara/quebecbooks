@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-  <title>QWF Literary Database of Quebec English-Lanuage Authors : <%= controller.controller_name.capitalize + ": " + controller.action_name.capitalize %></title>
+  <title>QWF Literary Database of Quebec English-language Authors : <%= controller.controller_name.capitalize + ": " + controller.action_name.capitalize %></title>
   <%= javascript_include_tag :defaults %>
   <%= javascript_include_tag "suckerfish" %>
   <%= stylesheet_link_tag 'public' %>
@@ -10,12 +10,17 @@
 <body>
 <div id="wrapper">
 	<div id="header">
-		<a href="/"><img src="/images/welcome.gif" alt="Welcome to the QWF Literary Database of Quebec English-Lanuage Authors" title="Welcome to the QWF Literary Database of Quebec English-Lanuage Authors" id="welcome"></a>
+		<a href="/">
+			<% if controller.action_name == 'francais' || controller.action_name == 'histoire'  %>
+				<img src="/images/bienvenue.gif" alt="Welcome to the QWF Literary Database of Quebec English-Lanuage Authors" title="Welcome to the QWF Literary Database of Quebec English-Lanuage Authors" id="welcome"></a>
+			<% else %>
+			<img src="/images/welcome.gif" alt="Welcome to the QWF Literary Database of Quebec English-Lanuage Authors" title="Welcome to the QWF Literary Database of Quebec English-Lanuage Authors" id="welcome"></a>
+			<% end %>
 		<ul id="nav">
 		<li><%= link_to 'Home', { :controller => 'index', :action => 'index' } %></li  
 	    >
 		<li><%= link_to 'Awards', { :controller => 'awards', :action => 'index' } %><ul>
-			<% (1985..2006).to_a.reverse.each do |year| %><li><%=  link_to "#{year}", { :controller => 'awards', :action => 'index', :year => year } %></li><% end %></ul></li>
+			<% (1988..2005).to_a.reverse.each do |year| %><li><%=  link_to "#{year}", { :controller => 'awards', :action => 'year', :year => year } %></li><% end %></ul></li>
 		<li><%= link_to 'Authors', { :controller => 'authors', :action => 'index' } %></li  
 	    ><li><%= link_to 'Books', { :controller => 'books', :action => 'index' } %><ul>
 		<li><%= link_to 'Fiction', { :controller => 'books', :action => 'genre', :genre => 'Fiction' } %></li
@@ -37,14 +42,6 @@
 	<div id="portraits">
 	</div>
 	<div id="maincontent">
-    <% if @flash["notice"] %> 
-    <span class="notice"> 
-      <%=h @flash["notice"] %> 
-    </span>
-    <% end %> 
-    <% if flash[:notice] %> 
-	<div class="notice"><p style="color: green"><%= flash[:notice] %></p></div>
-    <% end %> 
 <%= @content_for_layout %>
 	</div><!-- End Div "maincontent"-->
 </div><!-- End Div "wrapper"-->

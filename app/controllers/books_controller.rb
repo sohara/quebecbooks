@@ -36,7 +36,7 @@ class BooksController < ApplicationController
   
   def genre
     @pages, @books = paginate_collection Book.find(:all, :conditions => ["category =?", @params[:genre]], :order => 'title') , {:per_page => 20, :page => @params[:page]}
-    flash[:notice] = 'Your seach results'
+    flash[:notice] = "Browse by genre: #{@params[:genre]}"
     render_action 'list'
   end
   

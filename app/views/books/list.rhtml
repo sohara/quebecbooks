@@ -6,6 +6,11 @@
 <%= render(:partial => "shared/breadcrumb") %>
 </div>
 <br class="clear">
+
+
+<% if flash[:notice] %> 
+<h3><%= flash[:notice] %></h3>
+<% end %>
 <div id="navbar">
 	<div id="leftnavs">
 		

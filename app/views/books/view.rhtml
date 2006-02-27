@@ -48,11 +48,12 @@
 		<%= RedCloth.new(@book.extract).to_html %><br />
 		<% end %>
 		
-		<% unless @book.isbn_number.to_s.empty? %>
-		Click <a href="http://catalogue.atwaterlibrary.ca/m3/apps/m3opac/alcc?command=getSession&session=&style=ui&isbn=<%= @book.isbn_number %>" target="_blank">here</a> to search for this book at the Atwater Library.<br />
-		<% end %>
     </div><!-- end of div form_col_right -->
 <div id ="form_col_left">
+	<% unless @book.isbn_number.to_s.empty? %>
+	<p>Click <a href="http://catalogue.atwaterlibrary.ca/m3/apps/m3opac/alcc?command=getSession&session=&style=ui&isbn=<%= @book.isbn_number %>" target="_blank">here</a> to search for this book at the Atwater Library.</p>
+	<% end %>
+	
 <% unless @book.subtitle.empty? %><label for="book_subtitle">Subtitle</label>
 <div class="reviewfield"><%= @book.subtitle %></div><br /><% end %>
 

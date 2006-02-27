@@ -418,7 +418,7 @@ div.editform {
 .editform label, .editform input, .editform textarea, .editform select, div.form_cols label, .editform div.reviewfield {
 	display: block;
 	float: left;
-	margin-bottom: 8px;
+	margin-bottom: 2px;
 	vertical-align: bottom;
 	line-height: 130%;
 	}
@@ -499,6 +499,12 @@ img.author_book {
 }
 #form_col_left {
     float: right;
+}
+
+#form_col_left p{
+    width: 250px;
+    font-size: 1em;
+	margin: 0 0 20px 0;
 }
 
 #form_col_right p {
