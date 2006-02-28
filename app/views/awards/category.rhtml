@@ -1,10 +1,16 @@
 <div id="breadbar">
+	<%= start_form_tag ({:controller => 'awards', :action => 'category' }) %> 
+	<select id="category" name="category">
+	<%= options_for_select([ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation" ], { :include_blank => true }) %>
+	</select>
+	<%= submit_tag 'Go' %>
+	<%= end_form_tag %>
 <%= render(:partial => "shared/breadcrumb") %>
 </div>
 
-<h1>Awards for <%= @params[:year] %></h1>
+<h1>Awards for <%= @params[:category] %></h1>
 <% if @awards.empty? %>
-<p>There are no awards for <%= @params[:year] %></p>
+<p>There are no awards for <%= @params[:category] %></p>
 <% end %>
 <% for award in @awards %>
 
@@ -13,7 +19,7 @@
 	<% @image = award.book.images.first %>
 	<%= link_to (image_tag url_for_file_column("image", "name", "thumb96")), { :action => 'view', :id => award.book } %>
 	<% end %>
-	  <h3><%= award.status + " of " + award.name %></h3>
+	  <h3><%= award.status + " of " + award.name +  " in " + award.year.to_s %></h3>
     <h3 class="title"><%= link_to award.book["title"], :controller => 'books', :action => 'view', :id => award.book.id %></h3> by
     <% for author in award.book.authors %>
 	<%= link_to author.name, { :controller => 'authors', :action => 'view', :id => author}, {:class => "redlink"} %>

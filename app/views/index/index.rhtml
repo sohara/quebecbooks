@@ -1,12 +1,22 @@
+<!-- the conditional style below ensures that the multi - level drop down list in center of page
+	is aligned properly in IE -->
+<!--[if IE]>
+<style>
+	#homenav li ul {
+		margin: -45px  0 0 -150px;
+	}
+</style>
+<![endif]-->
 <div id="sidebar">
-	<ul>
-		<li><a href="books">Browse Books</a></li
+	<ul id="homenav">
+		<li><a href="books">Browse Books</a><ul><li><%= link_to 'Fiction', { :controller => 'books', :action => 'genre', :genre => 'Fiction' } %></li><li><%= link_to 'Non-Fiction', { :controller => 'books', :action => 'genre', :genre => 'Non-Fiction' } %></li><li><%= link_to 'Poetry', { :controller => 'books', :action => 'genre', :genre => 'Poetry' } %></li><li><%= link_to 'Children', { :controller => 'books', :action => 'genre', :genre => 'Children' } %></li></ul></li
 		><li><a href="authors">Browse Authors</a></li
 		><li><a href="awards">Browse Awards</a></li>
 	</ul>
+	<div class="clear"> 
+	</div>
 	<div id="searchbox">
-		<%= link_to 'Search', { :controller => 'index', :action => 'search' } %>
-		
+		<h2>Search</h2>
 
 		<%= start_form_tag ({:controller => 'books', :action => 'search' }) %>
 		<h3>Books</h3>
@@ -20,7 +30,14 @@
 		<%= submit_tag 'Go' %>
 		<%= end_form_tag %>
 		
-		
+		<%= start_form_tag ({:controller => 'awards', :action => 'category' }) %> 
+		<h3>Awards</h3>
+		<select id="category" name="category">
+		<%= options_for_select([ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation" ], { :include_blank => true }) %>
+		</select>
+		<%= submit_tag 'Go' %>
+		<%= end_form_tag %>
+	
 	</div>	
 		
 </div>

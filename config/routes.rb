@@ -23,6 +23,12 @@ ActionController::Routing::Routes.draw do |map|
               :action => "year",
               :year => /\d+/
               
+  # Map award categories to the category action
+  map.connect "/awards/category/:category",           
+              :controller => "awards",
+              :action => "category",
+              :year => /\D+/
+              
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
   map.connect ':controller/service.wsdl', :action => 'wsdl'

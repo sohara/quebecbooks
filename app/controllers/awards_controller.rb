@@ -6,4 +6,8 @@ class AwardsController < ApplicationController
     @awards =  Award.find(:all, :conditions => ["year =?", @params[:year]])
   end
   
+  def category
+    @awards = Award.find(:all, :conditions => ["category =?", @params[:category]])
+  end
+  
 end

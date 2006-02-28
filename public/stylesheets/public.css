@@ -32,7 +32,9 @@ a:hover, a:focus {
 
 h1 {
 	font-weight: normal;
-	color: #ffef99;
+	color: #ecebeb;
+	margin: 30px 0;
+	font-size: 1.7em;
 }
 
 h2 {
@@ -200,32 +202,59 @@ div#logos {
 #sidebar {
 	float: right;
 	width: 250px;
-	margin: 0 0 0 30px;
+	margin: 0 0 0 0px;
+	padding: 0;
 }
 
-#sidebar ul {
+#homenav, homenav ul {
 	list-style-type: none;
-	display: inline;
 	margin: 0;
+	padding: 0;
+	line-height: 1;
 }
 
-#sidebar li {
+#homenav li {
 	margin: 0px;
-	padding: 0px
+	padding: 0px;
+	width: 250px;
 }
 
-#sidebar li a {
+#homenav li a {
 	display: block;
 	padding: 13px 10px;
-	margin: 0 0 1px 0;
+	margin: 0;
 	background-color: #333;
 	font-size: 1.3em;
 	color:#ffef99;
+	border-bottom: 1px solid #000;
 }
 
-#sidebar li a:hover {
+#homenav li a:hover {
 	background-color: #ccc;
 	color: #ff3725;
+}
+
+#homenav li ul {
+	position: absolute;
+	width: 150px;
+	left: -999em;
+	margin: -45px  0 0 -190px;
+	list-style-type: none;
+}
+
+
+#homenav li ul li {
+	width: 150px;
+}
+
+#homenav li ul li a {
+	background-color: #111;
+	margin: 0;
+	border: 1px solid #ccc;
+}
+
+#homenav li:hover ul, #homenav li.sfhover ul  {
+	left: auto;
 }
 
 #searchbox {
@@ -239,6 +268,13 @@ div#logos {
 	color:#ffef99;
 }
 
+#searchbox h2 {
+	margin: 0;
+	font-size: 1.3em;
+	border-bottom: 1px solid #666;
+	padding: 0 0 5px 0;
+}
+
 #searchbox h3 {
 	margin: 20px 0 0 0;
 }
@@ -246,7 +282,7 @@ div#logos {
 
 #searchbox input {
 	width: 180px;
-	margin: 0px 0 5px 0 ;
+	margin: 0px 0 0px 0 ;
 }
 
 #searchbox input[type="submit"] {
@@ -296,6 +332,10 @@ div#logos {
 }
 
 br.clear {
+	clear: both;
+}
+
+div.clear {
 	clear: both;
 }
 /* css styles for auto_complete fuction */
