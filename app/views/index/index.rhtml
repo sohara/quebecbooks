@@ -9,7 +9,7 @@
 <![endif]-->
 <div id="sidebar">
 	<ul id="homenav">
-		<li><a href="books">Browse Books</a><ul><li><%= link_to 'Fiction', { :controller => 'books', :action => 'genre', :genre => 'Fiction' } %></li><li><%= link_to 'Non-Fiction', { :controller => 'books', :action => 'genre', :genre => 'Non-Fiction' } %></li><li><%= link_to 'Poetry', { :controller => 'books', :action => 'genre', :genre => 'Poetry' } %></li><li><%= link_to 'Children', { :controller => 'books', :action => 'genre', :genre => 'Children' } %></li></ul></li
+		<li><a href="books">Browse Books</a><ul><li><%= link_to 'Fiction', { :controller => 'books', :action => 'genre', :genre => 'Fiction' } %></li><li><%= link_to 'Non-Fiction', { :controller => 'books', :action => 'genre', :genre => 'Non-Fiction' } %></li><li><%= link_to 'Poetry', { :controller => 'books', :action => 'genre', :genre => 'Poetry' } %></li></ul></li
 		><li><a href="authors">Browse Authors</a></li
 		><li><a href="awards">Browse Awards</a></li>
 	</ul>
@@ -20,15 +20,13 @@
 
 		<%= start_form_tag ({:controller => 'books', :action => 'search' }) %>
 		<h3>Books</h3>
-		<%= text_field_with_auto_complete :book, :title, { :size => 15 }, :skip_style => true  %> 
-		<%= submit_tag 'Go' %>
-		<%= end_form_tag %>
+		<%= text_field_with_auto_complete :book, :title, { :size => 23 }, :skip_style => true  %> &nbsp;
+		<%= submit_tag 'Go' %><%= end_form_tag %>
 		
-		<%= start_form_tag ({:controller => 'authors', :action => 'search' }) %> 
+		<%= start_form_tag ({:controller => 'authors', :action => 'search' }) %>
 		<h3>Authors</h3>
-		<%= text_field_with_auto_complete :author, :name, { :size => 15 }, :skip_style => true %> 
-		<%= submit_tag 'Go' %>
-		<%= end_form_tag %>
+		<%= text_field_with_auto_complete :author, :name, { :size => 23 }, :skip_style => true %> &nbsp;
+		<%= submit_tag 'Go' %><%= end_form_tag %>
 		
 		<%= start_form_tag ({:controller => 'awards', :action => 'category' }) %> 
 		<h3>Awards</h3>

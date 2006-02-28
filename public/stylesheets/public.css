@@ -281,8 +281,11 @@ div#logos {
 
 
 #searchbox input {
-	width: 180px;
-	margin: 0px 0 0px 0 ;
+	margin: 2px 0 0px 0;
+}
+
+#searchbox input[type="text"] {
+	width: 170px;
 }
 
 #searchbox input[type="submit"] {
@@ -387,6 +390,10 @@ div.clear {
 
 #breadbar form input {
 	background-color: #ccc;
+}
+
+#breadbar input[type="text"] {
+	width: 145px;
 }
 
 /* css styles for record navigation */

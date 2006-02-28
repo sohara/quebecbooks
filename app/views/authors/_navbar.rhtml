@@ -1,0 +1,14 @@
+<% if @author_pages %>
+<div id="navbar">
+	<div id="leftnavs">
+    <%= link_to ('<<', { :page => @author_pages.first}, :title => "First Page", :class => "navlinks") if @author_pages.first != @author_pages.current %>
+    <%= link_to ('<', { :page => @author_pages.current.previous }, :title => "Previous 20 Records",:class => "navlinks") if @author_pages.current.previous %>
+	</div>
+	<div id="rightnavs">
+    <%= link_to ('>', { :page => @author_pages.current.next}, :title => "Next 20 Records", :class => "navlinks") if @author_pages.current.next %> 
+    <%= link_to ('>>', { :page => @author_pages.last }, :title => "Last Page", :class => "navlinks") if @author_pages.last != @author_pages.current %>
+	</div>
+	<%= pagination_links(@author_pages, {:window_size => 10, :always_show_anchors => true}) %>
+</div>
+<br class="clear" />
+<% end %>
