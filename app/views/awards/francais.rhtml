@@ -9,7 +9,7 @@
 		<select id="year" name="year">
 		<%= options_for_select( (1988..2005).to_a.reverse) %>
 		</select>
-		<%= submit_tag 'Go' %>
+		<%= submit_tag 'Aller' %>
 		<%= end_form_tag %>
 		
 		<%= start_form_tag ({:controller => 'awards', :action => 'category' }) %> 
@@ -17,7 +17,7 @@
 		<select id="category" name="category">
 		<%= options_for_select([ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation" ], { :include_blank => true }) %>
 		</select>
-		<%= submit_tag 'Go' %>
+		<%= submit_tag 'Aller' %>
 		<%= end_form_tag %>
 	
 	</div>		
