@@ -1,4 +1,10 @@
 <div id="breadbar">
+	<%= start_form_tag ({:controller => 'awards', :action => 'year' }) %> 
+	<select id="year" name="year">
+	<%= options_for_select( (1988..2005).to_a.reverse) %>
+	</select>
+	<%= submit_tag 'Go' %>
+	<%= end_form_tag %>
 <%= render(:partial => "shared/breadcrumb") %>
 </div>
 

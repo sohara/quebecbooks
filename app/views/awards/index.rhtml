@@ -1,9 +1,32 @@
 <h1>The QWF Awards</h1>
 
+<div id="sidebar">
+	<div id="searchbox">
+		<h2>Search Awards</h2>
+		
+		<%= start_form_tag ({:controller => 'awards', :action => 'year' }) %> 
+		<h3>By Year</h3>
+		<select id="year" name="year">
+		<%= options_for_select( (1988..2005).to_a.reverse) %>
+		</select>
+		<%= submit_tag 'Go' %>
+		<%= end_form_tag %>
+		
+		<%= start_form_tag ({:controller => 'awards', :action => 'category' }) %> 
+		<h3>By Category</h3>
+		<select id="category" name="category">
+		<%= options_for_select([ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation" ], { :include_blank => true }) %>
+		</select>
+		<%= submit_tag 'Go' %>
+		<%= end_form_tag %>
+	
+	</div>		
+</div>
+
 <p>The QWF awards are presented each year to the best books by Quebec English-language authors in four categories: fiction, non-fiction, poetry, and first book by a Quebec English-language author.  In addition, the QWF  Translation Prize is awarded for English to French translation one year, and French to English translation the next.</p>
 
 <p>The following prizes are currently awarded: </p>
-<ul>
+<ul id="awardlist">
 <li>The Hugh MacLennan Award for Fiction</li> 
 <li>The A.M. Klein Award for Poetry </li> 
 <li>The Mavis Gallant Award for Non-fiction </li> 

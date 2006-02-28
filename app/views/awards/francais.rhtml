@@ -1,0 +1,35 @@
+<h1>Le concours litt&eacute;raire QWF</h1>
+
+<div id="sidebar">
+	<div id="searchbox">
+		<h2>Rechercher les prix</h2>
+		
+		<%= start_form_tag ({:controller => 'awards', :action => 'year' }) %> 
+		<h3>Par ann&eacute;e</h3>
+		<select id="year" name="year">
+		<%= options_for_select( (1988..2005).to_a.reverse) %>
+		</select>
+		<%= submit_tag 'Go' %>
+		<%= end_form_tag %>
+		
+		<%= start_form_tag ({:controller => 'awards', :action => 'category' }) %> 
+		<h3>Par cat&eacute;goire</h3>
+		<select id="category" name="category">
+		<%= options_for_select([ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation" ], { :include_blank => true }) %>
+		</select>
+		<%= submit_tag 'Go' %>
+		<%= end_form_tag %>
+	
+	</div>		
+</div>
+
+<p>Chaque ann&eacute;e, le concours litt&eacute;raire QWF reconna&icirc;t les meilleurs livres &eacute;crits par des Qu&eacute;b&eacute;cois de langue anglaise dans quatre cat&eacute;gories, soit les romans et nouvelles, les &eacute;tudes et essais, la po&eacute;sie, et un premier livre. Le concours renferme &eacute;galement un prix de traduction QWF qui est offert pour les traductions de l&#8217;anglais au fran&ccedil;ais et du fran&ccedil;ais &agrave; l&#8217;anglais, en alternance, chaque ann&eacute;e.</P> 
+
+<p>Voici les prix qui sont actuellement d&eacute;cern&eacute;s :</P>
+<ul id="awardlist">
+<li>Le prix Hugh MacLennan pour les romans et nouvelles</li>
+<li>Le prix A.M. Klein pour la po&eacute;sie </li>
+<li>Le prix Mavis Gallant pour les &eacute;tudes et essais </li>
+<li>Le prix McAuslan pour un premier livre </li>
+<li>Le prix de traduction QWF </li>
+</ul>

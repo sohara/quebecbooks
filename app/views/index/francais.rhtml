@@ -1,25 +1,30 @@
 <div id="sidebar">
 	<ul id="homenav">
-		<li><a href="books">Browse Books</a></li
-		><li><a href="authors">Browse Authors</a></li
-		><li><a href="awards">Browse Awards</a></li>
+		<li><a href="/books">Balayage par livre</a></li
+		><li><a href="/authors">Balayage par auteur</a></li
+		><li><a href="/awards">Balayage par prix</a></li>
 	</ul>
 	<div id="searchbox">
-		<%= link_to 'Search', { :controller => 'index', :action => 'search' } %>
+		<h2>Rechercher</h2>
+		<%= start_form_tag ({:controller => 'books', :action => 'search' }) %>
+		<h3>Livres</h3>
+		<%= text_field_with_auto_complete :book, :title, { :size => 15 }, :skip_style => true  %> 
+		<%= submit_tag 'Aller' %>
+		<%= end_form_tag %>
 		
 		<%= start_form_tag ({:controller => 'authors', :action => 'search' }) %> 
-		
-		<h3>Authors</h3>
+		<h3>Auteurs</h3>
 		<%= text_field_with_auto_complete :author, :name, { :size => 15 }, :skip_style => true %> 
-		<%= submit_tag 'Go' %>
+		<%= submit_tag 'Aller' %>
 		<%= end_form_tag %>
 		
-		<%= start_form_tag ({:controller => 'books', :action => 'search' }) %>
-		<h3>Books</h3>
-		<%= text_field_with_auto_complete :book, :title, { :size => 15 }, :skip_style => true  %> 
+		<%= start_form_tag ({:controller => 'awards', :action => 'category' }) %> 
+		<h3>Prix</h3>
+		<select id="category" name="category">
+		<%= options_for_select([ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation" ], { :include_blank => true }) %>
+		</select>
 		<%= submit_tag 'Go' %>
 		<%= end_form_tag %>
-		
 	</div>	
 		
 </div>
@@ -29,10 +34,14 @@
 
 <p>Nous vous invitons donc &agrave; explorer la base et &agrave; d&eacute;couvrir ce &agrave; quoi nous nous sommes employ&eacute;s.</p>
 
-<p>Vous pouvez effectuer une recherche par auteur, par titre ou par genre. Vous pouvez &eacute;galement savoir quels ouvrages ont &eacute;t&eacute; couronn&eacute;s de nos prix QWF pour l&#8217;excellence litt&eacute;raire. Dans la section <%= link_to 'Auteurs', { :controller => 'authors', :action => 'index' } %>, bon nombre des portraits que vous verrez sont l&#8217;oeuvre de Terence Byrnes, &eacute;crivain et photographe montr&eacute;alais.</p>
+<p>Vous pouvez effectuer une recherche par auteur, par titre ou par genre. Vous pouvez &eacute;galement savoir quels ouvrages ont &eacute;t&eacute; couronn&eacute;s de nos <%= link_to 'prix QWF', { :controller => 'awards', :action => 'francais' } %> pour l&#8217;excellence litt&eacute;raire. Dans la section <%= link_to 'Auteurs', { :controller => 'authors', :action => 'index' } %>, bon nombre des portraits que vous verrez sont l&#8217;oeuvre de Terence Byrnes, &eacute;crivain et photographe montr&eacute;alais.</p>
 
-<h2><%= link_to 'Histoire de la base de donn&eacute;es', { :controller => 'index', :action => 'histoire' } %></h2>
+<h2><%= link_to 'Nos commanditaires', { :controller => 'index', :action => 'histoire' } %></h2>
+
+<div class="clear">
 </div>
+</div>
+
 <br /><br />
 <div id ="logos">
 <br />
