@@ -143,8 +143,9 @@ DESC
 task :deploy do
   transaction do
     update_code
-    symlink
     image_sym_link
+    db_sym_link
+    symlink
   end
   restart
 end
