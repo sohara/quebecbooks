@@ -120,3 +120,31 @@ task :long_deploy do
   restart
   enable_web
 end
+
+desc "Restart the Lighttpd web server"
+task :restart, :roles => :app do
+  sudo "/etc/init.d/lighttpd restart"
+end
+
+desc "Create the symlink to the image dir for qwf uploaded images"
+task :image_sym_link, :roles => :app do
+    run "ln -s /var/vhosts/quebecbooks.qwf.org/qwf/shared/image #{current_release}/public/image"
+end
+
+desc "Create the symlink to the database.yml file in /shared"
+task :db_sym_link, :roles => :app do
+    run "ln -s /var/vhosts/quebecbooks.qwf.org/qwf/shared/database.yml #{current_release}/config/database.yml"
+end
+
+desc <<-DESC
+A macro-task that updates the code, fixes the symlink, and restarts the
+application servers.
+DESC
+task :deploy do
+  transaction do
+    update_code
+    symlink
+    image_sym_link
+  end
+  restart
+end
