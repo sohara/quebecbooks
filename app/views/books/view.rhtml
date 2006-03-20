@@ -24,11 +24,17 @@
     <%= link_to author.name, { :controller => 'authors', :action => 'view', :id => author}, {:class => "redlink"} %>
     <% end %>
 	</h2>
+	
 	<% unless @book.awards.empty? %>
-	<% for award in @book.awards %>
-    <h3><%= award.status + " of " + award.name + " in " + award.year.to_s %></h3>
-    <% end %>
+    <% for award in @book.awards %>
+		<% if award.status == "Finalist" %>
+		<h3><%= award.status + " for " + award.name + " in " + award.year.to_s %></h3>
+		<% else %>
+		<h3><%= award.status + " of " + award.name + " in " + award.year.to_s %></h3>
+		<% end %>
 	<% end %>
+	<% end %>
+	
 <!--[form:book]-->
 <div id="form_cols">
     <div id="form_col_right">
