@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define() do
+ActiveRecord::Schema.define(:version => 8) do
 
   create_table "authors", :force => true do |t|
     t.column "first_name", :string
@@ -14,16 +14,6 @@ ActiveRecord::Schema.define() do
     t.column "birthplace", :string
     t.column "died_on", :date
     t.column "sex", :string, :limit => 10
-    t.column "address_line_1", :string
-    t.column "address_line_2", :string
-    t.column "city", :string
-    t.column "region", :string
-    t.column "postal_code", :string, :limit => 14
-    t.column "country", :string
-    t.column "phone_area_code", :string
-    t.column "phone", :string
-    t.column "fax", :string
-    t.column "email", :string
     t.column "web_site", :string
     t.column "biography", :text
     t.column "note", :text
@@ -40,27 +30,19 @@ ActiveRecord::Schema.define() do
   add_index "authors_books", ["book_id"], :name => "fk_ab_book"
 
   create_table "awards", :force => true do |t|
-    t.column "award", :string
-    t.column "organisation", :string
-    t.column "award_type", :string
-    t.column "award_country", :string
-    t.column "award_region", :string
-    t.column "award_city", :string
+    t.column "book_id", :integer, :default => 0, :null => false
+    t.column "category", :string, :default => "", :null => false
+    t.column "year", :integer, :limit => 4, :default => 0, :null => false
+    t.column "status", :string, :default => "", :null => false
   end
 
-  create_table "awards_books", :force => true do |t|
-    t.column "book_id", :integer, :limit => 5
-    t.column "award_id", :integer, :limit => 5
-    t.column "year", :integer, :limit => 4
-  end
-
-  add_index "awards_books", ["id"], :name => "BookAwardID", :unique => true
+  add_index "awards", ["book_id"], :name => "fk_awards_books"
 
   create_table "books", :force => true do |t|
     t.column "language", :string
     t.column "title", :string
     t.column "subtitle", :string
-    t.column "category", :string, :limit => 20
+    t.column "category", :string, :limit => 12
     t.column "topic", :string
     t.column "copyright_year", :integer, :limit => 4
     t.column "isbn_number", :string
@@ -68,13 +50,13 @@ ActiveRecord::Schema.define() do
     t.column "date_published", :integer, :limit => 4
     t.column "edition_number", :integer, :limit => 4
     t.column "cover_type", :string, :limit => 12
-    t.column "acquired_on", :date
     t.column "page_count", :integer, :limit => 5
     t.column "shelf_number", :integer, :limit => 5
     t.column "abstract", :text
-    t.column "note", :text
+    t.column "extract", :text
     t.column "created_on", :timestamp
     t.column "updated_on", :timestamp
+    t.column "translator", :string
   end
 
   create_table "books_publishers", :id => false, :force => true do |t|
@@ -99,15 +81,6 @@ ActiveRecord::Schema.define() do
   create_table "publishers", :force => true do |t|
     t.column "publisher_name", :string
     t.column "publisher_code", :string
-    t.column "address_line_1", :string
-    t.column "address_line_2", :string
-    t.column "city", :string
-    t.column "region", :string
-    t.column "postal_code", :string
-    t.column "country", :string
-    t.column "phone", :string
-    t.column "fax", :string
-    t.column "email", :string
     t.column "web_site", :string
     t.column "note", :text
   end

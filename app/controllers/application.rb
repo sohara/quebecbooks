@@ -1,7 +1,13 @@
 # The filters added to this controller will be run for all controllers in the application.
 # Likewise will all the methods added be available for all controllers.
 class ApplicationController < ActionController::Base
+   before_filter :set_charset
 
+   def set_charset
+     @headers["Content-Type"] = "text/html; charset=ISO-8859-1"
+   end
+
+  
   def authorize
     unless session[:user_id]
       flash[:notice] = "Please log in"

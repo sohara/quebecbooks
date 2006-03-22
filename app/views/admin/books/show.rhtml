@@ -43,10 +43,12 @@
 	<label for="book_copyright_year">Copyright year</label>
 	<div class="reviewfield"><%= @book.copyright_year %></div><br />
 
-
 	<label for="book_isbn_number">Isbn number</label>
 	<div class="reviewfield"><%= @book.isbn_number %></div><br />
 
+	<label for="book_translator">Translator</label>
+	<div class="reviewfield"><%= @book.translator  %></div><br />
+	
 	<label for="book_publisher">Publisher</label>
 	<div class="reviewfield">
 	<% for publisher in @book.publishers %>

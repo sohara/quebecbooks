@@ -22,7 +22,7 @@
 <h2><span class="title"><%=h @book.title %></span> by 
 	<% for author in @book.authors %>
     <%= link_to author.name, { :controller => 'authors', :action => 'view', :id => author}, {:class => "redlink"} %>
-    <% end %>
+    <% end %><% unless @book.translator.to_s.empty? %><%= ", Translated by " + @book.translator %><% end %>
 	</h2>
 	
 	<% unless @book.awards.empty? %>
