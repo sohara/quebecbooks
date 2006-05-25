@@ -15,6 +15,7 @@ body, p {
 #header {
 	width: 800px;
 	margin: 20px auto;
+	padding: 0 30px;
 }
 
 
@@ -177,6 +178,7 @@ h3 {
 #maincontent {
 	width: 800px;
 	margin: 30px auto 0 auto;
+	padding: 0 30px;
 }
 
 #maincontent p {
