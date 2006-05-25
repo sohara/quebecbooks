@@ -17,7 +17,7 @@
   <div id="listrow" class="<%= cycle("even", "odd") %>">
 	<% unless award.book.images.empty? %>
 	<% @image = award.book.images.first %>
-	<%= link_to (image_tag url_for_file_column("image", "name", "thumb96")), { :action => 'view', :id => award.book } %>
+	<%= link_to (image_tag url_for_file_column("image", "name", "thumb96")), {:controller => 'books', :action => 'view', :id => award.book } %>
 	<% end %>
 	  	<% if award.status == "Finalist" %>
 		<h3><%= award.status + " for " + award.name + " in " + award.year.to_s %><h3>
