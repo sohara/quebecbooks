@@ -49,13 +49,24 @@
 <div class="reviewfield"><%= @author.nationality  %></div><br /><% end %>
 
 <% unless @author.born_on.to_s.empty? %><label for="author_birthdate">Birthdate</label>
-<div class="reviewfield"><%= @author.born_on.strftime("%B %d, %Y") %></div><br /><% end %>
+<div class="reviewfield">
+<% unless @author.born_on.strftime("%B %d") == "January 01" %>
+<%= @author.born_on.strftime("%B %d, %Y") %>
+<% else %>
+<%= @author.born_on.strftime("%Y") %>
+<% end %></div><br /><% end %>
 
 <% unless @author.birthplace.empty? %><label for="author_birthplace">Birthplace</label>
 <div class="reviewfield"><%= @author.birthplace  %></div><br /><% end %>
 
 <% unless @author.died_on.to_s.empty? %><label for="author_date_of_death">Date of death</label>
-<div class="reviewfield"><%= @author.died_on.strftime("%B %d, %Y") %></div><br /><% end %>
+<div class="reviewfield">
+	<% unless @author.died_on.strftime("%B %d") == "January 01" %>
+	<%= @author.died_on.strftime("%B %d, %Y") %>
+	<% else %>
+	<%= @author.died_on.strftime("%Y") %>
+	<% end %>
+</div><br /><% end %>
 
 <% unless @author.sex.empty? %><label for="author_sex">Sex</label>
 <div class="reviewfield"><%= @author.sex %></div><br /><% end %>
