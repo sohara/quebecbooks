@@ -21,7 +21,11 @@
 	<%= link_to book.title, { :controller => 'books', :action => 'view', :id => book}, {:class => "redlink"} %><br />
 	<% unless book.awards.empty? %>
     <% for award in book.awards %>
-	<%= award.status + " of " + award.name + " in " + award.year.to_s %><br />
+		<% if award.status == "Finalist" %>
+		<%= award.status + " for " + award.name + " in " + award.year.to_s %><br />
+		<% else %>
+		<%= award.status + " of " + award.name + " in " + award.year.to_s %><br />
+		<% end %>
 	<% end %>
 	<% end %>
     <% end %><br />
