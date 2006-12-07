@@ -11,7 +11,9 @@ class Award < ActiveRecord::Base
 # This method maps award names to awards base on their category and year
    def name
      if self[:category] == 'Fiction'
-       if self[:year] > 1990
+       if self[:year] > 2005
+         'The Paragraphe Hugh MacLennan Prize for Fiction'
+       elsif self[:year] > 1990
          'The Hugh MacLennan Prize for Fiction'
        else
          'The QSPELL Prize for Fiction'
