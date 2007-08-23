@@ -25,9 +25,14 @@
 		<h3><%= award.status + " of " + award.name + " in " + award.year.to_s %></h3>
 		<% end %>
     <h3 class="title"><%= link_to award.book["title"], :controller => 'books', :action => 'view', :id => award.book.id %></h3> by
-    <% for author in award.book.authors %>
-	<%= link_to author.name, { :controller => 'authors', :action => 'view', :id => author}, {:class => "redlink"} %>
-    <% end %><br />
+	    <% for author in award.book.writers %>
+		<%= link_to author.name, { :controller => 'authors', :action => 'view', :id => author}, {:class => "redlink"} %>
+	    <% end %>
+
+			<% unless award.book.translators.empty? -%>, translated by <% award.book.translators.each do |translator| -%><%= link_to translator.name, { :controller => 'authors', :action => 'view', :id => author}, {:class => "redlink"}  %><% end %>
+			<% end %>
+
+<br />
     <span class="detail"><%=h award.book["category"] %> | <%=h award.book["date_published"] %><br /></span>
 	<br class="clear" />
   </div>
