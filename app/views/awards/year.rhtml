@@ -29,7 +29,7 @@
 	<%= link_to author.name, { :controller => 'authors', :action => 'view', :id => author}, {:class => "redlink"} %>
     <% end %>
 
-		<% unless award.book.translators.empty? -%>, translated by <% award.book.translators.each do |translator| -%><%= link_to translator.name, { :controller => 'authors', :action => 'view', :id => author}, {:class => "redlink"}  %><% end %>
+		<% unless award.book.translators.empty? -%>, translated by <% award.book.translators.each do |translator| -%><%= link_to translator.name, { :controller => 'authors', :action => 'view', :id => translator}, {:class => "redlink"}  %><% end %>
 		<% end %>
 		
 <br />
