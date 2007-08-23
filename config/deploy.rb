@@ -140,7 +140,7 @@ desc <<-DESC
 A macro-task that updates the code, fixes the symlink, and restarts the
 application servers.
 DESC
-task :deploy do
+deploy.task :default do
   transaction do
     update_code
     image_sym_link
