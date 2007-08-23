@@ -11,7 +11,7 @@
     <td><%= link_to book["title"], :action => 'edit', :id => book %></td>
     <td><%=h book["category"] %></td>
     <td><% for author in book.authors %>
-    <%= author.last_name + ", " + author.first_name + " " + author.other_name %><br />
+    <%= "#{author.last_name}, #{author.first_name} #{author.other_name}" %><br />
     <% end %></td>
     <td><%= link_to 'Destroy', {:action => 'destroy', :id => book}, :confirm => 'Are you sure?' %></td>
   </tr>

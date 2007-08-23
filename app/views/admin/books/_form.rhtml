@@ -2,32 +2,12 @@
 <!--[form:book]-->
 <div id="form_cols">
     <div id="form_col_right">
-        <h3>Author(s): </h3>
-        <div class="contain_selects">
-        <div class="selectbox" id="left_select">
-        <select multiple name="author_ids[]" id="chosen" class="multi_select">
-		<% for author in @book.authors %>
-            <option value="<%=author.id%>" selected><%=author.last_name + ", " + author.first_name %></option>
-        <% end %>
-        </select>
-        </div><!-- end of div #left_select -->
-        <div class="selectbox" id="right_select">
-        <select multiple name="possible" id="possible" class="multi_select">
-        <% for author in @authors %>
-            <option value="<%=author.id%>"<% if @book.authors.include? author %> selected<% end %>><%=author.last_name + ", " + author.first_name %></option>
-        <% end %>    
-        </select>
-	    </div><!-- end of div #right_select -->
-		<br class="noclear" />
-	    <a href="javascript:copyToList('chosen','possible')" class="copylinks">-&gt;</A> <br class="noclear" /><br class="noclear" />
-        <a href="javascript:copyToList('possible','chosen')" class="copylinks">&lt;-</A>	
-		<br class="clear" />
-        </div> <!-- end of div #contain_selects -->
-        <br />
-		Currently selected (click to edit/view):<br />
-		<% for author in @book.authors %>
-		  <%= link_to author.name, :controller => 'authors', :action => 'edit', :id => author %>
-        <% end %>
+	<% if controller.action_name == "edit" %>
+	<div id = "authorships">
+	<%= render :partial => "/admin/authorships/show_authorships" %>
+	</div>
+	<% end %>
+
 		<br /><br />
 		
 		<% unless @book.images.empty? %>
@@ -59,7 +39,7 @@
 		<h3>Add New Award</h3>
 		<table class="awards">
 			<tr><th>Category</th><th>Year</th><th>Status</th></tr>
-			<%= render(:partial => "award", :locals => {:award => Award.new} ) %>
+			<%= render(:partial => "award", :locals => {:award => Award.new(:id => 1, :year => 2003)} ) %>
 		</table>
 		
     </div><!-- end of div form_col_right -->
@@ -85,9 +65,6 @@
 <label for="book_isbn_number">Isbn number</label>
 <%= text_field 'book', 'isbn_number'  %><br />
 
-<label for="book_translator">Translator</label>
-<%= text_field 'book', 'translator'  %><br />
-
 <label for="book_publisher">Publisher</label>
 
 <select name="publisher_ids[]">
@@ -96,8 +73,6 @@
    # the selected='selected' html
    #%>
 <%= options_for_select (@publishers.map {|p| [truncate(p.publisher_name, length = 30, truncate_string = "..."), p.id]}, @book.publishers.map{|p|p.id} ) %>
-
-
 </select><br />
 
 <label for="book_place_of_publication">Place of publication</label>

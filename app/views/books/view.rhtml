@@ -20,9 +20,15 @@
 
 <div class="editform">
 <h2><span class="title"><%=h @book.title %></span> by 
-	<% for author in @book.authors %>
-    <%= link_to author.name, { :controller => 'authors', :action => 'view', :id => author}, {:class => "redlink"} %>
-    <% end %><% unless @book.translator.to_s.empty? %><%= ", Translated by " + @book.translator %><% end %>
+	<% for writer in @book.writers %>
+    <%= link_to writer.name, { :controller => 'authors', :action => 'view', :id => writer}, {:class => "redlink"} %>
+  <% end %>
+	
+	<% unless @book.translators.empty? %>, Translated by <% end %>
+	<% for translator in @book.translators %>
+    <%= link_to translator.name, { :controller => 'authors', :action => 'view', :id => translator}, {:class => "redlink"} %>
+  <% end %>
+
 	</h2>
 	
 	<% unless @book.awards.empty? %>

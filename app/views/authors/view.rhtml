@@ -29,7 +29,7 @@
         <% end %>
 		<% end %>
 
-		<%= RedCloth.new(@author.biography).to_html  %>
+		<% unless @author.biography.blank? %><%= RedCloth.new(@author.biography).to_html  %><% end %>
 		<h3>Books by <%= @author.first_name + " " + @author.last_name %></h3>
 		<p>
 		<% for book in @author.books %>
@@ -42,21 +42,22 @@
 
 </div><!-- end of div form_col_right -->
 <div id ="form_col_left">
-<% unless @author.language.empty? %><label for="author_language">Language</label>
+<% unless @author.language.blank? %><label for="author_language">Language</label>
 <div class="reviewfield"><%= @author.language  %></div><br /><% end %>
 
-<% unless @author.nationality.to_s.empty? %><label for="author_nationality">Nationality</label>
+<% unless @author.nationality.to_s.blank? %><label for="author_nationality">Nationality</label>
 <div class="reviewfield"><%= @author.nationality  %></div><br /><% end %>
 
-<% unless @author.born_on.to_s.empty? %><label for="author_birthdate">Birthdate</label>
+<% unless @author.born_on.to_s.blank? %><label for="author_birthdate">Birthdate</label>
 <div class="reviewfield">
+<% unless @author.born_on.blank? %>
 <% unless @author.born_on.strftime("%B %d") == "January 01" %>
 <%= @author.born_on.strftime("%B %d, %Y") %>
 <% else %>
 <%= @author.born_on.strftime("%Y") %>
-<% end %></div><br /><% end %>
+<% end %></div><br /><% end %><% end %>
 
-<% unless @author.birthplace.empty? %><label for="author_birthplace">Birthplace</label>
+<% unless @author.birthplace.blank? %><label for="author_birthplace">Birthplace</label>
 <div class="reviewfield"><%= @author.birthplace  %></div><br /><% end %>
 
 <% unless @author.died_on.to_s.empty? %><label for="author_date_of_death">Date of death</label>
@@ -68,10 +69,10 @@
 	<% end %>
 </div><br /><% end %>
 
-<% unless @author.sex.empty? %><label for="author_sex">Sex</label>
+<% unless @author.sex.blank? %><label for="author_sex">Sex</label>
 <div class="reviewfield"><%= @author.sex %></div><br /><% end %>
 
-<% unless @author.web_site.empty? %><label for="author_web_site">Web site</label>
+<% unless @author.web_site.blank? %><label for="author_web_site">Web site</label>
 <div class="reviewfield"><%= @author.web_site  %></div><br /><% end %>
 </div><!-- end of div form_cols_left -->
 </div><!-- end of div form_cols -->

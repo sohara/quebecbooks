@@ -2,65 +2,65 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 8) do
+ActiveRecord::Schema.define(:version => 12) do
 
   create_table "authors", :force => true do |t|
-    t.column "first_name", :string
-    t.column "last_name", :string
-    t.column "other_name", :string
-    t.column "language", :string
+    t.column "first_name",  :string
+    t.column "last_name",   :string
+    t.column "other_name",  :string
+    t.column "language",    :string
     t.column "nationality", :string
-    t.column "born_on", :date
-    t.column "birthplace", :string
-    t.column "died_on", :date
-    t.column "sex", :string, :limit => 10
-    t.column "web_site", :string
-    t.column "biography", :text
-    t.column "note", :text
-    t.column "created_on", :timestamp
-    t.column "updated_on", :timestamp
+    t.column "born_on",     :date
+    t.column "birthplace",  :string
+    t.column "died_on",     :date
+    t.column "sex",         :string,    :limit => 10
+    t.column "web_site",    :string
+    t.column "biography",   :text
+    t.column "note",        :text
+    t.column "created_on",  :timestamp,               :null => false
+    t.column "updated_on",  :timestamp,               :null => false
   end
 
-  create_table "authors_books", :id => false, :force => true do |t|
+  create_table "authorships", :force => true do |t|
     t.column "author_id", :integer, :limit => 5
-    t.column "book_id", :integer, :limit => 5
+    t.column "book_id",   :integer, :limit => 5
+    t.column "kind",      :string,               :default => "Author", :null => false
   end
 
-  add_index "authors_books", ["author_id"], :name => "fk_ab_author"
-  add_index "authors_books", ["book_id"], :name => "fk_ab_book"
+  add_index "authorships", ["author_id"], :name => "fk_ab_author"
+  add_index "authorships", ["book_id"], :name => "fk_ab_book"
 
   create_table "awards", :force => true do |t|
-    t.column "book_id", :integer, :default => 0, :null => false
-    t.column "category", :string, :default => "", :null => false
-    t.column "year", :integer, :limit => 4, :default => 0, :null => false
-    t.column "status", :string, :default => "", :null => false
+    t.column "book_id",  :integer,              :default => 0,  :null => false
+    t.column "category", :string,               :default => "", :null => false
+    t.column "year",     :integer, :limit => 4, :default => 0,  :null => false
+    t.column "status",   :string,               :default => "", :null => false
   end
 
   add_index "awards", ["book_id"], :name => "fk_awards_books"
 
   create_table "books", :force => true do |t|
-    t.column "language", :string
-    t.column "title", :string
-    t.column "subtitle", :string
-    t.column "category", :string, :limit => 12
-    t.column "topic", :string
-    t.column "copyright_year", :integer, :limit => 4
-    t.column "isbn_number", :string
+    t.column "language",             :string
+    t.column "title",                :string
+    t.column "subtitle",             :string
+    t.column "category",             :string,    :limit => 12
+    t.column "topic",                :string
+    t.column "copyright_year",       :integer,   :limit => 4
+    t.column "isbn_number",          :string
     t.column "place_of_publication", :string
-    t.column "date_published", :integer, :limit => 4
-    t.column "edition_number", :integer, :limit => 4
-    t.column "cover_type", :string, :limit => 12
-    t.column "page_count", :integer, :limit => 5
-    t.column "shelf_number", :integer, :limit => 5
-    t.column "abstract", :text
-    t.column "extract", :text
-    t.column "created_on", :timestamp
-    t.column "updated_on", :timestamp
-    t.column "translator", :string
+    t.column "date_published",       :integer,   :limit => 4
+    t.column "edition_number",       :integer,   :limit => 4
+    t.column "cover_type",           :string,    :limit => 12
+    t.column "page_count",           :integer,   :limit => 5
+    t.column "shelf_number",         :integer,   :limit => 5
+    t.column "abstract",             :text
+    t.column "extract",              :text
+    t.column "created_on",           :timestamp,               :null => false
+    t.column "updated_on",           :timestamp,               :null => false
   end
 
   create_table "books_publishers", :id => false, :force => true do |t|
-    t.column "book_id", :integer, :limit => 5
+    t.column "book_id",      :integer, :limit => 5
     t.column "publisher_id", :integer, :limit => 5
   end
 
@@ -68,11 +68,11 @@ ActiveRecord::Schema.define(:version => 8) do
   add_index "books_publishers", ["publisher_id"], :name => "fk_bp_publisher"
 
   create_table "images", :force => true do |t|
-    t.column "author_id", :integer, :limit => 5
-    t.column "book_id", :integer, :limit => 5
-    t.column "name", :string, :limit => 100
-    t.column "caption", :string
-    t.column "created_at", :timestamp
+    t.column "author_id",  :integer,   :limit => 5
+    t.column "book_id",    :integer,   :limit => 5
+    t.column "name",       :string,    :limit => 100
+    t.column "caption",    :string
+    t.column "created_at", :timestamp,                :null => false
   end
 
   add_index "images", ["author_id"], :name => "fk_images_author"
@@ -81,12 +81,12 @@ ActiveRecord::Schema.define(:version => 8) do
   create_table "publishers", :force => true do |t|
     t.column "publisher_name", :string
     t.column "publisher_code", :string
-    t.column "web_site", :string
-    t.column "note", :text
+    t.column "web_site",       :string
+    t.column "note",           :text
   end
 
   create_table "users", :force => true do |t|
-    t.column "name", :string, :limit => 100, :default => "", :null => false
+    t.column "name",            :string, :limit => 100, :default => "", :null => false
     t.column "hashed_password", :string, :limit => 40
   end
 

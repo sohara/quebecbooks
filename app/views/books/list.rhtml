@@ -23,9 +23,8 @@
     <h3 class="title"><%= link_to book["title"], :action => 'view', :id => book %></h3> by
     <% for author in book.authors %>
 	<%= link_to author.name, { :controller => 'authors', :action => 'view', :id => author}, {:class => "redlink"} %>
-    <% end %>
-	<% unless book.translator.to_s.empty? %>
-	<%= ", translated by " + book.translator %>
+    <% end -%>
+	<% unless book.translators.empty? -%>, translated by <% book.translators.each do |translator| -%><%= link_to translator.name, { :controller => 'authors', :action => 'view', :id => author}, {:class => "redlink"}  %><% end %>
 	<% end %>
 <br />
     <span class="detail">

@@ -1,0 +1,13 @@
+<fieldset>
+
+<div class="form-element">
+	<label for="track_name">Author</label>
+	<%= collection_select("authorship", "author_id", @authors, "id", "name", {:include_blank => true}) %>
+</div>
+
+<div class="form-element">
+	<label for="hard_product_format">Kind</label><%= select("authorship", "kind", Authorship::KINDS, { :include_blank => true }) %>
+</div>
+
+</fieldset>
+<%= submit_tag "Save" %> 

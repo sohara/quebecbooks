@@ -1,5 +1,8 @@
 class Book < ActiveRecord::Base
-    has_and_belongs_to_many :authors
+    has_many :authorships
+    has_many :authors, :through => :authorships
+    has_many :translators, :through => :authorships, :source => :author, :conditions => "authorships.kind='Translator'"
+    has_many :writers, :through => :authorships, :source => :author, :conditions => "authorships.kind='Author'"
     has_and_belongs_to_many :publishers 
     has_many :images
     has_many :awards

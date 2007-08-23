@@ -1,0 +1,25 @@
+<td colspan="2" class="editcell">
+<%= form_remote_tag :update => "authorship#{@authorship.id}", :url => { :action => :update, :id => @authorship },
+					:loading => "Element.show(authorship_spinner#{@authorship.id})" %>
+					<fieldset>
+
+					<div class="form-element">
+						<label for="track_name">Author</label>
+						<%= collection_select("authorship", "author_id", @authors, "id", "name", {:include_blank => true}) %>
+					</div>
+
+					<div class="form-element">
+						<label for="hard_product_format">Kind</label><%= select("authorship", "kind", Authorship::KINDS, { :include_blank => true }) %>
+					</div>
+
+					</fieldset>
+					<%= submit_tag "Save" %>
+</form> 
+</td>
+<td> </td>
+<td><%= link_to_remote ("Cancel", 
+						:update => "authorship#{@authorship.id}",
+						:url => { :controller => "admin/authorships", :action => "cancel", :id => @authorship },
+						:loading => "Element.show('authorship_spinner#{@authorship.id}')",
+						:complete => "Element.hide('authorship_spinner#{@authorship.id}')") %></td>
+<td> <span id="authorship_spinner<%= @authorship.id %>" style="display:none;"><%= image_tag "spinner-trans.gif", :class => "spinner" %></span></td>

@@ -1,0 +1,19 @@
+<h3>Authorships: </h3>
+<table class="awards">
+	<tr><th>Name</th><th>Kind</th><th>Edit</th><th>Destroy</th><th></th></tr>
+	
+	<tbody id="trows">
+	<% unless @book.authorships.empty? %>
+	<% for @authorship in @book.authorships.sort_by{|authorship| authorship.kind } %>
+	<%= render :partial => "admin/authorships/edit_authorship_row", :object => @authorship %>
+	<% end %>
+	<% end %>
+	</tbody>
+</table>
+
+<div class="floatbutton">
+<span id="new_authorship_spinner" style="display:none;"><%= image_tag "spinner-trans.gif", :class => "spinner" %></span>&nbsp;
+<%= link_to_remote "+", 	:url => { :controller  => 'admin/authorships', :action => "new", :id => @book },
+							:loading => "Element.show('new_authorship_spinner')",
+							:complete => "Element.hide('new_authorship_spinner')" %>
+</div>
