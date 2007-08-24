@@ -32,6 +32,19 @@ class Admin::AuthorshipsController < ApplicationController
     end
   end
   
+  # Update song with params from form
+  def update
+    @authorship = Authorship.find(params[:id])
+    begin
+      @authorship.update_attributes(params[:authorship])
+    rescue 
+      logger.info "Authorship not saved #{@authorship.errors.each_full() {|msg| msg}}"
+    else
+      render :partial => 'admin/authorships/authorship_row', :object => @authorship
+      logger.info "Authorship saved"
+    end
+  end
+  
   # Cancel editing of song so display regular row for viewing rather than editing
   def cancel
     @authorship = Authorship.find(params[:id])
