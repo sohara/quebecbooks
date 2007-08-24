@@ -32,8 +32,11 @@
 	    </ul>	
 			
 		<ul class="mynav" id="nav2">
+			<% unless controller.action_name == 'francais' || controller.action_name == 'histoire'  -%>
 	    <li><%= link_to 'Fran&ccedil;ais', { :controller => 'index', :action => 'francais' } %></li
-	    >
+	    ><% else -%>
+	    <li><%= link_to 'English', { :controller => 'index', :action => 'index' } %></li
+	    ><% end -%>
 	    </ul>
 	</div>
 	
