@@ -25,9 +25,8 @@
   <% end %>
 	
 	<% unless @book.translators.empty? %>, Translated by <% end %>
-	<% for translator in @book.translators %>
-    <%= link_to translator.name, { :controller => 'authors', :action => 'view', :id => translator}, {:class => "redlink"} %>
-  <% end %>
+	<% @translators = @book.translators.sort_by{|t|t.last_name} -%>
+	<% for translator in @translators -%><% if translator == @translators.last and translator != @translators.first %> and <% elsif translator != @translators.first %>, <% end %><%= link_to(translator.name, { :controller => 'authors', :action => 'view', :id => translator}, {:class => "redlink"}) -%><% end -%>
 
 	</h2>
 	

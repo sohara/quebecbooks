@@ -30,15 +30,23 @@
 		<% end %>
 
 		<% unless @author.biography.blank? %><%= RedCloth.new(@author.biography).to_html  %><% end %>
-		<h3>Books by <%= @author.first_name + " " + @author.last_name %></h3>
+		
+		<% unless @author.writings.empty? %>
+		<h3>Books by <%= @author.name %></h3>
 		<p>
-		<% for book in @author.books %>
-		<% unless book.images.empty? %>
-		<% @image = book.images.first %>
-		<%= link_to (image_tag (url_for_file_column("image", "name", "thumb96"), :class => 'author_book')), { :controller => 'books', :action => 'view', :id => book} %>
+		<% for @book in @author.writings %>
+		<%= render :partial => "books" %>
 		<% end %>
-	    <%= link_to book.title, :controller => 'books', :action => 'view', :id => book %><br class="clear"/><br />
-		<%end%></p>
+		</p>
+		<% end %>
+		<% unless @author.translations.empty? %>
+		<h3>Books translated by <%= @author.name %></h3>
+		<p>
+		<% for @book in @author.translations %>
+		<%= render :partial => "books" %>
+		<% end %>
+		</p>
+		<% end %>
 
 </div><!-- end of div form_col_right -->
 <div id ="form_col_left">

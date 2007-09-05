@@ -29,9 +29,9 @@
 	<%= link_to author.name, { :controller => 'authors', :action => 'view', :id => author}, {:class => "redlink"} %>
     <% end %>
 
-		<% unless award.book.translators.empty? -%>, translated by <% award.book.translators.each do |translator| -%><%= link_to translator.name, { :controller => 'authors', :action => 'view', :id => translator}, {:class => "redlink"}  %><% end %>
-		<% end %>
-		
+		<% unless award.book.translators.empty? %>, Translated by <% end %>
+		<% @translators = award.book.translators.sort_by{|t|t.last_name} -%>
+		<% for translator in @translators -%><% if translator == @translators.last and translator != @translators.first %> and <% elsif translator != @translators.first %>, <% end %><%= link_to(translator.name, { :controller => 'authors', :action => 'view', :id => translator}, {:class => "redlink"}) -%><% end -%>
 <br />
     <span class="detail"><%=h award.book["category"] %> | <%=h award.book["date_published"] %><br /></span>
 	<br class="clear" />

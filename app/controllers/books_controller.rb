@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   end
 
   def list
-    @pages, @books = paginate :book, :per_page => 20, :order_by => 'title'
+    @pages, @books = paginate :book, :per_page => 20, :order_by => 'title', :include => [:authors, :writers, :translators, :awards, :images]
   end
   
   def view
@@ -35,7 +35,7 @@ class BooksController < ApplicationController
   end
   
   def genre
-    @pages, @books = paginate_collection Book.find(:all, :conditions => ["category =?", @params[:genre]], :order => 'title') , {:per_page => 20, :page => @params[:page]}
+    @pages, @books = paginate_collection Book.find(:all, :conditions => ["books.category =?", @params[:genre]], :order => 'title', :include => [:authors, :writers, :translators, :awards, :images]), {:per_page => 20, :page => @params[:page]}
     flash[:notice] = "Browse by genre: #{@params[:genre]}"
     render_action 'list'
   end

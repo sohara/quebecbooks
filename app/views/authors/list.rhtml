@@ -16,19 +16,28 @@
 	<%= link_to (image_tag url_for_file_column("image", "name", "thumb96")), { :action => 'view', :id => author} %>
 	<% end %>
 	<h3 class="title"><%= link_to author.name, { :action => 'view', :id => author} %></h3>
- 	<span class="detail">Author of: </span><br />
-    <% for book in author.books %>
-	<%= link_to book.title, { :controller => 'books', :action => 'view', :id => book}, {:class => "redlink"} %><br />
-	<% unless book.awards.empty? %>
-    <% for award in book.awards %>
-		<% if award.status == "Finalist" %>
-		<%= award.status + " for " + award.name + " in " + award.year.to_s %><br />
-		<% else %>
-		<%= award.status + " of " + award.name + " in " + award.year.to_s %><br />
-		<% end %>
+ 	<% unless author.writings.empty? %><span class="detail">Author of: </span><br />
+    <% for book in author.writings %>
+			<%= link_to book.title, { :controller => 'books', :action => 'view', :id => book}, {:class => "redlink"} -%>
+			<% unless book.awards.empty? -%>
+    		<% for award in book.awards -%>
+				<span class="detail"><%= "(" + award.status + (award.status == "Finalist" ? " for " : " of ") + award.name + " in " + award.year.to_s + ")" %></span>
+				<% end -%>
+			<% end -%><br />
+    <% end -%><br />
 	<% end %>
+	
+	<% unless author.translations.empty? %><span class="detail">Translator of: </span><br />
+    <% for book in author.translations %>
+			<%= link_to book.title, { :controller => 'books', :action => 'view', :id => book}, {:class => "redlink"} -%>
+			<% unless book.awards.empty? -%>
+    		<% for award in book.awards -%>
+				<span class="detail"><%= "(" + award.status + (award.status == "Finalist" ? " for " : " of ") + award.name + " in " + award.year.to_s + ")" %></span>
+				<% end -%>
+			<% end -%><br />
+    <% end -%><br />
 	<% end %>
-    <% end %><br />
+	
 	<div class="clear"> 
 	</div>
   </div>
