@@ -20,9 +20,8 @@
 
 <div class="editform">
 <h2><span class="title"><%=h @book.title %></span> by 
-	<% for writer in @book.writers %>
-    <%= link_to writer.name, { :controller => 'authors', :action => 'view', :id => writer}, {:class => "redlink"} %>
-  <% end %>
+	<% @writers = @book.writers.sort_by{|t|t.last_name} -%>
+	<% for writer in @writers %><% if writer == @writers.last and writer != @writers.first %> and <% elsif writer != @writers.first %>, <% end %><%= link_to(writer.name, { :controller => 'authors', :action => 'view', :id => writer}, {:class => "redlink"}) -%><% end -%>
 	
 	<% unless @book.translators.empty? %>, Translated by <% end %>
 	<% @translators = @book.translators.sort_by{|t|t.last_name} -%>

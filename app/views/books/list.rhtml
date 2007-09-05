@@ -21,9 +21,9 @@
 	<%= link_to (image_tag url_for_file_column("image", "name", "thumb96")), { :action => 'view', :id => book } %>
 	<% end %>
     <h3 class="title"><%= link_to book["title"], :action => 'view', :id => book %></h3> by
-    <% for author in book.writers %>
-	<%= link_to author.name, { :controller => 'authors', :action => 'view', :id => author}, {:class => "redlink"} %>
-    <% end -%>
+    <% @writers = book.writers.sort_by{|t|t.last_name} -%>
+		<% for writer in @writers %><% if writer == @writers.last and writer != @writers.first %> and <% elsif writer != @writers.first %>, <% end %><%= link_to(writer.name, { :controller => 'authors', :action => 'view', :id => writer}, {:class => "redlink"}) -%><% end -%>
+
 		<% unless book.translators.empty? %>, Translated by <% end %>
 		<% @translators = book.translators.sort_by{|t|t.last_name} -%>
 		<% for translator in @translators -%><% if translator == @translators.last and translator != @translators.first %> and <% elsif translator != @translators.first %>, <% end %><%= link_to(translator.name, { :controller => 'authors', :action => 'view', :id => translator}, {:class => "redlink"}) -%><% end -%>
