@@ -76,7 +76,7 @@ class Admin::BooksController < AdminAreaController
     
     # Update any changes to existing awards
     @book.awards.collect{ |award| 
-      award.update_attributes( params[:award][ award.id.to_s ] )
+      award.update_attributes(params[:award][ award.id.to_s ])
       }
       
    # iterate over checkboxed awards to delete them if checked
@@ -84,9 +84,9 @@ class Admin::BooksController < AdminAreaController
         Award.find(award[0]).destroy if award[1] == '1'} if params[:delete_award]  
         
     #Append new award to book if one was entered
-    @book.awards << Award.new(:category => params['award'][0]['category'],
-                              :year => params['award'][0]['year'],
-                              :status => params['award'][0]['status']) if params['award'][0]['category'].length > 0
+    @book.awards << Award.new(:category => params[:award]['1']['category'],
+                              :year => params[:award]['1']['year'],
+                              :status => params[:award]['1']['status']) if params[:award]['1']['category'].length > 0
                                
     if @book.update_attributes(params[:book])
       flash[:notice] = "The book \"#{@book.title}\" was successfully updated."
