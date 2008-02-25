@@ -9,9 +9,12 @@
 # repository must be the URL of the repository you want this recipe to
 # correspond to. The deploy_to path must be the path on each machine that will
 # form the root of the application path.
+require 'mongrel_cluster/recipes'
 
 set :application, "qwf"
 set :repository, "http://sohara.com/svn/quebecbooks/trunk"
+set :checkout, "export"
+set :keep_releases, 4
 
 # =============================================================================
 # ROLES
