@@ -33,7 +33,7 @@ class Admin::PublishersController < AdminAreaController
     if params[:id]
       @publisher = Publisher.find(params[:id])
     else
-      @publisher = Publisher.find( :first, :conditions => ["publisher_name = ?", @params[:publisher][:publisher_name]])
+      @publisher = Publisher.find( :first, :conditions => ["publisher_name = ?", params[:publisher][:publisher_name]])
     end
   end
 

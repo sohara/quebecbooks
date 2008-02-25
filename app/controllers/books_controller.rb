@@ -18,13 +18,13 @@ class BooksController < ApplicationController
   end
   
   def search
-    @books = Book.find( :all, :conditions => ["LOWER(title) LIKE ?", '%' + @params[:book][:title].downcase + '%' ])
+    @books = Book.find( :all, :conditions => ["LOWER(title) LIKE ?", '%' + params[:book][:title].downcase + '%' ])
     if @books.nitems == 1
       redirect_to :action => 'view', :id => @books[0]
     elsif @books.nitems > 1
         @pages, @books = paginate(:book,
           :per_page => 20,
-          :conditions => ["LOWER(title) LIKE ?", '%' + @params[:book][:title].downcase + '%' ],
+          :conditions => ["LOWER(title) LIKE ?", '%' + params[:book][:title].downcase + '%' ],
           :order_by => 'title')
       flash[:notice] = 'Your seach results'
       render_action 'list'
@@ -35,9 +35,9 @@ class BooksController < ApplicationController
   end
   
   def genre
-    @pages, @books = paginate_collection Book.find(:all, :conditions => ["books.category =?", @params[:genre]], :order => 'title', :include => [:authors, :writers, :translators, :awards, :images]), {:per_page => 20, :page => @params[:page]}
-    flash[:notice] = "Browse by genre: #{@params[:genre]}"
-    render_action 'list'
+    @pages, @books = paginate_collection Book.find(:all, :conditions => ["books.category =?", params[:genre]], :order => 'title', :include => [:authors, :writers, :translators, :awards, :images]), {:per_page => 20, :page => params[:page]}
+    flash[:notice] = "Browse by genre: #{params[:genre]}"
+    render :action  => 'list'
   end
   
 end
