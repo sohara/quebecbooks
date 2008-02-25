@@ -4,13 +4,13 @@
 	<%= options_for_select( (1988..2008).to_a.reverse, params[:year].to_i ) %>
 	</select>
 	<%= submit_tag 'Go' %>
-	<%= end_form_tag %>
+	</form>
 <%= render(:partial => "shared/breadcrumb") %>
 </div>
 
-<h1>Awards for <%= @params[:year] %></h1>
+<h1>Awards for <%= params[:year] %></h1>
 <% if @awards.empty? %>
-<p>There are no awards for <%= @params[:year] %></p>
+<p>There are no awards for <%= params[:year] %></p>
 <% end %>
 <% for award in @awards %>
 

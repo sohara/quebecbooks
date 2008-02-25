@@ -1,7 +1,8 @@
 <div class="editform">
 <h2 class="title">Search Books</h2>
 
-<%= start_form_tag ({:controller => 'books', :action => 'update', :id => @book}) %>
+<% form_tag do (
+{:controller => 'books', :action => 'update', :id => @book}) %>
 
 <label for="book_title">Title</label>
 <%= text_field 'book', 'title'  %><br />
@@ -11,7 +12,8 @@
 
 <label for="Search">Submit</label>
 <%= submit_tag 'Edit' %><br /> 
-<%= end_form_tag %>
+<% end %>
+
 
 
 <h2 class="title">Search Authors</h2>

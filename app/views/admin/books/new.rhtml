@@ -1,10 +1,12 @@
-<%= start_form_tag ({:action => 'create'}, {:multipart => true, 'onSubmit' => 'allSelect()', 'class' => 'editform'}) %>
+<% form_tag do (
+{:action => 'create'}, {:multipart => true, 'onSubmit' => 'allSelect()', 'class' => 'editform'}) %>
 <h2>New book</h2>
   <%= render_partial 'form' %>
 
 <label for="Create">Submit</label>
 <%= submit_tag "Create" %><br />
 
-<%= end_form_tag %>
+<% end %>
+
 
 <%= link_to 'Back', :action => 'list' %>

@@ -4,21 +4,23 @@
 	<div id="searchbox">
 		<h2>Search Awards</h2>
 		
-		<%= start_form_tag ({:controller => 'awards', :action => 'year' }) %> 
+		<% form_tag({:controller => 'awards', :action => 'year' }) do %> 
 		<h3>By Year</h3>
 		<select id="year" name="year">
 		<%= options_for_select( (1988..2008).to_a.reverse) %>
 		</select>
 		<%= submit_tag 'Go' %>
-		<%= end_form_tag %>
+		<% end %>
+
 		
-		<%= start_form_tag ({:controller => 'awards', :action => 'category' }) %> 
+		<% form_tag({:controller => 'awards', :action => 'category' }) do %> 
 		<h3>By Category</h3>
 		<select id="category" name="category">
 		<%= options_for_select([ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation" ], { :include_blank => true }) %>
 		</select>
 		<%= submit_tag 'Go' %>
-		<%= end_form_tag %>
+		<% end %>
+
 	
 	</div>		
 </div>

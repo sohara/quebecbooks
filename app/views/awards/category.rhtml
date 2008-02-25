@@ -1,16 +1,18 @@
 <div id="breadbar">
-	<%= start_form_tag ({:controller => 'awards', :action => 'category' }) %> 
+	<% form_tag do (
+{:controller => 'awards', :action => 'category' }) %> 
 	<select id="category" name="category">
 	<%= options_for_select([ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation" ], params[:category]) %>
 	</select>
 	<%= submit_tag 'Go' %>
-	<%= end_form_tag %>
+	<% end %>
+
 <%= render(:partial => "shared/breadcrumb") %>
 </div>
 
-<h1>Awards for <%= @params[:category] %></h1>
+<h1>Awards for <%= params[:category] %></h1>
 <% if @awards.empty? %>
-<p>There are no awards for <%= @params[:category] %></p>
+<p>There are no awards for <%= params[:category] %></p>
 <% end %>
 <% for award in @awards %>
 

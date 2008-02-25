@@ -25,7 +25,7 @@
 <div id="searchbar"> 
 <%= render(:partial => "searchbar")%>
 </div> <!-- End Div "searchbar"--> 
-    <% if @flash["notice"] %> 
+    <% if flash["notice"] %> 
     <span class="notice"> 
       <%=h @flash["notice"] %> 
     </span>

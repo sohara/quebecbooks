@@ -12,11 +12,15 @@
 		
 		<% unless @book.images.empty? %>
 		<h3>Images</h3>
-		<% for @image in @book.images %>
+		<% for image in @book.images %>
 		<div class="picture">
-		<%= link_to (image_tag url_for_file_column("image", "name", "thumb96")), url_for_file_column('image', 'name', 'medium250'), { :popup => ['new_window', 'height=375,width=250']} %><div class="checkbox"><%= check_box("delete_image", @image.id ) %>(Check to delete)</div>
+			<% logger.info "image is #{ url_for_file_column(image, 'name', 'medium2')}" %>
+		<%= link_to (image_tag url_for_file_column(image, "name", "thumb96")), 
+		url_for_file_column(image, 'name', 'medium250'), 
+		{ :popup => ['new_window', 'height=375,width=250']} %>
+		<div class="checkbox"><%= check_box("delete_image", image.id ) %>(Check to delete)</div>
 		<br  class="noclear"/>
-		<%= @image.caption %><br  class="noclear"/></div><br />
+		<%= image.caption %><br  class="noclear"/></div><br />
         <% end %>
 		<% end %>
         

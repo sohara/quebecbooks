@@ -1,8 +1,9 @@
 <div id="breadbar">
-	<%= start_form_tag ({:controller => 'authors', :action => 'search' }) %> 
+	<% form_tag do ({:controller => 'authors', :action => 'search' }) %> 
 	<%= text_field_with_auto_complete :author, :name, { :size => 20 }, :skip_style => true %> &nbsp;
 	<%= submit_tag 'Search Authors' %>
-	<%= end_form_tag %>
+	<% end %>
+
 <%= render(:partial => "shared/breadcrumb") %>
 </div>
 <br class="clear">

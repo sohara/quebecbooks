@@ -1,4 +1,5 @@
-<%= start_form_tag ({:action => 'update', :id => @award}, {'onSubmit' => 'allSelect()', 'class' => 'editform'}) %>
+<% form_tag do (
+{:action => 'update', :id => @award}, {'onSubmit' => 'allSelect()', 'class' => 'editform'}) %>
 <h2>Edit Award: <%= @award.award %></h2>
   <%= render_partial 'form' %>
 
@@ -6,7 +7,8 @@
 <%= submit_tag 'Edit' %><br />
 
 </div><!-- end of div form_cols -->
-<%= end_form_tag %>
+<% end %>
+
 
 <%= link_to 'Show', :action => 'show', :id => @award %> |
 <%= link_to 'Back', :action => 'list' %>

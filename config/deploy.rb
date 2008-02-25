@@ -22,9 +22,9 @@ set :repository, "http://sohara.com/svn/quebecbooks/trunk"
 # be used to single out a specific subset of boxes in a particular role, like
 # :primary => true.
 
-role :web, "209.172.33.52"
-role :app, "209.172.33.52"
-role :db,  "209.172.33.52", :primary => true
+role :web, "209.172.35.182"
+role :app, "209.172.35.182"
+role :db,  "209.172.35.182", :primary => true
 # role :db,  "db02.example.com", "db03.example.com"
 
 # =============================================================================
@@ -37,6 +37,7 @@ set :user, "qwfweb"            # defaults to the currently logged in user
 # set :darcs, "/path/to/darcs"   # defaults to searching the PATH
 # set :cvs, "/path/to/cvs"       # defaults to searching the PATH
 # set :gateway, "gate.host.com"  # default to no gateway
+set :mongrel_conf, "#{current_path}/config/mongrel_cluster.yml"
 
 # =============================================================================
 # SSH OPTIONS
@@ -147,5 +148,6 @@ deploy.task :default do
     db_sym_link
     symlink
   end
-  restart
+  cleanup
+  restart_mongrel_cluster
 end

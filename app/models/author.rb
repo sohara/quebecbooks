@@ -9,7 +9,7 @@ class Author < ActiveRecord::Base
   
   # composed_of declaration maps Author attributes to the Name model object
   composed_of :name,
-              :class_name => Name,
+              :class_name => "Name",
               :mapping => 
                 [ [ :first_name, :first ],
                   [ :other_name, :other],
