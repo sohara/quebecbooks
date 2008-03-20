@@ -1,6 +1,5 @@
 <div id="breadbar">
-	<% form_tag do (
-{:controller => 'books', :action => 'search' }) %>
+	<% form_tag :controller => 'books', :action => 'search' do %>
 	<%= text_field_with_auto_complete :book, :title, { :size => 15, :value => "" }, :skip_style => true  %> 
 	<%= submit_tag 'Search Books' %>
 	<% end %>

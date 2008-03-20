@@ -1,5 +1,4 @@
-<% form_tag do (
-{:action => 'create'}, {:multipart => true, 'onSubmit' => 'allSelect()', 'class' => 'editform'}) %>
+<% form_tag({:action => 'create'}, {:multipart => true, 'onSubmit' => 'allSelect()', 'class' => 'editform'}) do %>
 <h2>New Author</h2>
   <%= render_partial 'form' %>
 

@@ -1,5 +1,4 @@
-<% form_tag do (
-{:action => 'update', :id => @publisher}, {'onSubmit' => 'allSelect()', 'class' => 'editform'}) %>
+<% form_tag({:action => 'update', :id => @publisher}, {'onSubmit' => 'allSelect()', 'class' => 'editform'}) do %>
 <h2>Edit Publisher: <%= @publisher.publisher_name %></h2>
   <%= render_partial 'form' %>
 <label for="Edit">Submit</label>

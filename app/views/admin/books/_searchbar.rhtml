@@ -7,8 +7,7 @@
     <%= link_to ('>>', { :page => @book_pages.last }, :title => "Last Page", :class => "navlinks") if @book_pages.last != @book_pages.current %>
     <% end %>
 </div>    
-<% form_tag do (
-{:controller => 'books', :action => 'search' }) %>  
+<% form_tag :controller => 'books', :action => 'search' do %>  
 <label for="book_title">Search Books: </label><%= text_field_with_auto_complete :book, :title, { :value => "" } %> 
 <%= submit_tag 'Go' %>
 <% end %>

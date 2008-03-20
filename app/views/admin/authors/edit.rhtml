@@ -1,5 +1,4 @@
-<% form_tag do (
-{:action => 'update', :id => @author}, {:multipart => true, 'onSubmit' => 'allSelect()', 'class' => 'editform'}) %>
+<% form_tag ({:action => 'update', :id => @author}, {:multipart => true, 'onSubmit' => 'allSelect()', 'class' => 'editform'}) do %>
 <h2>Edit Author: <%= @author.first_name + " " + @author.last_name %></h2>
   <%= render_partial 'form' %>
 
