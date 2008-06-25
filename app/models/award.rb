@@ -2,7 +2,7 @@ class Award < ActiveRecord::Base
   belongs_to :book
   validates_presence_of :category, :year, :status
   validates_inclusion_of :category,
-                         :in => %w{ Fiction Non-Fiction Poetry First-Book Translation },
+                         :in => [ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation", "Children’s & Y.A. Lit." ],
                          :message => "should be either 'Fiction', 'Non-Fiction' 'Poetry', 'First-Book', or  'Translation'"
   validates_inclusion_of :status,
                          :in => %w{ Finalist Winner },
@@ -36,9 +36,12 @@ class Award < ActiveRecord::Base
         else
           'First Book Prize'
         end
+      elsif self[:category] == "Children’s & Y.A. Lit."
+        "The QWF Prize for Children’s and Young Adult Literature"
       else
         'QWF Translation Prize'
       end
+
    end
                                            
 end

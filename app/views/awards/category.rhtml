@@ -2,7 +2,7 @@
 	<% form_tag do (
 {:controller => 'awards', :action => 'category' }) %> 
 	<select id="category" name="category">
-	<%= options_for_select([ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation" ], params[:category]) %>
+	<%= options_for_select([ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation", "Children’s & Y.A. Lit." ], params[:category]) %>
 	</select>
 	<%= submit_tag 'Go' %>
 	<% end %>

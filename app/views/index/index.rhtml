@@ -31,7 +31,7 @@
 		<% form_tag :controller => 'awards', :action => 'category' do  %> 
 		<h3>Awards</h3>
 		<select id="category" name="category">
-		<%= options_for_select([ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation" ], { :include_blank => true }) %>
+		<%= options_for_select([ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation", "Children’s & Y.A. Lit." ], { :include_blank => true }) %>
 		</select>
 		<%= submit_tag 'Go' %>
 		<% end %>
