@@ -5,7 +5,7 @@ class AuthorsController < ApplicationController
   end
 
   def list
-    @author_pages, @authors = paginate :author, :per_page => 20, :order_by => 'last_name', :include => [{:writings => :awards}, :translations, :images]
+    @author_pages, @authors = paginate :author, :per_page => 20, :order_by => 'last_name', :include => [:images]
     logger.info "authors are #{@authors}"
   end
   

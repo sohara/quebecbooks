@@ -42,18 +42,34 @@ module FileColumnHelper
   #
   # If there is currently no uploaded file stored in the object's column this method will
   # return +nil+.
-  def url_for_file_column(object, method, subdir=nil)
-    case object
-    when String, Symbol
-      object = instance_variable_get("@#{object.to_s}")
-    end
-    relative_path = object.send("#{method}_relative_path", subdir)
-    return nil unless relative_path
-    url = ""
-    url << request.relative_url_root.to_s << "/"
-    url << object.send("#{method}_options")[:base_url] << "/"
-    url << relative_path
+def url_for_file_column(object, method, options=nil)
+  case object
+  when String, Symbol
+    object = instance_variable_get("@#{object.to_s}")
   end
+
+  # parse options
+  subdir = nil
+  absolute = false
+  if options
+    case options
+    when Hash
+      subdir = options[:subdir]
+      absolute = options[:absolute]
+    when String, Symbol
+      subdir = options
+    end
+  end
+  
+  relative_path = object.send("#{method}_relative_path", subdir)
+  return nil unless relative_path
+
+  url = "" #original line
+  url << request.relative_url_root.to_s if absolute
+  url << "/"
+  url << object.send("#{method}_options")[:base_url] << "/"
+  url << relative_path
+end
 
   # Same as +url_for_file_colum+ but allows you to access different versions
   # of the image that have been processed by RMagick.
