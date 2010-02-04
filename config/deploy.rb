@@ -1,7 +1,8 @@
+set :scm, :git
+set :deploy_via, :remote_cache
+set :repository, "file:///opt/repos/qwf.git"
 
 set :application, "qwf"
-set :repository, "http://sohara.com/svn/quebecbooks/trunk"
-set :checkout, "export"
 set :keep_releases, 4
 
 # =============================================================================
@@ -28,7 +29,6 @@ set :user, "qwfweb"            # defaults to the currently logged in user
 # set :darcs, "/path/to/darcs"   # defaults to searching the PATH
 # set :cvs, "/path/to/cvs"       # defaults to searching the PATH
 # set :gateway, "gate.host.com"  # default to no gateway
-set :mongrel_conf, "#{current_path}/config/mongrel_cluster.yml"
 
 # =============================================================================
 # SSH OPTIONS
@@ -128,17 +128,16 @@ task :db_sym_link, :roles => :app do
     run "ln -s /var/vhosts/quebecbooks.qwf.org/qwf/shared/database.yml #{current_release}/config/database.yml"
 end
 
-desc <<-DESC
-A macro-task that updates the code, fixes the symlink, and restarts the
-application servers.
-DESC
-deploy.task :default do
-  transaction do
-    update_code
-    image_sym_link
-    db_sym_link
-    symlink
+# New deploy task added 20100204
+namespace :deploy do
+  desc "Restarting mod_rails with restart.txt"
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "touch #{current_path}/tmp/restart.txt"
   end
-  cleanup
-  restart_mongrel_cluster
+  [:start, :stop].each do |t|
+    desc "#{t} task is a no-op with mod_rails"
+    task t, :roles => :app do ; end
+  end
 end
+
+after 'deploy:update_code', :db_sym_link, :image_sym_link
