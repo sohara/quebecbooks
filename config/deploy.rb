@@ -1,15 +1,3 @@
-# This defines a deployment "recipe" that you can feed to switchtower
-# (http://manuals.rubyonrails.com/read/book/17). It allows you to automate
-# (among other things) the deployment of your application.
-
-# =============================================================================
-# REQUIRED VARIABLES
-# =============================================================================
-# You must always specify the application and repository for every recipe. The
-# repository must be the URL of the repository you want this recipe to
-# correspond to. The deploy_to path must be the path on each machine that will
-# form the root of the application path.
-require 'mongrel_cluster/recipes'
 
 set :application, "qwf"
 set :repository, "http://sohara.com/svn/quebecbooks/trunk"
