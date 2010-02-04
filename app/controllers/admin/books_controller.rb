@@ -68,7 +68,7 @@ class Admin::BooksController < AdminAreaController
     
     #Append new image to book if it was actually uploaded (checked via size)
     @book.images << Image.new(:name => params[:image][:name],
-                              :caption => params[:image][:caption]) if params[:image][:name].size > 1000
+                              :caption => params[:image][:caption]) if params[:image][:name]
                               
     # iterate over checkboxed images to delete them if checked
     params[:delete_image].each { |image| 
