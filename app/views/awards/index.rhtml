@@ -7,7 +7,7 @@
 		<% form_tag({:controller => 'awards', :action => 'year' }) do %> 
 		<h3>By Year</h3>
 		<select id="year" name="year">
-		<%= options_for_select( (1988..2008).to_a.reverse) %>
+		<%= options_for_select( (1988..2010).to_a.reverse) %>
 		</select>
 		<%= submit_tag 'Go' %>
 		<% end %>

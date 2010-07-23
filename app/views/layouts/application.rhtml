@@ -20,7 +20,7 @@
 		<li><%= link_to 'Home', { :controller => 'index', :action => 'index' } %></li  
 	    >
 		<li><%= link_to 'Awards', { :controller => 'awards', :action => 'index' } %><ul>
-			<% (1988..2008).to_a.reverse.each do |year| %><li><%=  link_to "#{year}", { :controller => 'awards', :action => 'year', :year => year } %></li><% end %></ul></li>
+			<% (1988..2010).to_a.reverse.each do |year| %><li><%=  link_to "#{year}", { :controller => 'awards', :action => 'year', :year => year } %></li><% end %></ul></li>
 		<li><%= link_to 'Authors', { :controller => 'authors', :action => 'index' } %></li  
 	    ><li><%= link_to 'Books', { :controller => 'books', :action => 'index' } %><ul>
 		<li><%= link_to 'Fiction', { :controller => 'books', :action => 'genre', :genre => 'Fiction' } %></li
