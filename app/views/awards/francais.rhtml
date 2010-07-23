@@ -8,7 +8,7 @@
 {:controller => 'awards', :action => 'year' }) %> 
 		<h3>Par ann&eacute;e</h3>
 		<select id="year" name="year">
-		<%= options_for_select( (1988..2005).to_a.reverse) %>
+		<%= options_for_select( (1988..2010).to_a.reverse) %>
 		</select>
 		<%= submit_tag 'Aller' %>
 		<% end %>

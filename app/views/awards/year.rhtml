@@ -1,7 +1,7 @@
 <div id="breadbar">
 	<form action="/awards/year" method="post">
 	<select id="year" name="year">
-	<%= options_for_select( (1988..2008).to_a.reverse, params[:year].to_i ) %>
+	<%= options_for_select( (1988..2010).to_a.reverse, params[:year].to_i ) %>
 	</select>
 	<%= submit_tag 'Go' %>
 	</form>
