@@ -29,7 +29,7 @@ class Admin::AuthorsController < AdminAreaController
   def create
     @author = Author.new(params[:author])
     @author.images << Image.new(:name => params[:image][:name],
-                              :caption => params[:image][:caption]) if params[:image][:name].size > 1000
+                              :caption => params[:image][:caption]) if params[:image][:name]
     if @author.save
       flash[:notice] = 'Author was successfully created.'
       redirect_to :action => 'show', :id => @author

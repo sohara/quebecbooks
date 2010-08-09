@@ -26,10 +26,10 @@ class Admin::BooksController < AdminAreaController
     @book = Book.new(params[:book])
     @book.authors = Author.find(params[:author_ids]) if params[:author_ids]
     @book.images << Image.new(:name => params[:image][:name],
-                              :caption => params[:image][:caption]) if params[:image][:name].size > 1000;
+                              :caption => params[:image][:caption]) if params[:image][:name];
+    @book.publishers = Publisher.find(params[:publisher_ids]) if params[:publisher_ids]
     if @book.save
       flash[:notice] = 'Book was successfully created.'
-      @book.publishers << Publisher.find(params[:publisher_ids]) if params[:publisher_ids]
       redirect_to :action => 'show', :id => @book
     else
       render :action => 'new'
@@ -66,7 +66,7 @@ class Admin::BooksController < AdminAreaController
     #@book.authors = Author.find(params[:author_ids]) if params[:author_ids]
     @book.publishers = Publisher.find(params[:publisher_ids]) if params[:publisher_ids]
     
-    #Append new image to book if it was actually uploaded (checked via size)
+    #Append new image to book if it was actually uploaded
     @book.images << Image.new(:name => params[:image][:name],
                               :caption => params[:image][:caption]) if params[:image][:name]
                               
