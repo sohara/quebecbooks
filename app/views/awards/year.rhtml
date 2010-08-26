@@ -10,7 +10,11 @@
 
 <h1>Awards for <%= params[:year] %></h1>
 <% if @awards.empty? %>
-<p>There are no awards for <%= params[:year] %></p>
+	<% if params[:year] == Time.now.to_date.year.to_s %>
+		<p>The <%= Time.now.to_date.year %> Awards will be announced in November.</p>
+	<% else %>
+		<p>There are no awards for <%= params[:year] %></p>
+	<% end %>
 <% end %>
 <% for award in @awards %>
 
