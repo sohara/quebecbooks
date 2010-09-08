@@ -1,12 +1,12 @@
 <div id="navbar">
 	<div id="leftnavs">
 		
-    <%= link_to ('<<', { :params => params.merge('page' => @pages.first)}, :title => "First Page", :class => "navlinks") if @pages.first != @pages.current %>
-    <%= link_to ('<', { :params => params.merge('page' => @pages.current.previous )}, :title => "Previous 20 Records",:class => "navlinks") if @pages.current.previous %>
+    <%= link_to '<<', { :params => params.merge('page' => @pages.first)}, {:title => "First Page", :class => "navlinks"} if @pages.first != @pages.current %>
+    <%= link_to '<', { :params => params.merge('page' => @pages.current.previous )}, {:title => "Previous 20 Records",:class => "navlinks"} if @pages.current.previous %>
 	</div>
 	<div id="rightnavs">
-    <%= link_to ('>', { :params => params.merge('page' => @pages.current.next)}, :title => "Next 20 Records", :class => "navlinks") if @pages.current.next %> 
-    <%= link_to ('>>', { :params => params.merge('page' => @pages.last )}, :title => "Last Page", :class => "navlinks") if @pages.last != @pages.current %>
+    <%= link_to '>', { :params => params.merge('page' => @pages.current.next)}, {:title => "Next 20 Records", :class => "navlinks"} if @pages.current.next %> 
+    <%= link_to '>>', { :params => params.merge('page' => @pages.last )}, {:title => "Last Page", :class => "navlinks"} if @pages.last != @pages.current %>
 	</div>
 	<%= pagination_links(@pages, {:window_size => 10, :always_show_anchors => true, :params => params }) %>
 </div>

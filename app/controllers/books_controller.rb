@@ -19,9 +19,9 @@ class BooksController < ApplicationController
   
   def search
     @books = Book.find( :all, :conditions => ["LOWER(title) LIKE ?", '%' + params[:book][:title].downcase + '%' ])
-    if @books.nitems == 1
+    if @books.size == 1
       redirect_to :action => 'view', :id => @books[0]
-    elsif @books.nitems > 1
+    elsif @books.size > 1
         @pages, @books = paginate(:book,
           :per_page => 20,
           :conditions => ["LOWER(title) LIKE ?", '%' + params[:book][:title].downcase + '%' ],

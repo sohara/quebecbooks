@@ -41,9 +41,9 @@ class Admin::AuthorsController < AdminAreaController
 
   def search
     @authors = Author.find( :all, :conditions => ["CAST(CONCAT(REPLACE(first_name, ' ', ''),REPLACE(other_name, ' ', ''),REPLACE(last_name, ' ', '')) AS CHAR) LIKE ?", '%' + params[:author][:name].downcase.gsub(' ','') + '%'])
-    if @authors.nitems == 1
+    if @authors.size == 1
       redirect_to :action => 'edit', :id => @authors[0] 
-    elsif @authors.nitems > 1
+    elsif @authors.size > 1
       flash[:notice] = 'Your seach results'
       render_action 'list'
     else

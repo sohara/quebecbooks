@@ -38,9 +38,9 @@ class Admin::BooksController < AdminAreaController
   
   def search
     @books = Book.find( :all, :conditions => ["LOWER(title) LIKE ?", '%' + params[:book][:title].downcase + '%' ])
-    if @books.nitems == 1
+    if @books.size == 1
       redirect_to :action => 'edit', :id => @books[0]
-    elsif @books.nitems > 1
+    elsif @books.size > 1
       flash[:notice] = 'Your seach results'
       render_action 'list'
     else

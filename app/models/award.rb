@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Award < ActiveRecord::Base
   belongs_to :book
   validates_presence_of :category, :year, :status

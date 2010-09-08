@@ -10,10 +10,10 @@
 
 	<div id="navbar">
 		<div id="leftnavs">
-	    <%= link_to ('<', { :action => "view", :id => @author_previous }, :title => "Previous Author",:class => "navlinks") %>
+	    <%= link_to '<', {:action => "view", :id => @author_previous}, {:title => "Previous Author", :class => "navlinks"} %>
 		</div>
 		<div id="rightnavs">
-	    <%= link_to ('>', { :action => "view", :id => @author_next  }, :title => "Next Author", :class => "navlinks") %> 
+	    <%= link_to '>', {:action => "view", :id => @author_next}, {:title => "Next Author", :class => "navlinks"} %> 
 		</div>
 		<%= @author_number.to_s + " of " + @authors.length.to_s %>
 	</div>

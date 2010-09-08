@@ -1,5 +1,6 @@
 <% unless @book.images.empty? %>
 <% @image = @book.images.first %>
-<%= link_to (image_tag (url_for_file_column("image", "name", "thumb96"), :class => 'author_book')), { :controller => 'books', :action => 'view', :id => @book} %>
+<% file_column_image = image_tag(url_for_file_column(@image, "name", "thumb96"), :class => 'author_book') %>
+<%= link_to file_column_image, :controller => 'books', :action => 'view', :id => @book %>
 <% end %>
   <%= link_to @book.title, :controller => 'books', :action => 'view', :id => @book %><br class="clear"/><br />
