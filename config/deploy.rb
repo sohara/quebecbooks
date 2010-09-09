@@ -1,9 +1,11 @@
 set :scm, :git
-set :deploy_via, :remote_cache
+# set :deploy_via, :remote_cache
 set :repository, "file:///opt/repos/qwf.git"
+set :local_repository, "qwfweb:/opt/repos/alienrails.git"
 
 set :application, "qwf"
 set :keep_releases, 4
+set :use_sudo, false
 
 # =============================================================================
 # ROLES
