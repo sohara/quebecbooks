@@ -1,7 +1,7 @@
 set :scm, :git
 # set :deploy_via, :remote_cache
 set :repository, "file:///opt/repos/qwf.git"
-set :local_repository, "qwfweb:/opt/repos/alienrails.git"
+set :local_repository, "alli:/opt/repos/qwf.git"
 
 set :application, "qwf"
 set :keep_releases, 4
