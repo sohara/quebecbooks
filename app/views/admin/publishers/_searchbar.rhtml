@@ -1,10 +1,10 @@
 <div id="browse_nav">
     <% if controller.action_name == "index" || controller.action_name == "list" %>
-    <%= link_to ('+', {:action => 'new'}, :title => "New Publisher", :class => "navlinks") %>
-    <%= link_to ('<<', { :page => @publisher_pages.first}, :title => "First Page", :class => "navlinks") if @publisher_pages.first != @publisher_pages.current %>
-    <%= link_to ('<', { :page => @publisher_pages.current.previous }, :title => "Previous 20 Records",:class => "navlinks") if @publisher_pages.current.previous %>
-    <%= link_to ('>', { :page => @publisher_pages.current.next}, :title => "Next 20 Records", :class => "navlinks") if @publisher_pages.current.next %> 
-    <%= link_to ('>>', { :page => @publisher_pages.last }, :title => "Last Page", :class => "navlinks") if @publisher_pages.last != @publisher_pages.current %>
+    <%= link_to '+', {:action => 'new'}, :title => "New Publisher", :class => "navlinks" %>
+    <%= link_to '<<', { :page => @publisher_pages.first}, :title => "First Page", :class => "navlinks" if @publisher_pages.first != @publisher_pages.current %>
+    <%= link_to '<', { :page => @publisher_pages.current.previous }, :title => "Previous 20 Records",:class => "navlinks" if @publisher_pages.current.previous %>
+    <%= link_to '>', { :page => @publisher_pages.current.next}, :title => "Next 20 Records", :class => "navlinks" if @publisher_pages.current.next %> 
+    <%= link_to '>>', { :page => @publisher_pages.last }, :title => "Last Page", :class => "navlinks" if @publisher_pages.last != @publisher_pages.current %>
     <% end %>
 </div>
 <% form_tag :controller => 'publishers', :action => 'edit' do %>  

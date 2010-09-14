@@ -1,12 +1,12 @@
-<% form_tag ({:action => 'update', :id => @author}, {:multipart => true, 'onSubmit' => 'allSelect()', 'class' => 'editform'}) do %>
+<% form_tag url_for(:action => 'update', :id => @author), {:multipart => true, 'onSubmit' => 'allSelect()', 'class' => 'editform'} do %>
 <h2>Edit Author: <%= @author.first_name + " " + @author.last_name %></h2>
-  <%= render :partial =>  'form' %>
+<%= render :partial =>  'form' %>
 
 <label for="Edit">Submit</label>
 <%= submit_tag 'Edit' %><br />
 </div><!-- end of div form_cols -->
-<h2 class="noborder"><%= link_to ('Show', { :action => 'show', :id => @author }, :title => "Preview this author") %> |
-<%= link_to ('Back', { :action => 'list' }, :title => "Back to the list of authors") %></h2>
+<h2 class="noborder"><%= link_to 'Show', { :action => 'show', :id => @author }, :title => "Preview this author" %> |
+<%= link_to 'Back', { :action => 'list' }, :title => "Back to the list of authors" %></h2>
 <% end %>
 
 

@@ -26,7 +26,7 @@
         
 		<h3>Add an Image</h3>
         <label for="image_name">Image:</label>
-		<%= file_column_field ('image', 'name', {'size' => '', 'class' => 'myfile'}) %><br />
+		<%= file_column_field 'image', 'name', {'size' => '', 'class' => 'myfile'} %><br />
 		<label for="image_caption">Caption</label>
 		<%= text_field 'image', 'caption'  %><br /><br />
 		
@@ -70,14 +70,7 @@
 <%= text_field 'book', 'isbn_number'  %><br />
 
 <label for="book_publisher">Publisher</label>
-
-<select name="publisher_ids[]">
-<% # The former helper below isn't working because rails isn't recognizing
-   # @book.publishers as an array to compare agains @publishers to output
-   # the selected='selected' html
-   #%>
-<%= options_for_select (@publishers.map {|p| [truncate(p.publisher_name, length = 30, truncate_string = "..."), p.id]}, @book.publishers.map{|p|p.id} ) %>
-</select><br />
+<% # collection_select :book, :publishers, Publisher.all, :id, :publisher_name %>
 
 <label for="book_place_of_publication">Place of publication</label>
 <%= text_field 'book', 'place_of_publication'  %><br />
