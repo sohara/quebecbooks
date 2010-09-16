@@ -1,7 +1,9 @@
-.DS_Store
-log/*.log
-tmp/**/*
+.bundle
 config/database.yml
 db/*.sqlite3
 public/image
 log/last_session_cleanup
+log/*.log
+tmp/**/*
+.DS_Store
+tmp/restart.txt

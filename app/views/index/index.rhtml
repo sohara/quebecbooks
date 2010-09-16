@@ -20,12 +20,12 @@
 
 		<% form_tag  :controller => 'books', :action => 'search' do %>
 		<h3>Books</h3>
-		<%= text_field_with_auto_complete :book, :title, { :size => 23 }, :skip_style => true  %> &nbsp;
+		<%= text_field_with_auto_complete( :book, :title, { :size => 23 }, :skip_style => true).html_safe  %> &nbsp;
 		<%= submit_tag 'Go' %><% end %>
 		
 		<% form_tag  :controller => 'authors', :action => 'search' do -%>
 		<h3>Authors</h3>
-		<%= text_field_with_auto_complete :author, :name, { :size => 23 }, :skip_style => true %> &nbsp;
+		<%= text_field_with_auto_complete( :author, :name, { :size => 23 }, :skip_style => true).html_safe %> &nbsp;
 		<%= submit_tag 'Go' %><% end %>
 		
 		<% form_tag :controller => 'awards', :action => 'category' do  %> 

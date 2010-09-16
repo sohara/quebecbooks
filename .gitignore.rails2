@@ -1,0 +1,7 @@
+.DS_Store
+log/*.log
+tmp/**/*
+config/database.yml
+db/*.sqlite3
+public/image
+log/last_session_cleanup
