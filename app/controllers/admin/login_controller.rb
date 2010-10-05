@@ -25,7 +25,7 @@ class Admin::LoginController < AdminAreaController
       logged_in_user = @user.try_to_login
       if logged_in_user
         session[:user_id] = logged_in_user.id
-        redirect_to(:action => "index")
+        redirect_to(:controller => :books, :action => "index")
       else
         flash[:notice] = "Invalid user/password combination"
       end

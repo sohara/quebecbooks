@@ -51,7 +51,7 @@
 
 
 <label for="author_biography">Biography</label>
-<div class="reviewfield"><%= RedCloth.new(@author.biography).to_html  %></div><br />
+<div class="reviewfield"><%= textilize(@author.biography)  %></div><br />
 
 <label for="author_note">Note</label>
 <div class="reviewfield"><%= RedCloth.new(@author.note).to_html %></div><br />
