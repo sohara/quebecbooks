@@ -33,7 +33,7 @@
     <% if flash[:notice] %> 
 <div class="notice"><p style="color: green"><%= flash[:notice] %></p></div>
     <% end %> 
-<%= @content_for_layout %>
+<%= yield %>
 </div><!-- End Div "wrapper"-->
 </body>
 </html>

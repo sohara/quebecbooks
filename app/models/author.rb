@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: authors
+#
+#  id          :integer(2)      not null, primary key
+#  first_name  :string(255)
+#  last_name   :string(255)
+#  other_name  :string(255)
+#  language    :string(255)
+#  nationality :string(255)
+#  born_on     :date
+#  birthplace  :string(255)
+#  died_on     :date
+#  sex         :string(10)
+#  web_site    :string(255)
+#  biography   :text
+#  note        :text
+#  created_on  :timestamp       not null
+#  updated_on  :timestamp       not null
+#
+
 class Author < ActiveRecord::Base
   
   has_many :authorships

@@ -1,11 +1,20 @@
 Qwf::Application.routes.draw do
   match 'admin' => 'admin/books#index'
   match '' => 'index#index'
+  match '/index/auto_complete_for_book_title' => 'books#auto_complete_for_book_title'
+  match '/index/auto_complete_for_author_name' => 'authors#auto_complete_for_author_name'
   match 'books/genre/:genre' => 'books#genre', :genre => /\D+/
   match 'awards/year/:year' => 'awards#year', :year => /\d+/
   match '/awards/category/:category' => 'awards#category', :category => /\D+/
+  match '/admin/login/login_form' => 'admin/login#login_form'  
+  match '/admin/login/login' => 'admin/login#login'
   match ':controller/service.wsdl' => '#wsdl'
+  match '/admin/authors(/:action(/:id))' => '/admin/authors'
+  match '/admin/books(/:action(/:id))' => '/admin/books'
+  match '/admin/publishers(/:action(/:id))' => '/admin/publishers'  
   match '/:controller(/:action(/:id))'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

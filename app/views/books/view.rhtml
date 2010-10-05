@@ -47,16 +47,16 @@
 		<% unless @book.images.empty? %>
 		<div class="picture">
 		<% for @image in @book.images %>
-		<%= image_tag url_for_file_column "image", "name", "medium250" %><br />
+		<%= image_tag @image.image(:medium250) %><br />
 		<%= @image.caption %><br />
         <% end %>
 		</div>
 		<% end %>
-		<%= RedCloth.new(@book.abstract).to_html %>
+		<%= textilize(@book.abstract) %>
 
 		<% unless @book.extract.empty? %>
 		<h3>Extract</h3>
-		<%= RedCloth.new(@book.extract).to_html %><br />
+		<%= textilize(@book.extract) %><br />
 		<% end %>
 		
     </div><!-- end of div form_col_right -->

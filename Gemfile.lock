@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    RedCloth (4.2.2)
     abstract (1.0.0)
     actionmailer (3.0.0)
       actionpack (= 3.0.0)
@@ -28,6 +29,7 @@ GEM
       activemodel (= 3.0.0)
       activesupport (= 3.0.0)
     activesupport (3.0.0)
+    annotate-models (1.0.4)
     arel (1.0.1)
       activesupport (~> 3.0.0)
     builder (2.1.2)
@@ -40,6 +42,9 @@ GEM
       treetop (>= 1.4.5)
     mime-types (1.16)
     mysql2 (0.2.3)
+    paperclip (2.3.3)
+      activerecord
+      activesupport
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.13)
@@ -64,10 +69,15 @@ GEM
     treetop (1.4.8)
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
+    will_paginate (3.0.pre2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  RedCloth (= 4.2.2)
+  annotate-models (= 1.0.4)
   mysql2
+  paperclip (>= 2.3.3)
   rails (= 3.0.0)
+  will_paginate (~> 3.0.pre2)

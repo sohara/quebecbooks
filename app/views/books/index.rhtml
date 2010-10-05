@@ -12,14 +12,14 @@
 <% if flash[:notice] %> 
 <h3><%= flash[:notice] %></h3>
 <% end %>
-<%= render(:partial => "navbar") %>
+<%= will_paginate %>
 <br class="clear" />
 
 <% for book in @books %>
   <div id="listrow" class="<%= cycle("even", "odd") %>">
 	<% unless book.images.empty? %>
 	<% @image = book.images.first %>
-	<%= link_to (image_tag url_for_file_column("image", "name", "thumb96")), { :action => 'view', :id => book } %>
+	<%= link_to (image_tag @image.image(:thumb96)), { :action => 'view', :id => book } %>
 	<% end %>
     <h3 class="title"><%= link_to book["title"], :action => 'view', :id => book %></h3> by
     <% @writers = book.writers.sort_by{|t|t.last_name} -%>
@@ -49,5 +49,5 @@
   </div>
 <% end %>
 <br />
-<%= render(:partial => "navbar") %>
+<%= will_paginate %>
 <br />

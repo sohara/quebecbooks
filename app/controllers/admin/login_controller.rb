@@ -1,5 +1,5 @@
 class Admin::LoginController < AdminAreaController
-  before_filter :authorize, :except => :login
+  before_filter :authorize, :except => [:login_form, :login]
   
   def add_user
     if request.get?
@@ -11,6 +11,9 @@ class Admin::LoginController < AdminAreaController
         redirect_to( :action => 'index')
       end
     end
+  end
+
+  def login_form
   end
 
   def login

@@ -1,3 +1,7 @@
+#requrire bundler's capistrano tasks to automate gem installation during deployment
+require "bundler/capistrano"
+
+
 set :scm, :git
 # set :deploy_via, :remote_cache
 set :repository, "file:///opt/repos/qwf.git"

@@ -13,7 +13,8 @@
 
 <div class="floatbutton">
 <span id="new_authorship_spinner" style="display:none;"><%= image_tag "spinner-trans.gif", :class => "spinner" %></span>&nbsp;
-<%= link_to_remote "+", 	:url => { :controller  => 'admin/authorships', :action => "new", :id => @book },
+<%= link_to "+", 	:url => { :controller  => 'admin/authorships', :action => "new", :id => @book },
+							:remote => true,
 							:loading => "Element.show('new_authorship_spinner')",
 							:complete => "Element.hide('new_authorship_spinner')" %>
 </div>

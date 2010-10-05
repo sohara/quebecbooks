@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer(4)      not null, primary key
+#  name            :string(100)     default(""), not null
+#  hashed_password :string(40)
+#
+
 require "digest/sha1"
 
 class User < ActiveRecord::Base

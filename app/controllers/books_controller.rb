@@ -1,11 +1,8 @@
 class BooksController < ApplicationController
+  auto_complete_for :book, :title
+  
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
-    @pages, @books = paginate :book, :per_page => 20, :order_by => 'title', :include => [:authors, :writers, :translators, :awards, :images]
+    @books = Book.paginate :page => params[:page], :order => 'title', :include => [:authors, :writers, :translators, :awards, :images]
   end
   
   def view
@@ -35,9 +32,11 @@ class BooksController < ApplicationController
   end
   
   def genre
-    @pages, @books = paginate_collection Book.find(:all, :conditions => ["books.category =?", params[:genre]], :order => 'title', :include => [:authors, :writers, :translators, :awards, :images]), {:per_page => 20, :page => params[:page]}
+    @books = Book.where("books.category = ?", params[:genre]).paginate :page => params[:page], :order => 'title', :include => [:authors, :writers, :translators, :awards, :images]
     flash[:notice] = "Browse by genre: #{params[:genre]}"
-    render :action  => 'list'
+    render 'index'
   end
+  
+
   
 end

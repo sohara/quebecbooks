@@ -14,9 +14,9 @@
 		<h3>Images</h3>
 		<% for image in @book.images %>
 		<div class="picture">
-			<% logger.info "image is #{ url_for_file_column(image, 'name', 'medium2')}" %>
-		<%= link_to (image_tag url_for_file_column(image, "name", "thumb96")), 
-		url_for_file_column(image, 'name', 'medium250'), 
+			<% logger.info "image is #{ image.image(:medium250)}" %>
+		<%= link_to (image_tag image.image(:thumb96)), 
+		image.image(:medium250), 
 		{ :popup => ['new_window', 'height=375,width=250']} %>
 		<div class="checkbox"><%= check_box("delete_image", image.id ) %>(Check to delete)</div>
 		<br  class="noclear"/>
@@ -70,7 +70,7 @@
 <%= text_field 'book', 'isbn_number'  %><br />
 
 <label for="book_publisher">Publisher</label>
-<% # collection_select :book, :publishers, Publisher.all, :id, :publisher_name %>
+<%=  collection_select :book, :publisher_ids, Publisher.all, :id, :publisher_name_truncated %>
 
 <label for="book_place_of_publication">Place of publication</label>
 <%= text_field 'book', 'place_of_publication'  %><br />

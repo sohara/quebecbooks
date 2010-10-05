@@ -14,7 +14,7 @@
 		
 		<h3>Images</h3>
 		<% for @image in @author.images %>
-		<div class="picture"><%= link_to (image_tag url_for_file_column("image", "name", "thumb96")), url_for_file_column('image', 'name', 'medium250'), { :popup => ['new_window', 'height=375,width=250']} %><br  class="noclear"/>
+		<div class="picture"><%= link_to (image_tag @image.image(:thumb96)), @image.image(:medium250), { :popup => ['new_window', 'height=375,width=250']} %><br  class="noclear"/>
 		<%= @image.caption %></div><br />
         <% end %>
 

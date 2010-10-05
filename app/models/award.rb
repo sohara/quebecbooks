@@ -1,4 +1,17 @@
 # encoding: utf-8
+
+# == Schema Information
+#
+# Table name: awards
+#
+#  id       :integer(2)      not null, primary key
+#  book_id  :integer(4)      default(0), not null
+#  category :string(255)     default(""), not null
+#  year     :integer(4)      default(0), not null
+#  status   :string(255)     default(""), not null
+#
+
+# encoding: utf-8
 class Award < ActiveRecord::Base
   belongs_to :book
   validates_presence_of :category, :year, :status

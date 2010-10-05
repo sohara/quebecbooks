@@ -1,6 +1,6 @@
 <div id="breadbar">
 	<% form_tag :controller => 'authors', :action => 'search' do %> 
-	<%= text_field_with_auto_complete :author, :name, { :size => 20 }, :skip_style => true %> &nbsp;
+	<%= text_field_with_auto_complete(:author, :name, { :size => 20 }, :skip_style => true).html_safe %> &nbsp;
 	<%= submit_tag 'Search Authors' %>
 	<% end %>
 
@@ -14,7 +14,7 @@
   <div id="listrow" class="<%= cycle("even", "odd") %>">
 	<% unless author.images.empty? %>
 	<% @image = author.images.first %>
-	<%= link_to (image_tag url_for_file_column("image", "name", "thumb96")), { :action => 'view', :id => author} %>
+	<%= link_to (image_tag @image.image(:thumb96)), { :action => 'view', :id => author} %>
 	<% end %>
 	<h3 class="title"><%= link_to author.name, { :action => 'view', :id => author} %></h3>
  	<% unless author.writings.empty? %><span class="detail">Author of: </span><br />
