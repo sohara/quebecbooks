@@ -37,7 +37,7 @@ role :db,  "209.172.35.182", :primary => true
 # OPTIONAL VARIABLES
 # =============================================================================
 set :deploy_to, "/var/vhosts/quebecbooks.qwf.org/qwf" # defaults to "/u/apps/#{application}"
-set :user, "qwfweb"            # defaults to the currently logged in user
+set :user, "alien8web"            # defaults to the currently logged in user
 # set :scm, :darcs               # defaults to :subversion
 # set :svn, "/path/to/svn"       # defaults to searching the PATH
 # set :darcs, "/path/to/darcs"   # defaults to searching the PATH
