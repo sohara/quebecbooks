@@ -1,6 +1,7 @@
 <td colspan="2" class="editcell">
-<%= form_remote_tag :update => "authorship#{@authorship.id}", :url => { :action => :update, :id => @authorship },
-					:loading => "Element.show(authorship_spinner#{@authorship.id})" %>
+<%= form_remote_tag(:update => "authorship#{@authorship.id}", 
+										:url => { :action => :update, :id => @authorship },
+										:loading => "Element.show(authorship_spinner#{@authorship.id})") %>
 					<fieldset>
 
 					<div class="form-element">
@@ -17,9 +18,8 @@
 </form> 
 </td>
 <td> </td>
-<td><%= link_to_remote ("Cancel", 
+<td><%= link_to_remote "Cancel", :url => { :controller => "admin/authorships", :action => "cancel", :id => @authorship },
 						:update => "authorship#{@authorship.id}",
-						:url => { :controller => "admin/authorships", :action => "cancel", :id => @authorship },
 						:loading => "Element.show('authorship_spinner#{@authorship.id}')",
-						:complete => "Element.hide('authorship_spinner#{@authorship.id}')") %></td>
+						:complete => "Element.hide('authorship_spinner#{@authorship.id}')" %></td>
 <td> <span id="authorship_spinner<%= @authorship.id %>" style="display:none;"><%= image_tag "spinner-trans.gif", :class => "spinner" %></span></td>

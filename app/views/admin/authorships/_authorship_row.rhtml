@@ -1,10 +1,9 @@
-<td><%= @authorship.author.name %></td>
+<td><%= @authorship.author.name unless @authorship.author.nil? %></td>
 <td><%= @authorship.kind %></td>
-<td class="button"><%= link_to "Edit", :url => { :controller => "admin/authorships", :action => "edit", :id => @authorship }, :remote => true,
+<td class="button"><%= link_to_remote "Edit", :url => { :controller => "admin/authorships", :action => "edit", :id => @authorship },
 							:loading => "Element.show('authorship_spinner#{@authorship.id}')",
 							:complete => "Element.hide('authorship_spinner#{@authorship.id}')" %></td>
-<td class="button"><%= link_to "Destroy", 	:url => { :controller => "admin/authorships", :action => "destroy", :id => @authorship },
-													:remote => true,
+<td class="button"><%= link_to_remote "Destroy", 	:url => { :controller => "admin/authorships", :action => "destroy", :id => @authorship },
 													:loading => "Element.show('authorship_spinner#{@authorship.id}')",
 													:complete => "Element.hide('authorship_spinner#{@authorship.id}')",
 													:confirm => "Are you sure you want to delete this authorship?"	 %></td>

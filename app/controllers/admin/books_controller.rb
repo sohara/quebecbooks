@@ -62,13 +62,13 @@ class Admin::BooksController < AdminAreaController
   def update
     @book = Book.find(params[:id])
     @authors = Author.find( :all, :order => 'last_name')
-    @publishers = Publisher.find( :all, :order => 'publisher_name')
+    #@publishers = Publisher.find( :all, :order => 'publisher_name')
     #@book.authors = Author.find(params[:author_ids]) if params[:author_ids]
-    @book.publishers = Publisher.find(params[:publisher_ids]) if params[:publisher_ids]
+    @book.publishers = Publisher.find([params[:book][:publisher_ids]]) if params[:book][:publisher_ids]
     
     #Append new image to book if it was actually uploaded
-    @book.images << Image.new(:name => params[:image][:name],
-                              :caption => params[:image][:caption]) if params[:image][:name]
+    @book.images << Image.new(:image => params[:image][:image],
+                              :caption => params[:image][:caption]) if params[:image][:image]
                               
     # iterate over checkboxed images to delete them if checked
     params[:delete_image].each { |image| 

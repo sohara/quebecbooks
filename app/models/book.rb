@@ -35,6 +35,8 @@ class Book < ActiveRecord::Base
     validates_presence_of :category
     validates_associated :awards
     
+    attr_accessible :language, :title, :category, :topic, :copyright_year, :isbn_number, :place_of_publication, :date_published, :edition_number, :cover_type, :page_count, :shelf_number, :abstract, :extract
+    
     cattr_reader :per_page
     @@per_page = 20
 end

@@ -33,12 +33,5 @@ class Image < ActiveRecord::Base
   #               :large480 => {:size => "480X640>"},
   #             }
   #           }  
-            
-            
-            #    file_column :image, :magick => {:versions => {
-            #         :square => {:crop => "1:1", :size => "50x50", :name => "thumb"},
-            #         :screen => {:crop => "4:3", :size => "640x480>"},
-            #         :widescreen => {:crop => "16:9", :size => "640x360!"},
-            #       }
-            #    }         
+
 end

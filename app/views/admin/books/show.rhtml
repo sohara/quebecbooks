@@ -15,7 +15,7 @@
 			<% if @book.images != nil %>
 			<h3>Images</h3>
 			<% for @image in @book.images %>
-			<div class="picture"><%= image_tag url_for_file_column "image", "name", "thumb96" %><br  class="noclear"/>
+			<div class="picture"><%= image_tag @image.image(:thumb96) %><br  class="noclear"/>
 			<%= @image.caption %></div><br />
 	        <% end %><% end %><br /><br />
 	
@@ -72,10 +72,10 @@
 	<div class="reviewfield"><%= @book.shelf_number %></div><br />
 
 	<label for="book_abstract">Description</label>
-	<div class="reviewfield"><%= RedCloth.new(@book.abstract).to_html %></div><br />
+	<div class="reviewfield"><%= textilize(@book.abstract) %></div><br />
 
 	<label for="book_extract">Extract</label>
-	<div class="reviewfield"><%= RedCloth.new(@book.extract).to_html %></div><br />
+	<div class="reviewfield"><%= textilize(@book.extract) %></div><br />
 
 	<label for="book_created_on">Created on</label>
 	<div class="reviewfield"><%= @book.created_on %></div><br />
