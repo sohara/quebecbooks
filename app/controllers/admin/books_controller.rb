@@ -25,8 +25,8 @@ class Admin::BooksController < AdminAreaController
     @authors = Author.find( :all, :order => 'last_name')
     @book = Book.new(params[:book])
     @book.authors = Author.find(params[:author_ids]) if params[:author_ids]
-    @book.images << Image.new(:name => params[:image][:name],
-                              :caption => params[:image][:caption]) if params[:image][:name];
+    @book.images << Image.new(:image => params[:image][:image],
+                              :caption => params[:image][:caption]) if params[:image][:image]
     @book.publishers = Publisher.find(params[:publisher_ids]) if params[:publisher_ids]
     if @book.save
       flash[:notice] = 'Book was successfully created.'

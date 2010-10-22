@@ -65,7 +65,7 @@
 	<p>Click <a href="http://catalogue.atwaterlibrary.ca/m3/apps/m3opac/alcc?command=getSession&session=&style=ui&isbn=<%= @book.isbn_number.gsub(/\s|[-]/,'') %>" target="_blank">here</a> to search for this book at the Atwater Library.</p>
 	<% end %>
 	
-<% unless @book.subtitle.empty? %><label for="book_subtitle">Subtitle</label>
+<% unless @book.subtitle.blank? %><label for="book_subtitle">Subtitle</label>
 <div class="reviewfield"><%= @book.subtitle %></div><br /><% end %>
 
 <% unless @book.language.to_s.empty? %><label for="book_language">Language</label>

@@ -70,7 +70,7 @@
 <%= text_field 'book', 'isbn_number'  %><br />
 
 <label for="book_publisher">Publisher</label>
-<%=  collection_select :book, :publisher_ids, Publisher.all, :id, :publisher_name_truncated %>
+<%=  collection_select :book, :publisher_ids, Publisher.all.sort_by(&:publisher_name), :id, :publisher_name_truncated %>
 
 <label for="book_place_of_publication">Place of publication</label>
 <%= text_field 'book', 'place_of_publication'  %><br />

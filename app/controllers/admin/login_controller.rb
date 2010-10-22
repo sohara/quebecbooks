@@ -28,6 +28,7 @@ class Admin::LoginController < AdminAreaController
         redirect_to(:controller => :books, :action => "index")
       else
         flash[:notice] = "Invalid user/password combination"
+        redirect_to :action => "login_form"
       end
     end
   end

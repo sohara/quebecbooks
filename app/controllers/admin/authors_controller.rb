@@ -28,8 +28,8 @@ class Admin::AuthorsController < AdminAreaController
 
   def create
     @author = Author.new(params[:author])
-    @author.images << Image.new(:name => params[:image][:name],
-                              :caption => params[:image][:caption]) if params[:image][:name]
+    @author.images << Image.new(:image => params[:image][:image],
+                              :caption => params[:image][:caption]) if params[:image][:image]
     if @author.save
       flash[:notice] = 'Author was successfully created.'
       redirect_to :action => 'show', :id => @author
@@ -64,8 +64,8 @@ class Admin::AuthorsController < AdminAreaController
     @author = Author.find(params[:id])
     
     #Append new image to author if it was actually uploaded (checked via size)
-    @author.images << Image.new(:name => params[:image][:name],
-                              :caption => params[:image][:caption]) if params[:image][:name]
+    @author.images << Image.new(:image => params[:image][:image],
+                              :caption => params[:image][:caption]) if params[:image][:image]
    
     # iterate over checkboxed images to delete them if checked
     params[:delete_image].each { |image| Image.find(image[0]).destroy if image[1] == '1'} if params[:delete_image]
