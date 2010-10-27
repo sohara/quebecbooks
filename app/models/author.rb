@@ -36,4 +36,8 @@ class Author < ActiveRecord::Base
                   [ :other_name, :other],
                   [ :last_name, :last]
                 ]
+                
+  cattr_reader :per_page
+  @@per_page = 20
+  
 end

@@ -8,7 +8,9 @@
 </div>
 <br class="clear">
 
-<%= render(:partial => "navbar") %>
+
+<%= will_paginate %>
+<br class="clear" />
 
 <% for author in @authors %>
   <div id="listrow" class="<%= cycle("even", "odd") %>">
@@ -45,5 +47,5 @@
 <% end %>
 
 <br />
-<%= render(:partial => "navbar") %>
+<%= will_paginate %>
 <br />

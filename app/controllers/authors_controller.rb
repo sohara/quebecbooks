@@ -1,12 +1,6 @@
 class AuthorsController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
-    @author_pages, @authors = paginate :author, :per_page => 20, :order_by => 'last_name', :include => [:images]
-    logger.info "authors are #{@authors}"
+    @authors = Author.paginate :page => params[:page], :order => 'last_name',  :include => [:images]
   end
   
   def view
