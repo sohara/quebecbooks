@@ -52,7 +52,7 @@
 <%= text_field 'author', 'birthplace'  %><br />
 
 <label for="author_date_of_death">Date of death</label>
-<%= date_select("author", "died_on", :start_year => 2008, :end_year => 1900, :use_month_numbers => false,
+<%= date_select("author", "died_on", :start_year => Time.now.year, :end_year => 1900, :use_month_numbers => false,
                                     :include_blank => true) %><br />
 
 <label for="author_sex">Sex</label>
