@@ -5,7 +5,7 @@ require "bundler/capistrano"
 set :scm, :git
 # set :deploy_via, :remote_cache
 set :repository, "file:///opt/repos/qwf.git"
-set :local_repository, "aien8web2:/opt/repos/qwf.git"
+set :local_repository, "alien8web2:/opt/repos/qwf.git"
 
 set :application, "qwf"
 set :keep_releases, 4
