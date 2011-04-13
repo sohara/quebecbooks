@@ -5,7 +5,7 @@ require "bundler/capistrano"
 set :scm, :git
 # set :deploy_via, :remote_cache
 set :repository, "file:///opt/repos/qwf.git"
-set :local_repository, "alli:/opt/repos/qwf.git"
+set :local_repository, "aien8web2:/opt/repos/qwf.git"
 
 set :application, "qwf"
 set :keep_releases, 4
@@ -28,9 +28,9 @@ set :rvm_ruby_string, 'ruby-1.9.2@rails238'   # Or whatever env you want it to r
 # be used to single out a specific subset of boxes in a particular role, like
 # :primary => true.
 
-role :web, "209.172.35.182"
-role :app, "209.172.35.182"
-role :db,  "209.172.35.182", :primary => true
+role :web, "184.107.185.178"
+role :app, "184.107.185.178"
+role :db,  "184.107.185.178", :primary => true
 # role :db,  "db02.example.com", "db03.example.com"
 
 # =============================================================================
