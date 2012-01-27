@@ -14,7 +14,7 @@ set :use_sudo, false
 
 #itegration for capistrano with rvm
 set :rvm_type, :user                      # we have RVM in home dir, not system-wide install
-$:.unshift("#{ENV["HOME"]}/.rvm/lib")     # Add RVM's lib directory to the load path.
+$:.unshift("./vendor/lib")     # Add RVM's lib directory to the load path.
 require "rvm/capistrano"                  # Load RVM's capistrano plugin.
 set :rvm_ruby_string, 'ruby-1.9.2'   # Or whatever env you want it to run in.
 #end integration
