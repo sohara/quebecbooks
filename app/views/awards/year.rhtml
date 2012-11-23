@@ -1,43 +1,43 @@
 <div id="breadbar">
-	<form action="/awards/year" method="post">
-	<select id="year" name="year">
-	<%= options_for_select( (1988..2010).to_a.reverse, params[:year].to_i ) %>
-	</select>
-	<%= submit_tag 'Go' %>
-	</form>
+  <% form_tag({:controller => 'awards', :action => 'year' }) do %> 
+  <select id="year" name="year">
+  <%= options_for_select( (1988..Date.today.year).to_a.reverse, params[:year].to_i ) %>
+  </select>
+  <%= submit_tag 'Go' %>
+  <% end -%>
 <%= render(:partial => "shared/breadcrumb") %>
 </div>
 
 <h1>Awards for <%= params[:year] %></h1>
 <% if @awards.empty? %>
-	<% if params[:year] == Time.now.to_date.year.to_s %>
-		<p>The <%= Time.now.to_date.year %> Awards will be announced in November.</p>
-	<% else %>
-		<p>There are no awards for <%= params[:year] %></p>
-	<% end %>
+  <% if params[:year] == Time.now.to_date.year.to_s %>
+    <p>The <%= Time.now.to_date.year %> Awards will be announced in November.</p>
+  <% else %>
+    <p>There are no awards for <%= params[:year] %></p>
+  <% end %>
 <% end %>
 <% for award in @awards %>
 
   <div id="listrow" class="<%= cycle("even", "odd") %>">
-	<% unless award.book.images.empty? %>
-	<% image = award.book.images.first %>
-	<%= link_to (image_tag image.image(:thumb96)), {:controller => 'books', :action => 'view', :id => award.book } %>
-	<% end %>
-		<% if award.status == "Finalist" %>
-		<h3><%= award.status + " for " + award.name %><h3>
-		<% else %>
-		<h3><%= award.status + " of " + award.name %></h3>
-		<% end %>
+  <% unless award.book.images.empty? %>
+  <% image = award.book.images.first %>
+  <%= link_to (image_tag image.image(:thumb96)), {:controller => 'books', :action => 'view', :id => award.book } %>
+  <% end %>
+    <% if award.status == "Finalist" %>
+    <h3><%= award.status + " for " + award.name %><h3>
+    <% else %>
+    <h3><%= award.status + " of " + award.name %></h3>
+    <% end %>
     <h3 class="title"><%= link_to award.book["title"], :controller => 'books', :action => 'view', :id => award.book.id %></h3> by
     <% for author in award.book.writers %>
-	<%= link_to author.name, { :controller => 'authors', :action => 'view', :id => author}, {:class => "redlink"} %>
+  <%= link_to author.name, { :controller => 'authors', :action => 'view', :id => author}, {:class => "redlink"} %>
     <% end %>
 
-		<% unless award.book.translators.empty? %>, Translated by <% end %>
-		<% @translators = award.book.translators.sort_by{|t|t.last_name} -%>
-		<% for translator in @translators -%><% if translator == @translators.last and translator != @translators.first %> and <% elsif translator != @translators.first %>, <% end %><%= link_to(translator.name, { :controller => 'authors', :action => 'view', :id => translator}, {:class => "redlink"}) -%><% end -%>
+    <% unless award.book.translators.empty? %>, Translated by <% end %>
+    <% @translators = award.book.translators.sort_by{|t|t.last_name} -%>
+    <% for translator in @translators -%><% if translator == @translators.last and translator != @translators.first %> and <% elsif translator != @translators.first %>, <% end %><%= link_to(translator.name, { :controller => 'authors', :action => 'view', :id => translator}, {:class => "redlink"}) -%><% end -%>
 <br />
     <span class="detail"><%=h award.book["category"] %> | <%=h award.book["date_published"] %><br /></span>
-	<br class="clear" />
+  <br class="clear" />
   </div>
 <% end %>
