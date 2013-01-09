@@ -6,12 +6,12 @@ Qwf::Application.routes.draw do
   match 'books/genre/:genre' => 'books#genre', :genre => /\D+/
   match 'awards/year/:year' => 'awards#year', :year => /\d+/
   match '/awards/category/:category' => 'awards#category', :category => /\D+/
-  match '/admin/login/login_form' => 'admin/login#login_form'  
+  match '/admin/login/login_form' => 'admin/login#login_form'
   match '/admin/login/login' => 'admin/login#login'
   match ':controller/service.wsdl' => '#wsdl'
-  match '/admin/authors(/:action(/:id))' => '/admin/authors'
-  match '/admin/books(/:action(/:id))' => '/admin/books'
-  match '/admin/publishers(/:action(/:id))' => '/admin/publishers'  
+  match '/admin/authors(/:action(/:id))' => 'admin/authors'
+  match '/admin/books(/:action(/:id))' => 'admin/books'
+  match '/admin/publishers(/:action(/:id))' => 'admin/publishers'
   match '/:controller(/:action(/:id))'
 
 
