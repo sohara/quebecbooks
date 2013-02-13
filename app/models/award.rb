@@ -20,7 +20,7 @@ class Award < ActiveRecord::Base
                          :message => "should be either 'Fiction', 'Non-Fiction' 'Poetry', 'First-Book', or  'Translation'"
   validates_inclusion_of :status,
                          :in => %w{ Finalist Winner },
-                         :message => "should be either 'Finalist' or 'Winner'"        
+                         :message => "should be either 'Finalist' or 'Winner'"
 
 # This method maps award names to awards base on their category and year
    def name
@@ -41,11 +41,15 @@ class Award < ActiveRecord::Base
      elsif self[:category] == 'Poetry'
        if self[:year] > 1991
          'The A.M. Klein Prize for Poetry'
-       else 
+       else
          'The QSPELL Prize for Poetry'
        end
       elsif self[:category] == 'First-Book'
-        if self[:year] > 2001
+        if self[:year] > 2010
+          'Concordia University First Book Prize'
+        elsif self[:year] = 2010
+          'QWF First Book Prize'
+        elsif self[:year] > 2001
           'McAuslan First Book Prize'
         else
           'First Book Prize'
@@ -57,5 +61,5 @@ class Award < ActiveRecord::Base
       end
 
    end
-                                           
+
 end
