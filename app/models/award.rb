@@ -47,7 +47,7 @@ class Award < ActiveRecord::Base
       elsif self[:category] == 'First-Book'
         if self[:year] > 2010
           'Concordia University First Book Prize'
-        elsif self[:year] = 2010
+        elsif self[:year] == 2010
           'QWF First Book Prize'
         elsif self[:year] > 2001
           'McAuslan First Book Prize'
