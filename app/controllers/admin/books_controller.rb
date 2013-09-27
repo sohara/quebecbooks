@@ -1,5 +1,7 @@
 class Admin::BooksController < AdminAreaController
 
+  before_filter :authorize
+
   auto_complete_for :book, :title
 
   def index
