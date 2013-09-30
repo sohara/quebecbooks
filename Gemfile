@@ -22,7 +22,7 @@ gem 'mysql2'
 # gem 'nokogiri'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
-gem "paperclip", ">=2.3.3"
+gem "paperclip", "~> 2.8.0"
 gem 'RedCloth', "4.2.2", :require => 'redcloth'
 gem "will_paginate", "~> 3.0.pre2"
 
