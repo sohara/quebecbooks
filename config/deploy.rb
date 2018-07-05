@@ -4,19 +4,18 @@ require "bundler/capistrano"
 
 set :scm, :git
 # set :deploy_via, :remote_cache
-set :repository, "file:///opt/repos/qwf.git"
-set :local_repository, "alien8web:/opt/repos/qwf.git"
+set :repository, "git@github.com:sohara/quebecbooks.git"
 
 set :application, "qwf"
-set :keep_releases, 4
+set :keep_releases, 8
 set :use_sudo, false
 
 
 #itegration for capistrano with rvm
-set :rvm_type, :user                      # we have RVM in home dir, not system-wide install
+# set :rvm_type, :user                      # we have RVM in home dir, not system-wide install
 $:.unshift("./vendor/lib")     # Add RVM's lib directory to the load path.
 require "rvm/capistrano"                  # Load RVM's capistrano plugin.
-set :rvm_ruby_string, 'ruby-1.9.2'   # Or whatever env you want it to run in.
+set :rvm_ruby_string, 'ruby-1.9.3'   # Or whatever env you want it to run in.
 #end integration
 
 # =============================================================================
@@ -28,16 +27,16 @@ set :rvm_ruby_string, 'ruby-1.9.2'   # Or whatever env you want it to run in.
 # be used to single out a specific subset of boxes in a particular role, like
 # :primary => true.
 
-role :web, "184.107.185.178"
-role :app, "184.107.185.178"
-role :db,  "184.107.185.178", :primary => true
+role :web, "quebecbooks.qwf.org"
+role :app, "quebecbooks.qwf.org"
+role :db,  "quebecbooks.qwf.org", :primary => true
 # role :db,  "db02.example.com", "db03.example.com"
 
 # =============================================================================
 # OPTIONAL VARIABLES
 # =============================================================================
-set :deploy_to, "/var/vhosts/quebecbooks.qwf.org/qwf" # defaults to "/u/apps/#{application}"
-set :user, "alien8web"            # defaults to the currently logged in user
+set :deploy_to, "/opt/app" # defaults to "/u/apps/#{application}"
+set :user, "web"            # defaults to the currently logged in user
 # set :scm, :darcs               # defaults to :subversion
 # set :svn, "/path/to/svn"       # defaults to searching the PATH
 # set :darcs, "/path/to/darcs"   # defaults to searching the PATH
@@ -134,13 +133,16 @@ end
 
 desc "Create the symlink to the image dir for qwf uploaded images"
 task :image_sym_link, :roles => :app do
-    run "ln -s /var/vhosts/quebecbooks.qwf.org/qwf/shared/image #{current_release}/public/image"
+    run "ln -s #{deploy_to}/shared/image #{current_release}/public/image"
 end
 
 desc "Create the symlink to the database.yml file in /shared"
 task :db_sym_link, :roles => :app do
-    run "ln -s /var/vhosts/quebecbooks.qwf.org/qwf/shared/database.yml #{current_release}/config/database.yml"
+  run "ln -s #{deploy_to}/shared/database.yml #{current_release}/config/database.yml"
 end
+# task :db_sym_link, :roles => :app do
+#     run "ln -s /var/vhosts/quebecbooks.qwf.org/qwf/shared/database.yml #{current_release}/config/database.yml"
+# end
 
 # New deploy task added 20100204
 namespace :deploy do
