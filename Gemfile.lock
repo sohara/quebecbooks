@@ -49,6 +49,8 @@ GEM
   specs:
     RedCloth (4.2.2)
     abstract (1.0.0)
+    activerecord-mysql2-adapter (0.0.3)
+      mysql2
     arel (2.0.10)
     builder (2.1.2)
     capistrano (2.9.0)
@@ -72,7 +74,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.21)
-    mysql2 (0.2.4)
+    mysql2 (0.3.21)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -106,8 +108,12 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth (= 4.2.2)
+  activerecord-mysql2-adapter
   capistrano
-  mysql2
+  mysql2 (= 0.3.21)
   paperclip (~> 2.8.0)
   rails!
   will_paginate (~> 3.0.pre2)
+
+BUNDLED WITH
+   1.16.2

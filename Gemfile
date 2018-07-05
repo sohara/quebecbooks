@@ -6,7 +6,8 @@ gem 'rails', :git => 'git://github.com/rails/rails.git', :ref => '182d4e3719' # 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+gem 'mysql2', '0.3.21'
+gem 'activerecord-mysql2-adapter'
 
 # Use unicorn as the web server
 # gem 'unicorn'
