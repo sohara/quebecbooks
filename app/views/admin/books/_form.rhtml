@@ -9,28 +9,28 @@
 	<% end %>
 
 		<br /><br />
-		
+
 		<% unless @book.images.empty? %>
 		<h3>Images</h3>
 		<% for image in @book.images %>
 		<div class="picture">
 			<% logger.info "image is #{ image.image(:medium250)}" %>
-		<%= link_to (image_tag image.image(:thumb96)), 
-		image.image(:medium250), 
+		<%= link_to (image_tag image.image(:thumb96)),
+		image.image(:medium250),
 		{ :popup => ['new_window', 'height=375,width=250']} %>
 		<div class="checkbox"><%= check_box("delete_image", image.id ) %>(Check to delete)</div>
 		<br  class="noclear"/>
 		<%= image.caption %><br  class="noclear"/></div><br />
         <% end %>
 		<% end %>
-        
+
 		<h3>Add an Image</h3>
         <label for="image_name">Image:</label>
 		<%= file_field 'image', 'image', {'size' => '', 'class' => 'myfile'} %><br />
 		<label for="image_caption">Caption</label>
 		<%= text_field 'image', 'caption'  %><br /><br />
-		
-	
+
+
 		<% unless @book.awards.empty? %>
 		<h3>Awards</h3>
 		<table class="awards">
@@ -39,13 +39,13 @@
 		</table>
 		<% end %>
 		<br />
-		
+
 		<h3>Add New Award</h3>
 		<table class="awards">
 			<tr><th>Category</th><th>Year</th><th>Status</th></tr>
 			<%= render(:partial => "award", :locals => {:award => Award.new(:id => 1, :year => 2007)} ) %>
 		</table>
-		
+
     </div><!-- end of div form_col_right -->
 
 <label for="book_title">Title</label>
@@ -58,7 +58,7 @@
 <%= text_field 'book', 'language'  %><br />
 
 <label for="book_category">Category</label>
-<%= select "book","category",['Fiction','Non-Fiction','Poetry','Children']  %><br />
+<%= select "book","category",['Fiction','Non-Fiction','Poetry','Children', 'Plays']  %><br />
 
 <label for="book_topic">Topic</label>
 <%= text_field 'book', 'topic'  %><br />

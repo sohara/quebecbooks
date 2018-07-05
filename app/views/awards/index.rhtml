@@ -3,8 +3,8 @@
 <div id="sidebar">
   <div id="searchbox">
     <h2>Search Awards</h2>
-    
-    <% form_tag({:controller => 'awards', :action => 'year' }) do %> 
+
+    <% form_tag({:controller => 'awards', :action => 'year' }) do %>
     <h3>By Year</h3>
     <select id="year" name="year">
     <%= options_for_select( (1988..Date.today.year).to_a.reverse) %>
@@ -12,25 +12,33 @@
     <%= submit_tag 'Go' %>
     <% end %>
 
-    
-    <% form_tag({:controller => 'awards', :action => 'category' }) do %> 
+
+    <% form_tag({:controller => 'awards', :action => 'category' }) do %>
     <h3>By Award</h3>
     <select id="category" name="category">
-    <%= options_for_select([ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation","Children’s & Y.A. Lit." ], { :include_blank => true }) %>
+    <%= options_for_select([ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation","Children’s & Y.A. Lit.", "Playwriting" ], { :include_blank => true }) %>
     </select>
     <%= submit_tag 'Go' %>
     <% end %>
-  </div>    
+  </div>
 </div>
 
-<p>The QWF awards are presented each year to the best books by Quebec English-language authors in four categories: fiction, non-fiction, poetry, and first book by a Quebec English-language author.  In addition, the QWF  Translation Prize is awarded for English to French translation one year, and French to English translation the next.</p>
+<p>
+  The QWF awards are presented each year to the best books by Quebec English-language authors in six categories: fiction, non-fiction,
+  poetry, first book, children's/young adult literature and playwriting. In addition, the Cole Foundation Prize for Translation
+  is awarded for English-to-French translation one year, and French-to-English translation the next.
+</p>
 
-<p>The following prizes are currently awarded: </p>
+<p>
+  The following prizes are currently awarded:
+</p>
+
 <ul id="awardlist">
-<li>The Paragraphe Hugh MacLennan Award for Fiction</li> 
-<li>The A.M. Klein Award for Poetry </li> 
-<li>The Mavis Gallant Award for Non-fiction </li> 
-<li>The McAuslan First Book Award </li> 
-<li>The QWF Translation Prize </li> 
-<li>The QWF Prize for Children’s and Young Adult Literature</li>
+  <li>The Paragraphe Hugh MacLennan Prize for Fiction</li>
+  <li>The A.M. Klein Prize for Poetry</li>
+  <li>The Mavis Gallant Prize for Non-fiction</li>
+  <li>The Concordia University First Book Prize</li>
+  <li>The Cole Foundation Prize for Translation</li>
+  <li>The QWF Prize for Children’s and Young Adult Literature</li>
+  <li>The QWF Prize for Playwriting</li>
 </ul>

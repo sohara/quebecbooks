@@ -1,13 +1,13 @@
 <div id="breadbar">
-	<% form_tag :controller => 'authors', :action => 'search' do %> 
-	<%= text_field_with_auto_complete(:author, :name, { :size => 20 }, :skip_style => true).html_safe %> &nbsp;
-	<%= submit_tag 'Search Authors' %>
+	<%= form_tag :controller => 'authors', :action => 'search' do %>
+		<%= text_field_with_auto_complete(:author, :name, { :size => 20 }, :skip_style => true).html_safe %> &nbsp;
+		<%= submit_tag 'Search Authors' %>
 	<% end %>
 
 <%= render(:partial => "shared/breadcrumb") %>
+
 </div>
 <br class="clear">
-
 
 <%= will_paginate %>
 <br class="clear" />
@@ -29,7 +29,7 @@
 			<% end -%><br />
     <% end -%><br />
 	<% end %>
-	
+
 	<% unless author.translations.empty? %><span class="detail">Translator of: </span><br />
     <% for book in author.translations %>
 			<%= link_to book.title, { :controller => 'books', :action => 'view', :id => book}, {:class => "redlink"} -%>
@@ -40,8 +40,8 @@
 			<% end -%><br />
     <% end -%><br />
 	<% end %>
-	
-	<div class="clear"> 
+
+	<div class="clear">
 	</div>
   </div>
 <% end %>

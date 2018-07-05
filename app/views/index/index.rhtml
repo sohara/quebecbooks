@@ -9,44 +9,53 @@
 <![endif]-->
 <div id="sidebar">
 	<ul id="homenav">
-		<li><a href="books">Browse Books</a><ul><li><%= link_to 'Fiction', { :controller => 'books', :action => 'genre', :genre => 'Fiction' } %></li><li><%= link_to 'Non-Fiction', { :controller => 'books', :action => 'genre', :genre => 'Non-Fiction' } %></li><li><%= link_to 'Poetry', { :controller => 'books', :action => 'genre', :genre => 'Poetry' } %></li><li><%= link_to "Children's", { :controller => 'books', :action => 'genre', :genre => 'Children' } %></li></ul></li
-		><li><a href="authors">Browse Authors</a></li
-		><li><a href="awards">Browse Awards</a></li>
+		<li>
+			<a href="books">Browse Books</a>
+			<ul>
+				<li><%= link_to 'Fiction', { :controller => 'books', :action => 'genre', :genre => 'Fiction' } %></li>
+				<li><%= link_to 'Non-Fiction', { :controller => 'books', :action => 'genre', :genre => 'Non-Fiction' } %></li>
+				<li><%= link_to 'Poetry', { :controller => 'books', :action => 'genre', :genre => 'Poetry' } %></li>
+				<li><%= link_to "Children's", { :controller => 'books', :action => 'genre', :genre => 'Children' } %></li>
+				<li><%= link_to "Plays", { :controller => 'books', :action => 'genre', :genre => 'Plays' } %></li>
+			</ul>
+		</li>
+		<li><a href="authors">Browse Authors</a></li>
+		<li><a href="awards">Browse Awards</a></li>
 	</ul>
-	<div class="clear"> 
+	<div class="clear">
 	</div>
 	<div id="searchbox">
 		<h2>Search</h2>
 
-		<% form_tag  :controller => 'books', :action => 'search' do %>
+		<%= form_tag  :controller => 'books', :action => 'search' do %>
 		<h3>Books</h3>
 		<%= text_field_with_auto_complete( :book, :title, { :size => 23 }, :skip_style => true).html_safe  %> &nbsp;
 		<%= submit_tag 'Go' %><% end %>
-		
-		<% form_tag  :controller => 'authors', :action => 'search' do -%>
+
+		<%= form_tag  :controller => 'authors', :action => 'search' do -%>
 		<h3>Authors</h3>
 		<%= text_field_with_auto_complete( :author, :name, { :size => 23 }, :skip_style => true).html_safe %> &nbsp;
 		<%= submit_tag 'Go' %><% end %>
-		
-		<% form_tag :controller => 'awards', :action => 'category' do  %> 
+
+		<%= form_tag :controller => 'awards', :action => 'category' do  %>
 		<h3>Awards</h3>
 		<select id="category" name="category">
-		<%= options_for_select([ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation", "Children’s & Y.A. Lit." ], { :include_blank => true }) %>
+		<%= options_for_select([ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation", "Children’s & Y.A. Lit.", "Playwriting" ], { :include_blank => true }) %>
 		</select>
 		<%= submit_tag 'Go' %>
 		<% end %>
-	
-	</div>	
-		
+
+	</div>
+
 </div>
-<div id="maintext">	
+<div id="maintext">
 
   <p style="font-size:.85em;">This database represents the QWF Collection, a physical collection of <%= Book.count %> books assembled mostly during the last ten years. The books are housed by one of our partners in this venture, the Atwater Library and Computer Centre of Montreal, Quebec.</p>
-	
+
 <p>From the heart of French Quebec, the Quebec Writer&#8217;s Federation (QWF) presents the work of our English-language literary community. It&#8217;s a lively place to be. As you&#8217;ll see, our best authors have become household names, and the best of our books are known throughout Canada and the world.</p>
 
 <p>So please take a look and find out what we&#8217;ve been up to.</p>
- 
+
 <p>You can search the database by author, by title, or by genre. You can also find out which books were selected as winners of our <%= link_to 'QWF Awards', { :controller => 'awards', :action => 'index' } %> for literary excellence. In the <%= link_to 'Authors', { :controller => 'authors', :action => 'index' } %> section you can look through the work of Terence Byrnes, a writer/photographer who created many of the portraits you&#8217;ll see.</p>
 
 <h2><%= link_to 'Background on the database', { :controller => 'index', :action => 'sponsors' } %></h2>
@@ -59,5 +68,3 @@
 <img src="/images/worldbook.gif" alt="logo" class="logo">
 <img src="/images/canheritage.gif" alt="logo" class="logo">
 </div>
-
-

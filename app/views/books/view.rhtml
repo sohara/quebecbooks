@@ -1,6 +1,6 @@
 <div id="breadbar">
-	<% form_tag :controller => 'books', :action => 'search' do %>
-	<%= text_field_with_auto_complete :book, :title, { :size => 15, :value => "" }, :skip_style => true  %> 
+	<%= form_tag :controller => 'books', :action => 'search' do %>
+	<%= text_field_with_auto_complete :book, :title, { :size => 15, :value => "" }, :skip_style => true  %>
 	<%= submit_tag 'Search Books' %>
 	<% end %>
 
@@ -13,23 +13,23 @@
     <%= link_to '<', {:action => "view", :id => @book_previous} , {:title => "Previous Book", :class => "navlinks"} %>
 	</div>
 	<div id="rightnavs">
-    <%= link_to '>', {:action => "view", :id => @book_next}, { :title => "Next Book", :class => "navlinks"} %> 
+    <%= link_to '>', {:action => "view", :id => @book_next}, { :title => "Next Book", :class => "navlinks"} %>
 	</div>
 	<%= @book_number.to_s + " of " + @books.length.to_s %>
 </div>
 <br class="clear" />
 
 <div class="editform">
-<h2><span class="title"><%=h @book.title %></span> by 
+<h2><span class="title"><%=h @book.title %></span> by
 	<% @writers = @book.writers.sort_by{|t|t.last_name} -%>
 	<% for writer in @writers %><% if writer == @writers.last and writer != @writers.first %> and <% elsif writer != @writers.first %>, <% end %><%= link_to(writer.name, { :controller => 'authors', :action => 'view', :id => writer}, {:class => "redlink"}) -%><% end -%>
-	
+
 	<% unless @book.translators.empty? %>, Translated by <% end %>
 	<% @translators = @book.translators.sort_by{|t|t.last_name} -%>
 	<% for translator in @translators -%><% if translator == @translators.last and translator != @translators.first %> and <% elsif translator != @translators.first %>, <% end %><%= link_to(translator.name, { :controller => 'authors', :action => 'view', :id => translator}, {:class => "redlink"}) -%><% end -%>
 
 	</h2>
-	
+
 	<% unless @book.awards.empty? %>
     <% for award in @book.awards %>
 		<% if award.status == "Finalist" %>
@@ -39,11 +39,11 @@
 		<% end %>
 	<% end %>
 	<% end %>
-	
+
 <!--[form:book]-->
 <div id="form_cols">
     <div id="form_col_right">
-		
+
 		<% unless @book.images.empty? %>
 		<div class="picture">
 		<% for @image in @book.images %>
@@ -58,13 +58,13 @@
 		<h3>Extract</h3>
 		<%= textilize(@book.extract) %><br />
 		<% end %>
-		
+
     </div><!-- end of div form_col_right -->
 <div id ="form_col_left">
 	<% unless @book.isbn_number.to_s.empty? %>
 	<p>Click <a href="http://catalogue.atwaterlibrary.ca/m3/apps/m3opac/alcc?command=getSession&session=&style=ui&isbn=<%= @book.isbn_number.gsub(/\s|[-]/,'') %>" target="_blank">here</a> to search for this book at the Atwater Library.</p>
 	<% end %>
-	
+
 <% unless @book.subtitle.blank? %><label for="book_subtitle">Subtitle</label>
 <div class="reviewfield"><%= @book.subtitle %></div><br /><% end %>
 

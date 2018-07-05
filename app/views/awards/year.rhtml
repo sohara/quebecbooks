@@ -1,5 +1,5 @@
 <div id="breadbar">
-  <% form_tag({:controller => 'awards', :action => 'year' }) do %> 
+  <%= form_tag({:controller => 'awards', :action => 'year' }) do %>
   <select id="year" name="year">
   <%= options_for_select( (1988..Date.today.year).to_a.reverse, params[:year].to_i ) %>
   </select>
