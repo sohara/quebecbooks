@@ -37,6 +37,7 @@ role :db,  "quebecbooks.qwf.org", :primary => true
 # =============================================================================
 set :deploy_to, "/opt/app" # defaults to "/u/apps/#{application}"
 set :user, "web"            # defaults to the currently logged in user
+set :ssh_options, { :forward_agent => true }
 # set :scm, :darcs               # defaults to :subversion
 # set :svn, "/path/to/svn"       # defaults to searching the PATH
 # set :darcs, "/path/to/darcs"   # defaults to searching the PATH
