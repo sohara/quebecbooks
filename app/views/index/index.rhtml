@@ -50,13 +50,17 @@
 </div>
 <div id="maintext">
 
-  <p style="font-size:.85em;">This database represents the QWF Collection, a physical collection of <%= Book.count %> books assembled mostly during the last ten years. The books are housed by one of our partners in this venture, the Atwater Library and Computer Centre of Montreal, Quebec.</p>
+<p>
+  In this database, The Quebec Writers' Federation (QWF) presents the work of our primarily francophone province's English-language literary community. The database is a digital catalogue of "The QWF Collection," a physical collection of almost 2000 books, housed by our partners, the Atwater Library and Computer Centre and the Montreal Children's Library in Montreal, Quebec.
+</p>
 
-<p>From the heart of French Quebec, the Quebec Writer&#8217;s Federation (QWF) presents the work of our English-language literary community. It&#8217;s a lively place to be. As you&#8217;ll see, our best authors have become household names, and the best of our books are known throughout Canada and the world.</p>
+<p>
+	You can search the database by author, by title, or by genre. You can also find out which books were shortlisted or selected as winners of annual our <%= link_to 'QWF Awards', { :controller => 'awards', :action => 'index' } %> for literary excellence. On the banner at the top of this page and in the author pages you will find the work of Terence Byrnes, a writer/photographer who created many of the portraits you’ll see.
+</p>
 
-<p>So please take a look and find out what we&#8217;ve been up to.</p>
-
-<p>You can search the database by author, by title, or by genre. You can also find out which books were selected as winners of our <%= link_to 'QWF Awards', { :controller => 'awards', :action => 'index' } %> for literary excellence. In the <%= link_to 'Authors', { :controller => 'authors', :action => 'index' } %> section you can look through the work of Terence Byrnes, a writer/photographer who created many of the portraits you&#8217;ll see.</p>
+<p>
+	So spend some time browsing and see what we've been up to!
+</p>
 
 <h2><%= link_to 'Background on the database', { :controller => 'index', :action => 'sponsors' } %></h2>
 </div>
