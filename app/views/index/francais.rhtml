@@ -6,24 +6,21 @@
 	</ul>
 	<div id="searchbox">
 		<h2>Rechercher</h2>
-		<% form_tag do (
-{:controller => 'books', :action => 'search' }) %>
+		<%= form_tag  :controller => 'books', :action => 'search' do %>
 		<h3>Livres</h3>
-		<%= text_field_with_auto_complete :book, :title, { :size => 15 }, :skip_style => true  %> 
+		<%= text_field_with_auto_complete :book, :title, { :size => 15 }, :skip_style => true  %>
 		<%= submit_tag 'Aller' %>
 		<% end %>
 
-		
-		<% form_tag do (
-{:controller => 'authors', :action => 'search' }) %> 
+
+		<%= form_tag  :controller => 'authors', :action => 'search' do -%>
 		<h3>Auteurs</h3>
-		<%= text_field_with_auto_complete :author, :name, { :size => 15 }, :skip_style => true %> 
+		<%= text_field_with_auto_complete :author, :name, { :size => 15 }, :skip_style => true %>
 		<%= submit_tag 'Aller' %>
 		<% end %>
 
-		
-		<% form_tag do (
-{:controller => 'awards', :action => 'category' }) %> 
+
+		<%= form_tag :controller => 'awards', :action => 'category' do  %>
 		<h3>Prix</h3>
 		<select id="category" name="category">
 		<%= options_for_select([ "Fiction", "Non-Fiction", "Poetry", "First-Book", "Translation" ], { :include_blank => true }) %>
@@ -31,18 +28,25 @@
 		<%= submit_tag 'Aller' %>
 		<% end %>
 
-	</div>	
-	
+	</div>
+
 </div>
-<div id="maintext">	
-	
-<p>Depuis le coeur du Qu&eacute;bec fran&ccedil;ais, la Quebec Writers&#8217; Federation (QWF) pr&eacute;sente les oeuvres de notre communaut&eacute; litt&eacute;raire de langue anglaise. C&#8217;est un endroit dynamique! Comme vous le verrez, nos meilleurs auteurs sont devenus des noms tr&egrave;s familiers et nos meilleurs livres sont connus partout au Canada et dans le monde.</p>
+<div id="maintext">
 
-<p>Nous vous invitons donc &agrave; explorer la base et &agrave; d&eacute;couvrir ce &agrave; quoi nous nous sommes employ&eacute;s.</p>
+<p>
+	Dans cette base de données, la Fédération des écrivaines et écrivains du Québec (QWF) présente les œuvres de la communauté littéraire anglophone établie dans notre province majoritairement francophone. La base de données est un catalogue numérique de « La collection QWF », une collection matérielle qui regroupe près de 2000 ouvrages hébergés par nos partenaires, la Bibliothèque et centre informatique Atwater et la Bibliothèque des jeunes de Montréal, Québec.
+</p>
 
-<p>Vous pouvez effectuer une recherche par auteur, par titre ou par genre. Vous pouvez &eacute;galement savoir quels ouvrages ont &eacute;t&eacute; couronn&eacute;s de nos <%= link_to 'prix QWF', { :controller => 'awards', :action => 'francais' } %> pour l&#8217;excellence litt&eacute;raire. Dans la section <%= link_to 'Auteurs', { :controller => 'authors', :action => 'index' } %>, bon nombre des portraits que vous verrez sont l&#8217;oeuvre de Terence Byrnes, &eacute;crivain et photographe montr&eacute;alais.</p>
+<p>
+	Vous pouvez faire des recherches dans la base de données par auteur, par titre ou par genre. Vous pouvez également découvrir les ouvrages qui ont été finalistes ou sélectionnés gagnants des prix annuels de la QWF pour l’excellence littéraire. Sur la bannière en haut de cette page et dans les pages réservées aux auteurs, vous trouverez l’œuvre de Terence Byrnes, un écrivain/photographe qui a créé plusieurs portraits que vous pouvez voir.
+</p>
 
-<h2><%= link_to 'Nos commanditaires', { :controller => 'index', :action => 'histoire' } %></h2>
+<p>
+	Explorez notre site pour découvrir ce que nous avons réalisé!
+</p>
+
+
+<h2><%= link_to 'Contexte de la base de données', { :controller => 'index', :action => 'histoire' } %></h2>
 
 <div class="clear">
 </div>
